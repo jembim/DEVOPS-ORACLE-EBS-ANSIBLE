@@ -1,0 +1,214 @@
+<?xml version = '1.0'?>
+<!-- $Header: adxdbctx.tmp 120.52.12020000.7 2015/07/08 14:49:15 srveerar ship $ -->
+<!--
+# +======================================================================+ 
+# |    Copyright (c) 2005, 2015 Oracle and/or its affiliates.           | 
+# |                         All rights reserved.                         | 
+# |                           Version 12.0.0                             | 
+# +======================================================================+ 
+-->
+<!--
+  ###############################################################
+  
+  Do not edit settings in this file manually. They are managed
+  automatically and will be overwritten when AutoConfig runs.
+  For more information about AutoConfig, refer to the Oracle
+  E-Business Suite Setup Guide.
+  
+  ###############################################################
+
+  -->
+<oa_context version="$Revision: 120.52.12020000.7 $">
+   <oa_context_name oa_var="s_contextname">{{ db_name }}_{{ db_host }}</oa_context_name>
+   <oa_context_serial oa_var="s_contextserial">0</oa_context_serial>
+   <oa_context_type oa_var="s_contexttype">Database Context</oa_context_type>
+   <oa_context_file_loc oa_var="s_contextfile">/u01/install/APPS/12.1.0/appsutil/{{ db_name }}_{{ db_host }}.xml</oa_context_file_loc>
+   <!-- Applications system information -->
+   <oa_system>
+      <oa_system_name oa_var="s_systemname">{{ db_name }}</oa_system_name>
+      <global_db_name oa_var="s_dbSid">{{ db_name }}</global_db_name>
+      <db_name_lower oa_var="s_dbSidLower">{{ db_name_lower }}</db_name_lower>
+      <dbname oa_var="s_dbGlnam">{{ db_name }}</dbname>
+      <global_database_name oa_var="s_global_database_name">{{ db_name }}.{{ domain }}</global_database_name>
+      <cluster_database oa_var="s_dbCluster">false</cluster_database>
+      <cluster_database_instances oa_var="s_dbClusterInst">1</cluster_database_instances>
+      <storagetype oa_var="s_storageType">fs</storagetype>
+      <dbracshared oa_var="s_RAC_sharedOH">false</dbracshared>
+      <dbracprefix oa_var="s_RAC_prefix">{{ db_name }}</dbracprefix>
+      <dbracnodes oa_var="s_RAC_nodes"/>
+      <instance_name oa_var="s_instName">{{ db_name }}</instance_name>
+      <instance_number oa_var="s_instNumber">0</instance_number>
+      <instance_thread oa_var="s_instThread">0</instance_thread>
+      <service_names oa_var="s_dbService">{{ db_name }}</service_names>
+      <local_listener oa_var="s_instLocalListener">{{ db_name }}_LOCAL</local_listener>
+      <remote_listener oa_var="s_instRemoteListener">{{ db_name }}_REMOTE</remote_listener>
+      <quorum_disk oa_var="s_dbQuorumDisk"/>
+      <cluster_port oa_var="s_clusterServicePort">9998</cluster_port>
+      <config_option type="database" oa_var="s_database">db121</config_option>
+      <config_option type="database" oa_var="s_database_type"/>
+      <config_option type="database" oa_var="s_bits">64</config_option>
+      <config_option type="adx" oa_var="s_apps_version">12.2.6</config_option>
+      <etccloc oa_var="s_db_etcc_loc">/u01/install/APPS/12.1.0/appsutil/etcc</etccloc>
+      <compatible oa_var="s_compatible">12.1.0</compatible>
+      <oa_users>
+         <oa_user type="SYS">
+            <username oa_var="s_sys_user">SYS</username>
+         </oa_user>
+         <oa_user type="APPS">
+            <username oa_var="s_apps_user">apps</username>
+         </oa_user>
+      </oa_users>
+      <AFSYSCSI oa_var="s_systemcsi">N/A</AFSYSCSI>
+      <proxyhost oa_var="s_proxyhost"/>
+      <proxyport oa_var="s_proxyport"/>
+      <customer_info>
+         <metalink_id oa_var="s_metalink_id"/>
+         <country_code oa_var="s_country_code"/>
+      </customer_info>
+      <nls_settings>
+         <defterr oa_var="s_defterr">AMERICA</defterr>
+         <base_lang oa_var="s_base_lang"/>
+         <allprod oa_var="s_allprod"/>
+         <allshareprod oa_var="s_allshareprod"/>
+         <allterr oa_var="s_allterr"/>
+         <alllang oa_var="s_alllang"/>
+      </nls_settings>
+      <oa_db_server>
+         <dbhost oa_var="s_dbhost">{{ db_host }}</dbhost>
+         <dbport oa_var="s_dbport" oa_type="PORT" base="{{ db_port }}" step="1" range="-1" label="Database Port">{{ db_port }}</dbport>
+         <db_ons_localport oa_var="s_db_ons_localport" oa_type="PORT" base="6300" step="1" range="-1" label="DB ONS Local Port">6300</db_ons_localport>
+         <db_ons_remoteport oa_var="s_db_ons_remoteport" oa_type="PORT" base="6400" step="1" range="-1" label="DB ONS Remote Port">6400</db_ons_remoteport>
+         <dbtype oa_var="s_dbtype">VISION</dbtype>
+         <dbcset oa_var="s_dbcset">AL32UTF8</dbcset>
+         <dbseed oa_var="s_dbseed">Fresh Install</dbseed>
+         <dbcomp oa_var="s_dbcomp">oracle.apps.dbseed.fresh</dbcomp>
+         <dbprocesses oa_var="s_db_processes">300</dbprocesses>
+         <SESSIONS oa_var="s_db_sessions">400</SESSIONS>
+         <dbfiles oa_var="s_dbfiles">512</dbfiles>
+         <dbblockbuffers oa_var="s_dbblock_buffers">0</dbblockbuffers>
+         <dbcachesize oa_var="s_dbcache_size">163577856</dbcachesize>
+         <dbsharedpool oa_var="s_dbsharedpool_size">300000000</dbsharedpool>
+         <dbrollbacksegs oa_var="s_db_rollback_segs">NOROLLBACK</dbrollbacksegs>
+         <dbutilfiledir oa_var="s_db_util_filedir" osd="unix">/usr/tmp</dbutilfiledir>
+         <undotablespace oa_var="s_undo_tablespace">APPS_UNDOTS1</undotablespace>
+         <APPS_DATA_FILE_DIR oa_var="s_db_data_file_dir">/u01/install/APPS/12.1.0/appsutil/outbound/{{ db_name }}_{{ db_host }}</APPS_DATA_FILE_DIR>
+         <db_walletdir oa_var="s_dbWalletDir">/u01/install/APPS/12.1.0/appsutil/wallet</db_walletdir>
+         <scanName oa_var="s_scan_name"/>
+         <scanPort oa_var="s_scan_port"/>
+         <scanUpdateFlag oa_var="s_update_scan">FALSE</scanUpdateFlag>
+      </oa_db_server>
+      <oa_cman_server>
+         <cmanhost oa_var="s_cmanhost">{{ db_host }}</cmanhost>
+         <cmanport oa_var="s_cmanport" oa_type="EXT_PORT" base="{{ db_port }}" step="1" range="-1" label="Oracle Connection Manager Port">{{ db_port }}</cmanport>
+         <domain oa_var="s_cmandomain">{{ domain }}</domain>
+      </oa_cman_server>
+   </oa_system>
+   <!-- host information -->
+   <oa_host>
+      <host oa_var="s_hostname">{{ db_host }}</host>
+      <host oa_var="s_virtual_hostname">{{ db_host }}</host>
+      <private_address oa_var="s_clusterInterConnects">{{ db_host }}</private_address>
+      <domain oa_var="s_domainname">{{ domain }}</domain>
+      <platform oa_var="s_platform" osd="LINUX_X86-64">LINUX_X86-64</platform>
+      <pathsep oa_var="/" osd="unix">/</pathsep>
+      <lib_ext oa_var="s_lib_ext" osd="LINUX_X86-64">so</lib_ext>
+      <dbuser oa_var="s_dbuser">oracle</dbuser>
+      <dbgroup oa_var="s_dbgroup" osd="unix">oinstall</dbgroup>
+      <appsuser oa_var="s_appsuser" osd="unix"/>
+      <appsgroup oa_var="s_appsgroup" osd="unix"/>
+   </oa_host>
+   <!-- install information -->
+   <oa_install>
+      <rapidwizloc oa_var="s_rapidwizloc">N/A</rapidwizloc>
+      <installloc oa_var="s_installloc">N/A</installloc>
+      <txkstage oa_var="s_txkstage">N/A</txkstage>
+      <clonestage oa_var="s_clonestage">/u01/install/APPS/12.1.0/appsutil/clone/</clonestage>
+      <media oa_var="s_installedFrom">FS</media>
+      <installthreads oa_var="s_nthreads">5</installthreads>
+   </oa_install>
+   <!-- environment on this node -->
+   <oa_environments>
+      <adconfig>
+         <TIER_DB oa_var="s_isDB">YES</TIER_DB>
+         <TIER_ADMIN oa_var="s_isAdmin">YES</TIER_ADMIN>
+         <TIER_WEB oa_var="s_isWeb">YES</TIER_WEB>
+         <TIER_FORMS oa_var="s_isForms">YES</TIER_FORMS>
+         <TIER_NODE oa_var="s_isConc">YES</TIER_NODE>
+      </adconfig>
+      <oa_environment type="generic_service">
+         <DISPLAY oa_var="s_display" osd="unix">{{ db_host }}:0.0</DISPLAY>
+      </oa_environment>
+      <oa_environment type="rapid_install">
+         <APPS_BASE oa_var="s_base">/u01/install/APPS</APPS_BASE>
+         <JDK_TOP oa_var="s_jdktop">/u01/install/APPS/12.1.0/appsutil/jre</JDK_TOP>
+         <JRE_TOP oa_var="s_jretop">/u01/install/APPS/12.1.0/appsutil/jre</JRE_TOP>
+         <ADJREOPTS oa_var="s_adjreopts">-Xms128M -Xmx512M</ADJREOPTS>
+         <ADJVAPRG oa_var="s_adjvaprg" osd="UNIX">/u01/install/APPS/12.1.0/appsutil/jre/bin/java</ADJVAPRG>
+         <xmlparser oa_var="s_xmlparser">/u01/install/APPS/12.1.0/appsutil/java/xmlparserv2.jar</xmlparser>
+         <temp_dir oa_var="s_temp">/u01/install/APPS/12.1.0/appsutil/temp</temp_dir>
+         <db_sysfiles oa_var="s_dbhome1">{{ data_top_one }}</db_sysfiles>
+         <db_logfiles oa_var="s_dbhome2">{{ data_top_two }}</db_logfiles>
+         <db_datfiles oa_var="s_dbhome3">{{ data_top_one }}</db_datfiles>
+         <db_ndxfiles oa_var="s_dbhome4">{{ data_top_two }}</db_ndxfiles>
+      </oa_environment>
+      <oa_env_file type="db_home" oa_var="s_db_home_file" osd="unix">/u01/install/APPS/12.1.0/{{ db_name }}_{{ db_host }}.env</oa_env_file>
+      <oa_env_file type="custom" oa_var="s_custom_file" osd="unix">/u01/install/APPS/12.1.0/custom{{ db_name }}_{{ db_host }}.env</oa_env_file>
+      <oa_environment type="db_home">
+         <ORACLE_HOME oa_var="s_db_oh">/u01/install/APPS/12.1.0</ORACLE_HOME>
+         <PATH oa_var="s_db_path" osd="LINUX_X86-64">/u01/install/APPS/12.1.0/bin:/usr/bin:/usr/sbin:/u01/install/APPS/12.1.0/appsutil/jre/bin:/bin:/usr/bin/X11:/usr/local/bin:$PATH</PATH>
+         <JAVA_HOME oa_var="s_db_java">/u01/install/APPS/12.1.0/appsutil/jre</JAVA_HOME>
+         <LD_LIBRARY_PATH oa_var="s_db_ldlib" osd="LINUX_X86-64">/u01/install/APPS/12.1.0/lib:/usr/X11R6/lib:/usr/openwin/lib:/u01/install/APPS/12.1.0/lib:/usr/dt/lib:/u01/install/APPS/12.1.0/ctx/lib</LD_LIBRARY_PATH>
+         <SHLIB_PATH oa_var="s_db_shlib" osd="LINUX_X86-64">/u01/install/APPS/12.1.0/lib:/usr/lib:/u01/install/APPS/12.1.0/ctx/lib</SHLIB_PATH>
+         <LIBPATH oa_var="s_db_libpath" osd="LINUX_X86-64">/u01/install/APPS/12.1.0/lib:/usr/X11R6/lib:/usr/openwin/lib:/u01/install/APPS/12.1.0/lib:/usr/dt/lib:/u01/install/APPS/12.1.0/ctx/lib</LIBPATH>
+         <LINK_CNTRL oa_var="s_db_linkctrl"/>
+         <ORA_NLS oa_var="s_db_oranls" osd="unix">/u01/install/APPS/12.1.0/nls/data/9idata</ORA_NLS>
+         <TNS_ADMIN oa_var="s_db_tnsadmin">/u01/install/APPS/12.1.0/network/admin/{{ db_name }}_{{ db_host }}</TNS_ADMIN>
+         <TWO_TASK oa_var="s_db_twotask">{{ db_name }}</TWO_TASK>
+         <DB_LISTENER oa_var="s_db_listener">{{ db_name }}</DB_LISTENER>
+         <ALTERNATE_SERVICE_INSTANCES oa_var="s_alt_service_instances"/>
+         <IFILE oa_var="s_ifile">/u01/install/APPS/12.1.0/network/admin/{{ db_name }}_{{ db_host }}/{{ db_name }}_{{ db_host }}_ifile.ora</IFILE>
+         <INIT_IFILE oa_var="s_init_ifile">/u01/install/APPS/12.1.0/dbs/{{ db_name }}_{{ db_host }}_ifile.ora</INIT_IFILE>
+         <LSNR_IFILE oa_var="s_lsnr_ifile">/u01/install/APPS/12.1.0/network/admin/{{ db_name }}_{{ db_host }}/listener_ifile.ora</LSNR_IFILE>
+         <SQLNET_IFILE oa_var="s_sqlnet_ifile">/u01/install/APPS/12.1.0/network/admin/{{ db_name }}_{{ db_host }}/sqlnet_ifile.ora</SQLNET_IFILE>
+         <SQLNET_EXPIRE_TIME oa_var="s_sqlnet_expire_time">10</SQLNET_EXPIRE_TIME>
+         <SQLNET_INBOUND_CONNECT_TIMEOUT oa_var="s_sqlnet_inbound_connect_timeout">60</SQLNET_INBOUND_CONNECT_TIMEOUT>
+         <ADMIN_RESTRICTIONS oa_var="s_admin_restrictions">ON</ADMIN_RESTRICTIONS>
+         <SUBSCRIBE_FOR_NODE_DOWN_EVENT oa_var="s_subscribe_for_node_down_event">OFF</SUBSCRIBE_FOR_NODE_DOWN_EVENT>
+         <LISTENER_PASSWORD oa_var="s_enable_listener_password">OFF</LISTENER_PASSWORD>
+         <LSNR_LOG_STATUS oa_var="s_lsnr_log_status">ON</LSNR_LOG_STATUS>
+         <DIAG_ADR_ENABLED oa_var="s_diag_adr_enabled">ON</DIAG_ADR_ENABLED>
+         <ADR_BASE oa_var="s_adr_base">/u01/install/APPS/12.1.0/admin/{{ db_name }}_{{ db_host }}</ADR_BASE>
+         <LOCAL oa_var="s_db_local">{{ db_name }}</LOCAL>
+         <ORACLE_LOCALPREFERENCE oa_var="s_db_locpref">/u01/install/APPS/12.1.0/tools/admin</ORACLE_LOCALPREFERENCE>
+         <NLS_LANG oa_var="s_db_nlslang">American_America.AL32UTF8</NLS_LANG>
+         <OUTBOUND_DIR oa_var="s_outbound_dir">/u01/install/APPS/12.1.0/appsutil/outbound/{{ db_name }}_{{ db_host }}</OUTBOUND_DIR>
+         <SGA_TARGET oa_var="s_db_sga_target" osd="UNIX">2G</SGA_TARGET>
+         <PLS_NATIVE_LIB oa_var="s_db_plsql_native_libdir">/u01/install/APPS/12.1.0/plsql/nativelib</PLS_NATIVE_LIB>
+         <SHARED_POOL_SIZE oa_var="s_db_shared_pool_size">400M</SHARED_POOL_SIZE>
+         <SHARED_POOL_RESERVED_SIZE oa_var="s_db_shared_pool_reserved_size">40M</SHARED_POOL_RESERVED_SIZE>
+         <PGA_AGGREGATE_TARGET oa_var="s_db_pga_aggregate_target">1G</PGA_AGGREGATE_TARGET>
+         <PARALLEL_MAX_SERVERS oa_var="s_parallel_max_servers">8</PARALLEL_MAX_SERVERS>
+         <PLSQL_NATIVE_LIBRARY_SUBDIR_COUNT oa_var="s_db_plsql_native_library_subdir_count">149</PLSQL_NATIVE_LIBRARY_SUBDIR_COUNT>
+         <ADPERLPRG oa_var="s_adperlprg" osd="unix">/u01/install/APPS/12.1.0/perl/bin/perl</ADPERLPRG>
+         <PERL5LIB oa_var="s_perl5lib" osd="unix">/u01/install/APPS/12.1.0/perl/lib/5.14.1:/u01/install/APPS/12.1.0/perl/lib/site_perl/5.14.1:/u01/install/APPS/12.1.0/appsutil/perl</PERL5LIB>
+         <ECX_LOG_DIR oa_var="s_ecx_log_dir" osd="unix">/usr/tmp</ECX_LOG_DIR>
+         <BIS_DEBUG_LOG_DIR oa_var="s_bis_debug_log_dir" osd="unix">/usr/tmp</BIS_DEBUG_LOG_DIR>
+      </oa_environment>
+   </oa_environments>
+   <!-- services on this node -->
+   <oa_processes>
+      <oa_process type="dlsn">
+         <oa_process_name oa_var="s_dlsnname" osd="unix">Oracle{{ db_name }}_db121_RDBMSTNSListener{{ db_name }}</oa_process_name>
+         <oa_process_status oa_var="s_dlsnstatus">enabled</oa_process_status>
+         <oa_process_log oa_var="s_dlsnlog">/u01/install/APPS/12.1.0/appsutil/log/{{ db_name }}_{{ db_host }}/adsvdlsn.txt</oa_process_log>
+         <oa_process_env>
+            <oa_env_include>db_home</oa_env_include>
+         </oa_process_env>
+         <ctrl_script oa_var="s_dlsnctrl" osd="unix">/u01/install/APPS/12.1.0/appsutil/scripts/{{ db_name }}_{{ db_host }}/addlnctl.sh</ctrl_script>
+         <install_script oa_var="s_dlsninst" osd="unix">/u01/install/APPS/12.1.0/appsutil/install/{{ db_name }}_{{ db_host }}/adsvdlsn.sh</install_script>
+      </oa_process>
+   </oa_processes>
+   <!-- Archive log for hot clone -->
+   <LOG_ARCHIVE_DEST_1 oa_var="s_archive_dest">{{ data_top_two }}/archive</LOG_ARCHIVE_DEST_1>
+   <LOG_ARCHIVE_FORMAT oa_var="s_archive_format">%t_%s_%r.dbf</LOG_ARCHIVE_FORMAT>
+</oa_context>

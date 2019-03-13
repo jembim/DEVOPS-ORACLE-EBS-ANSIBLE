@@ -1,0 +1,20 @@
+# == JAVA
+jdk_installer_url: 'http://129.154.66.144/nexus/service/local/repositories/GFTinstallers/content/java_installers/jdk-7u80-linux-x64.rpm'
+jdk_installer: 'jdk-7u80-linux-x64.rpm'
+jdk_location: 'jdk1.7.0_80/bin/java'
+jdk_symlink: '/usr/bin/java'
+
+# WEBLOGIC-INSTALL
+oracle_group: 'oinstall'
+oracle_user: 'oracle'
+oracle_base: '/u01/oracle'
+wls_installer_dir: '{{ oracle_base }}/wls_installer'
+wls_installer_url: 'http://129.154.66.144/nexus/service/local/repositories/GFTinstallers/content/weblogic11g/wls1036_generic.jar'
+wls_installer: 'wls1036_generic.jar'
+weblogic_user: 'weblogic'
+
+# ENV
+java_home: '/usr/java/jdk1.7.0_80'
+mw_home: '{{ oracle_base }}/middleware'
+wl_home: '{{ oracle_base }}/middleware/wlserver_10.3'
+domain_dir: '{{ mw_home }}/user_projects/domains/{{ wl_domain_name }}'

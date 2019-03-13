@@ -1,0 +1,24 @@
+#############################
+# ==> Shutdown Database <== #
+#############################
+
+- include: db_ps.yml
+
+- name: Shutdown the database
+  become_user: "{{ oracle_user }}"
+  shell: 'source {{ oracle_home }}/{{ db_name }}_{{ db_host }}.env && echo "shutdown immediate;" | sqlplus / as sysdba'
+  when: db_ps.stdout != '0'
+  register: out
+
+- debug: var=out.stdout_lines
+
+- include: listener_ps.yml
+
+- name: Shutdown the listener
+  become_user: "{{ oracle_user }}"
+  shell: ./addlnctl.sh stop {{ db_name }}
+           chdir={{ oracle_home }}/appsutil/scripts/{{ db_name }}_{{ db_host }}
+  when: listener_ps.stdout.find('No listener') == -1
+  register: out
+
+- debug: var=out.stdout_lines

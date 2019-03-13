@@ -1,0 +1,88 @@
+#####################################
+# ==> Archive DB & APP binaries <== #
+#####################################
+
+- block:
+  - include: app_shutdown.yml
+
+  - name: Waiting for App Services to Completely Shutdown
+    pause:
+      minutes: 5
+    when: app_ps.stdout != '0'
+
+  - include: db_shutdown.yml
+
+  tags: shutdown
+  become: True
+  become_user: "{{ oracle_user }}"
+
+- block:
+  - name: Change /u02 ownership to Oracle
+    file:
+      path: "/u02"
+      owner: "{{ oracle_user }}"
+      group: "{{ oracle_group }}"
+
+  - name: Create Artifact Directory
+    file:
+      state: directory
+      path: "{{ backup_dir }}"
+      owner: "{{ oracle_user }}"
+      group: "{{ oracle_group }}"
+
+  tags: artifact_dir
+  become: True
+  become_user: root
+
+- block:
+  - name:  Archive the database install directory
+    shell: 'cd {{ oracle_root_dir }} && tar -czf {{ backup_dir }}/dbArtifacts.tar.gz 12.1.0'
+
+  tags: db_archive
+  become: True
+  become_user: "{{ oracle_user }}"
+
+- block:
+  - name: Archive database data directory
+    shell: 'cd {{ oracle_root_dir }} && tar -czf {{ backup_dir }}/dbData.tar.gz data'
+
+  tags: data_archive
+  become: True
+  become_user: "{{ oracle_user }}"
+
+- block:
+  - name: Archive database archive directory
+    shell: 'cd {{ db_backup_dir }} && tar -czf {{ backup_dir }}/dbArchive.tar.gz archive'
+
+  tags: arc_archive
+  become: True
+  become_user: "{{ oracle_user }}"
+
+- block:
+  - name: Archive database oradata directory
+    shell: 'cd {{ u02_dir }} && tar -czf {{ backup_dir }}/dbOradata.tar.gz oradata'
+
+  tags: ora_archive
+  become: True
+  become_user: "{{ oracle_user }}"
+
+- block:
+  - name: Archive the application directory
+    shell: 'cd {{ app_run_dir }} && tar -czf {{ backup_dir }}/appArtifacts.tar.gz EBSapps'
+
+  tags: app_archive
+  become: True
+  become_user: "{{ oracle_user }}"
+
+- block:
+  - include: db_start.yml
+
+  - include: app_start.yml
+
+  - name: Waiting for App Services to Completely Start
+    pause:
+      minutes: 3
+
+  tags: startup
+  become: True
+  become_user: "{{ oracle_user }}"

@@ -1,0 +1,6 @@
+#==> GENERAL
+oracle_user: "oracle"
+oracle_group: "oinstall"
+
+#==> WEBLOGIC
+domain_name: "{{ env_name }}_domain"

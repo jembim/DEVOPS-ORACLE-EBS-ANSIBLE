@@ -1,0 +1,8 @@
+- hosts: "localhost"
+  connection: local
+  roles:
+    - create
+
+  environment:
+    http_proxy: "{{ user }}:{{ password }}@{{ proxy }}"
+    https_proxy: "{{ user }}:{{ password }}@{{ proxy }}"

@@ -1,0 +1,27 @@
+####################################
+# Update Oracle Linux 6.x Packages #
+####################################
+
+- block:
+  - name: Update Packages
+    yum:
+      name: '*'
+      state: latest
+
+  - name: Download epel package
+    get_url:
+      url: https://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm
+      dest: /tmp
+      mode: u+x
+    changed_when: False
+
+  - name: Configure epel
+    command: rpm -Uvh /tmp/epel-release-latest-6.noarch.rpm
+    failed_when: False
+    changed_when: False
+    args:
+      warn: False
+
+  tags: yum_update
+  become: True
+  become_user: root

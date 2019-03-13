@@ -1,0 +1,260 @@
+####################################################################################################
+# The Agent Response file lists all the parameters and values required to install the Oracle       #
+# Management Cloud Agents. The values specified in this file are used by the installer to install  #
+# the agent. Depending on the type of agent you are deploying, fill the sections below:            #
+#                                                                                                  #
+# 1. Gateway:                                                                                      #
+#   a. Specify values for the parameters listed in the Mandatory Parameters (Common) section.      #
+#   b. If you are using a proxy server, specify values for the parameters listed in the            #
+#      Non-Mandatory Proxy Parameters section.                                                     #
+#   c. Optionally, specify values for the parameters listed in the Non-Mandatory (Common) section. #
+#                                                                                                  #
+# 2. Cloud Agent:                                                                                  #
+#   a. Specify values for the parameters listed in the Mandatory Parameters (Common) section.      #
+#   b. If you are using a proxy server, specify values for the parameters listed in the            #
+#      Non-Mandatory Proxy Parameters section.                                                     #
+#   c. Optionally, specify values for the parameters listed in the Non-Mandatory (Common for       #
+#      Cloud Agent and Data Collector) section                                                     #
+#                                                                                                  #
+# 3. Data Collector                                                                                #
+#   a. Specify values for the parameters listed in the Mandatory Parameters (Common) and Mandatory #
+#      Data Collector Parameters sections.                                                         #
+#   b. If you are using a proxy server, specify values for the parameters listed in the            #
+#      Non-Mandatory Proxy Parameters section.                                                     #
+#   c. Optionally, specify values for the parameters listed in the Non-Mandatory (Common for       #
+#      Cloud Agent and Data Collector) section                                                     #
+#                                                                                                  #
+# Note:                                                                                            #
+#   1. The parameter values are case-insensitive unless explicitly specified.                      #
+#   2. When running Agentinstall.sh, you can override the value of any valid parameter specified   #
+#      in the .rsp file by passing a new/different value for the same parameter on the commandline.#
+#      e.g.: When running Agentinstall.sh, if you specify AGENT_BASE_DIRECTORY=/abc/def in the     #
+#      commandline, and if the .rsp file contains AGENT_BASE_DIRECTORY=/xyz/uvw, then the installer#
+#      will consider AGENT_BASE_DIRECTORY=/abc/def over the value specified in the .rsp file.      #
+#                                                                                                  #
+# Refer Agent Installation Guide for further details                                               #
+#  http://www.oracle.com/pls/topic/lookup?ctx=en/cloud/paas/management-cloud&id=deploy_agent       #
+####################################################################################################
+
+################################## Mandatory Parameters (Common) ###################################
+# These parameters are mandatory for all agent types.                                              #
+####################################################################################################
+
+# Tenant ID where the agent is supposed to upload the data. You can get this information from      #
+# agent administration page "Download" tab in OMC.                                                 #
+# You can also log into the OMC instance and refer the URL first part.                             #
+# e.g. URL- https://instance1-oraclepaid.itom.management.us2.oraclecloud.com                       #
+# e.g. TENANT_ID=oraclepaid                                                                        #
+# e.g. If you have instance name, please use TENANT_ID=<instance name>-oraclepaid                  #
+TENANT_ID=a503063
+
+# UPLOAD_ROOT is required to connect to the Oracle Management Cloud for uploading data for the     #
+# specific TENANT_ID. To obtain this value log into the OMC instance and refer the URL. If you     #
+# don't append https:// in the UPLOAD_ROOT value of <TENANT_ID>.<data center> then it will be      #
+# taken care by the installer during installation.                                                 #
+# e.g. UPLOAD_ROOT=<TENANT_ID>.<data center>                                                       #
+# e.g. UPLOAD_ROOT=oraclepaid.itom.us2.oraclecloud.com                                             #
+# e.g. UPLOAD_ROOT=https://oraclepaid.itom.europe.oraclecloud.com                                  #
+UPLOAD_ROOT=a503063.itom.management.us2.oraclecloud.com/
+
+
+# Registration Key - the key to validate identity of tenant and authenticity of the install        #
+# You can obtain registration key from Oracle Management Cloud Dashboard, navigate to              #
+# Administration --> Agents --> Registration Keys.                                                 #
+# e.g.: AGENT_REGISTRATION_KEY=RD0o9uF7dUA3aSzk89u6djYtXU                                          #
+AGENT_REGISTRATION_KEY=R03s0PWFvL6K908K3U97M0BSee
+
+# Agent Base Directory where the agent needs to be installed on the host machine.                  #
+# The directory must be empty and has write privileges for agent install user.                     #
+# e.g.: AGENT_BASE_DIRECTORY=/agent/install/gateway                                                #
+# e.g.: AGENT_BASE_DIRECTORY=D:\agent\install\gateway                                              #
+AGENT_BASE_DIRECTORY={{ agent_install_dir }}/infra
+
+############################### Mandatory Data Collector Parameters  ###############################
+
+# This is the user that will be created for the Data collector in the Oracle Management Repository #
+# (database)  and is used to collect Enterprise Manager Cloud Control data.                        #
+DATA_COLLECTOR_USERNAME=
+
+# Password to be set for DATA_COLLECTOR_USERNAME (It must be 5-8 alphanumeric characters and must  #
+# start with a letter.                                                                             #
+DATA_COLLECTOR_USER_PASSWORD=
+
+# Privileged database user name to login to the Oracle Management Repository and must have the     #
+# SYSDBA role.  e.g.:OMR_USERNAME=sys                                                              #
+OMR_USERNAME=
+
+# The password used to sign in to the Oracle Management Repository in your data center             #
+OMR_USER_PASSWORD=
+
+# The user name (of the install user of Oracle Management Repository) for the host where Oracle    #
+# Management Repository is running in your data center.                                            #
+OMR_HOST_USERNAME=
+
+# The directory where the data collector stores the harvested data in an archived form. The user   #
+# deploying the data collector must have, at the minimum, read privileges to the stage directory   #
+# e.g.: OMR_STAGE_DIR=/stage/test        e.g.: OMR_STAGE_DIR=c:\stage\test                         #
+OMR_STAGE_DIR=
+
+################################## Non Mandatory Proxy Parameters ##################################
+
+# Proxy HOST to be used for connection. Make sure that you don't pass the https:// value with the  #
+# proxy host details. e.g.: OMC_PROXYHOST=www-proxy.company.com                                    #
+OMC_PROXYHOST={{ proxy_server }}
+
+# Proxy port to be used for connection                                                             #
+# e.g.: OMC_PROXYPORT=80                                                                           #
+OMC_PROXYPORT={{ proxy_port }}
+
+# User name required to access the proxy server.                                                   #
+OMC_PROXYUSER=
+
+# Password required to access the proxy server.                                                    #
+OMC_PROXYPWD=
+
+# Authentication REALM (if any) to be used to access the proxy server.                             #
+OMC_PROXYREALM=
+
+################################ Non-Mandatory Parameters (Common)  ################################
+
+# Absolute path of the location where Agent Image is downloaded and needs to be read from. Pass    #
+# this parameter in commandline along with Agentinstall.sh and not in rsp file. If you dont use    #
+# this paramter in commandline then its value will be set to the location where AgentInstall.sh    #
+# resides.                                                                                         #
+# e.g.: AGENT_IMAGE_LOCATION=/agent/image/gateway                                                  #
+# e.g.: AGENT_IMAGE_LOCATION=D:\agent\image\gateway                                                #
+AGENT_IMAGE_LOCATION=
+
+# Absolute path of the location where the partial extraction of the agent image required to        #
+# install the agent will occur. Pass this parameter in commandline along with Agentinstall.sh and  #
+# not in rsp file. If you dont use this paramter in commandline then its value will be set to the  #
+# location where AgentInstall.sh resides.                                                          #
+# e.g.: EXTRACTION_LOCATION=/agent/misc                                                            #
+# e.g.: EXTRACTION_LOCATION=D:\agent\misc                                                          #
+EXTRACTION_LOCATION=
+
+# Absolute path of the agent.rsp file including the file name if the agent.rsp needs to be read    #
+# from a location other than the Agent Image unzip location. Pass this parameter in commandline    #
+# along with Agentinstall.sh  and not in rsp file. If you dont use this paramter in commandline    #
+# then Agentinstall.sh will take the rsp file from the original zip location and ignore this       #
+# parameter in that rsp file.                                                                      #
+# e.g.: AGENT_RSP_FILE=/net/abc.us.com/shared/omc/agent.rsp                                        #
+# e.g.: AGENT_RSP_FILE=c:\shared\omc\agent.rsp                                                     #
+AGENT_RSP_FILE=
+
+# Port number to which agent process will be bound. Installer will not proceed if this port is     #
+# occupied at install time. If no value is specified, the default port (4459) or an available port #
+# in the range 4460 to 4479 is used.  e.g.:AGENT_PORT=8010                                         #
+AGENT_PORT=
+
+# Host name to be used for this agent installation. If no value is specified (recommended),        #
+# installer evaluates the hostname using Java's INetAddress class.                                 #
+# e.g.:ORACLE_HOSTNAME=myagenthost.tst.oracle.com                                                  #
+ORACLE_HOSTNAME=
+
+# Additional parameters, if any, to be used by the agent during installation and setup of agent.   #
+# The value should be in key=value format separated by comma.                                      #
+# e.g.:ADDITIONAL_PARAMETERS=EMAGENT_PERL_TRACE_LEVEL=INFO,Logger.log.totalSize=100                #
+ADDITIONAL_PARAMETERS=
+
+# Absolute path  of the file containing agent config parameters (advanced use)                     #
+# e.g.:AGENT_PROPERTIES=/tmp/agent.properties  e.g.:AGENT_PROPERTIES=d:\tmp\agent.properties       #
+AGENT_PROPERTIES=
+
+# Flag to disable all validations and prerequisite checks. Valid values: true or false.            #
+IGNORE_VALIDATIONS=
+
+# Flag to disable all data-collector validations. Valid values: true or false.                     #
+IGNORE_DATA_COLLECTOR_VALIDATIONS=
+
+# Flag to disable ulimit checks (non-windows platforms). Valid values: true or false.              #
+IGNORE_ULIMIT_CHECK=
+
+# Windows specific: Windows Service name  to be used for restoration of the agent                  #
+# Do not specify a value during a normal installation flow.                                        #
+# e.g.:WINDOWS_SERVICE_NAME=OMCAgent136858                                                         #
+WINDOWS_SERVICE_NAME=
+
+# Non-windows platforms ONLY Host name of agent to be used for restoration of the agent            #
+# Do not specify a value during a normal installation flow.                                        #
+# e.g.:AGENT_HOST=myagent.original.linux.com                                                       #
+AGENT_HOST=
+
+# Flag to execute only Pre-Requsite checks. e.g.: EXECUTE_PREREQ=false                             #
+EXECUTE_PREREQ=
+
+# Dispaly name for the agent (if nothing specified - it will be set to <hostname>:<port>.          #
+# e.g. DISPLAY_NAME=omc-agent-in-dbRack                                                            #
+DISPLAY_NAME=
+
+############### Non-Mandatory Parameters (Common for Cloud Agent and Data Collector) ###############
+
+# If Cloud Agent or Data collector is communicating to OMC via Gateway then provider the Fully     #
+# Qualified Domain Name (FQDN) of Gateway. While installing the cloud agent, ensure that you       #
+# provide the gateway host name that was used to install the gateway. Example: While deploying     #
+# the gateway, if you specified ORACLE_HOSTANME=abc.xyz.com but while installing the cloud agent,  #
+# you specified GATEWAY_HOST=abc, this would result in cloud agent registration failures           #
+# A gateway agent MUST be installed on the host and should be up and running                       #
+# e.g.: GATEWAY_HOST=testgateway.test.oracle.com                                                   #
+GATEWAY_HOST={{ gateway_host }}
+
+# If Cloud Agent or Data collector communicating to OMC via a gateway, the gateway port must be    #
+# specified. You can obtain the port number by running the command from                            #
+#$Gateway_Agent_Home/agent_inst/bin/omcli status agent                                             #
+# e.g.: GATEWAY_PORT=3872                                                                          #
+GATEWAY_PORT={{ gateway_port }}
+
+# For gateway high availability, additional gateway hosts (comma separated list of gateway URLs    #
+# can be specified. You can obtain the URL by running command                                      #
+# $Gateway_Agent_Home/agent_inst/bin/omcli status agent on respective Gateway hosts.               #
+# Note this parameter should only be used while deploying a cloud agent or a data collector.       #
+# e.g.: ADDITIONAL_GATEWAYS=https://abc.us.com:1872,https://xyz.us.com:3782                        #
+ADDITIONAL_GATEWAYS=
+
+########################### Non-Mandatory Parameters for Data Collector  ###########################
+
+# OMR_HOST_USER_PASSWORD - The password for the host where the Oracle Management Repository is     #
+# running in your data center. e.g.: OMR_HOST_USER_PASSWORD=testpwd123                             #
+# OMR_HOST_USER_SSH_KEY  - Path to private SSH key to be used to connect to your Oracle Management #
+# Repository, usually, this is $HOME/.ssh/id_rsa                                                   #
+# Note: Either OMR_HOST_USER_PASSWORD or OMR_HOST_USER_SSH_KEY must be provided.                   #
+# Verify upfront that the Agent user is able to login to OMR_HOSTNAME w/o providing                #
+# a password when using option OMR_HOST_USER_SSH_KEY.                                              #
+OMR_HOST_USER_PASSWORD=
+OMR_HOST_USER_SSH_KEY=
+
+# Connection string  to be used to connect to Oracle Management Repository.                        #
+# NOTE: The OMR_CONNECT_STRING, or a combination of OMR_HOSTNAME, OMR_PORT, and either OMR_SID or  #
+# OMR_SERVICE_NAME, are required to connect to the Oracle Management Repository. Specify valid     #
+# values and retry.                                                                                #
+# e.g.:OMR_CONNECT_STRING=myomrtest or OMR_HOSTNAME=myomrhost.test.oracle.com, OMR_PORT=1845,and   #
+# either OMR_SID=omrhost or OMR_SERVICE_NAME=host.oracle.com                                       #
+OMR_CONNECT_STRING=
+
+# Fully qualified host name of the host where the Oracle Management Repository is running          #
+# e.g.: OMR_HOSTNAME=myomrhost.test.oracle.com                                                     #
+OMR_HOSTNAME=
+
+# The listen port of the Oracle Management Repository in your data center.                         #
+# e.g.: OMR_PORT=1845                                                                              #
+OMR_PORT=
+
+# SID of the Oracle Management Repository (mutually exclusive with OMR_SERVICE_NAME)               #
+# e.g.OMR_SID=orcl                                                                                 #
+OMR_SID=
+
+# The service name of the Oracle Management Repository (mutually exclusive with OMR_SID)           #
+# e.g. OMR_SERVICE_NAME=orcl.example.com                                                           #
+OMR_SERVICE_NAME=
+
+# The user role  to connect to the Oracle Management Repository.                                   #
+# e.g.: OMR_USER_ROLE=sysdba                                                                       #
+OMR_USER_ROLE=
+
+# SSH Port (default=22) on which the Oracle Management Repository is configured to listen          #
+OMR_HOST_SSH_PORT=
+
+# Namespace (default host:port) used to identify the Data Collector.                               #
+# See http://docs.oracle.com/en/cloud/paas/management-cloud/emcad/index.html for details.          #
+# e.g.: NAMESPACE=dcagent.test.oracle.com:1845                                                     #
+NAMESPACE=

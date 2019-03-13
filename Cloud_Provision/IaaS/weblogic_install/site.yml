@@ -1,0 +1,6 @@
+- hosts: "{{ target }}"
+  roles:
+    - java-install
+    - package-update
+    - weblogic-install
+    - domain-create

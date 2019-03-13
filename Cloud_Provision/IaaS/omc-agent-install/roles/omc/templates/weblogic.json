@@ -1,0 +1,27 @@
+{
+	"entities": [{
+		"name": "{{ domain_name }}",
+		"type": "omc_weblogic_domain",
+		"displayName": "{{ domain_name }}",
+		"credentialRefs": ["WLSCreds"],
+		"timezoneRegion": "UTC",
+		"properties": {
+			"port": {
+				"displayName": "Port",
+				"value": "{{ wls_port }}"
+			},
+			"protocol": {
+				"displayName": "Protocol",
+				"value": "t3"
+			},
+			"admin_server_host": {
+				"displayName": "Admin Server Host",
+				"value": "{{ hostname }}"
+			},
+			"capability": {
+				"displayName": "capability",
+				"value": "{{ capability }}"
+			}
+		}
+	}]
+}

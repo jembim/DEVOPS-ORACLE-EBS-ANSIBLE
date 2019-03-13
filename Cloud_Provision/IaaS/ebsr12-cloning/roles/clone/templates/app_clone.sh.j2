@@ -1,0 +1,17 @@
+#!/bin/bash
+
+export TIMEDPROCESS_TIMEOUT=-1 
+export CONFIG_JVM_ARGS="-Xms1024m -Xmx2048m"
+
+expect << END
+set timeout 5
+spawn perl {{ common_top }}/clone/bin/adcfgclone.pl appsTier /home/oracle/app/{{ db_name }}_{{ db_host }}.xml dualfs
+expect -re "Enter the APPS password :"
+send "{{ apps_password }}\r"
+expect -re "Enter the Weblogic AdminServer password :"
+send "{{ wls_password }}\r"
+expect -re "Target System Port Pool \[0-99\] :"
+send "1\r"
+set timeout -1
+expect eof
+END

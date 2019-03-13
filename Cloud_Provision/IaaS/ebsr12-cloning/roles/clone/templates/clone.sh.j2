@@ -1,0 +1,49 @@
+#!/bin/bash
+
+if [ -f {{ inst_top }}/admin/log/clone/run/RCloneApplyAppstier_*.log ]; then
+  rm -f {{ inst_top }}/admin/log/clone/run/RCloneApplyAppstier_*.log
+fi
+
+if [ -f {{ inst_top }}/admin/log/clone/patch/RCloneApplyAppstier_*.log ]; then
+  rm -f {{ inst_top }}/admin/log/clone/patch/RCloneApplyAppstier_*.log
+fi
+
+if [ -f /home/oracle/app/app_clone.log ]; then
+  rm -f /home/oracle/app/app_clone.log
+fi
+
+echo "-----------------------------------------"
+echo "-------- Running adcfgclone.pl ----------"
+echo "-----------------------------------------"
+
+nohup /home/oracle/app/app_clone.sh > /home/oracle/app/app_clone.log &
+
+echo "checking for Cloning logs"
+while [ ! -f {{ inst_top }}/admin/log/clone/run/RCloneApplyAppstier_*.log ]
+do
+  sleep 2
+done
+
+while ! grep -q "Do you want to startup the Application Services for {{ db_name }}?" /home/oracle/app/app_clone.log
+do
+  if grep -q "ERROR" /home/oracle/app/app_clone.log
+  then
+  echo "Cloning Application Tier Failed. See log file for details."
+  exit 1
+  fi
+  sleep 180
+  echo "Cloning Application Tier in Progress..."
+done
+
+if [ $? == 0 ] ; then
+echo "================================================================================"
+echo "====================> APPLICATION TIER CLONING DONE! <=========================="
+echo "================================================================================"
+echo "Run File System log: {{ inst_top }}/admin/log/clone/run/RCloneApplyAppstier_*.log"
+echo "Patch File System log: {{ inst_top }}/admin/log/clone/patch/RCloneApplyAppstier_*.log"
+else
+echo "Cloning Failed! Please check log file for details"
+echo "Run File System log: {{ inst_top }}/admin/log/clone/run/RCloneApplyAppstier_*.log"
+echo "Patch File System log: {{ inst_top }}/admin/log/clone/patch/RCloneApplyAppstier_*.log"
+exit 1
+fi 

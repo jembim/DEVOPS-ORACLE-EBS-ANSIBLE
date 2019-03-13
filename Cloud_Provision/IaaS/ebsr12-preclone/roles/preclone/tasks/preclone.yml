@@ -1,0 +1,46 @@
+########################################
+# ==> PREPARE DATABASE FOR CLONING <== #
+########################################
+
+- block:
+  - name: Install ACL & EXPECT & RSYNC
+    yum:
+      name: "{{ item }}"
+      state: present
+    with_items:
+      - acl
+      - expect
+      - rsync
+    environment:
+      http_proxy: "{{ toll_user }}:{{ toll_password }}@{{ toll_proxy }}"
+      https_proxy: "{{ toll_user }}:{{ toll_password }}@{{ toll_proxy }}"
+
+  tags: install
+  become: True
+  become_user: root
+
+- block:
+  - include: db_start.yml
+
+  - name: Run Database Precloning
+    shell: 'source {{ oracle_home }}/{{ db_name }}_{{ db_host }}.env && printf {{ apps_password }} | perl {{ oracle_home }}/appsutil/scripts/{{ db_name }}_{{ db_host }}/adpreclone.pl dbTier'
+    register: db_preclone
+
+  - debug: var=db_preclone
+
+  tags: db_preclone
+  become: True
+  become_user: "{{ oracle_user }}"
+
+- block:
+  - include: app_start.yml
+
+  - name: Run Application Precloning
+    shell: 'source {{ app_env_file }} run && { echo {{ apps_password }}; echo {{ wls_password }}; } | perl {{ admin_scripts_home }}/adpreclone.pl appsTier'
+    register: app_preclone
+
+  - debug: var=app_preclone
+
+  tags: app_preclone
+  become: True
+  become_user: "{{ oracle_user }}"

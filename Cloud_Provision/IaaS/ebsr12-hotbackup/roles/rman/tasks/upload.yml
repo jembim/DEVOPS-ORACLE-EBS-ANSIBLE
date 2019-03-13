@@ -1,0 +1,123 @@
+- block:
+  - name: Install Java
+    yum:
+      name: java
+      state: present
+    environment:
+      http_proxy: "{{ toll_user }}:{{ toll_password }}@{{ toll_proxy }}"
+      https_proxy: "{{ toll_user }}:{{ toll_password }}@{{ toll_proxy }}"
+
+  tags: java
+  become: True
+  become_user: root
+
+- block:
+
+  - name: Check existing FTMCLI install directory
+    stat:
+      path: "{{ ftmcli_install_dir }}"
+    register: ftm_dir
+
+  - name: Create FTMCLI install directory
+    file:
+      path: "{{ ftmcli_install_dir }}"
+      state: directory
+    when: ftm_dir.stat.exists == False
+
+  - name: Check existing FTMCLI Binaries in {{ ftmcli_install_dir }}
+    stat:
+      path: "{{ ftmcli_install_dir }}/ftmcli-v2.4.2"
+    register: ftm_bin
+
+  - name: Download FTMCLI if not existing
+    shell: 'wget --user={{ repo_username }} --password={{ repo_password }} {{ ftmcli_url }} -P {{ ftmcli_install_dir }}'
+    when: ftm_bin.stat.exists == False
+
+  - name: Unzip FTMCLI
+    unarchive:
+      src: '{{ ftmcli_install_dir }}/ftmcli-v2.4.2.zip'
+      dest: '{{ ftmcli_install_dir }}'
+      remote_src: yes
+    when: ftm_bin.stat.exists == False
+
+  tags: ftmcli
+  become: True
+  become_user: "{{ oracle_user }}"
+
+- block:
+  - name: Check existing FTMCLI Properties File
+    stat:
+      path: "{{ ftmcli_install_dir }}/ftmcli-v2.4.2/ftmcli.properties"
+    register: props
+
+  - name: Delete existing Properties File
+    file:
+      path: '{{ ftmcli_install_dir }}/ftmcli-v2.4.2/ftmcli.properties'
+      state: absent
+    when: props.stat.exists
+
+  - name: Generate New Properties File
+    template:
+      src: ftmcli.properties
+      dest: "{{ ftmcli_install_dir }}/ftmcli-v2.4.2/ftmcli.properties"
+      mode: 0755
+
+  - name: Check Existing FTMCLI Script
+    stat:
+      path: '{{ ftmcli_install_dir }}/ftmcli.sh'
+    register: script
+
+  - name: Delete Existing FTMCLI script
+    file:
+      path: '{{ ftmcli_install_dir }}/ftmcli.sh'
+      state: absent
+    when: script.stat.exists
+
+  - name: Generate FTMCLI Script
+    template:
+      src: ftmcli.sh
+      dest: "{{ ftmcli_install_dir }}/ftmcli.sh"
+      mode: 0755
+
+  - name: Upload RMAN Backup files to {{ container }}
+    shell: '{{ ftmcli_install_dir }}/ftmcli.sh'
+    environment:
+      FTM_AUTH_URL: "{{ rest_endpoint }}"
+      FTM_USER: "{{ opc_username }}"
+      FTM_SERVICE: "Storage"
+      FTM_IDOMAIN: "{{ domain }}"
+    register: put
+
+  - debug: var=put
+
+  - name: Check Existing FTMCLI Script
+    stat:
+      path: '{{ ftmcli_install_dir }}/ftmcheck.sh'
+    register: script
+
+  - name: Delete Existing FTMCLI check script
+    file:
+      path: '{{ ftmcli_install_dir }}/ftmcheck.sh'
+      state: absent
+    when: script.stat.exists
+
+  - name: Generate FTMCLI Check Script
+    template:
+      src: ftmcheck.sh
+      dest: "{{ ftmcli_install_dir }}/ftmcheck.sh"
+      mode: 0755
+
+  - name: Check Artifacts in {{ container }}
+    shell: '{{ ftmcli_install_dir }}/ftmcheck.sh'
+    environment:
+      FTM_AUTH_URL: "{{ rest_endpoint }}"
+      FTM_USER: "{{ opc_username }}"
+      FTM_SERVICE: "Storage"
+      FTM_IDOMAIN: "{{ domain }}"
+    register: check
+
+  - debug: var=check
+
+  tags: upload
+  become: True
+  become_user: "{{ oracle_user }}"

@@ -1,0 +1,21 @@
+# ==> General Environment
+u02_dir: "/u02"
+db_backup_dir: "/u02/backup"
+precloning_scripts: "/home/oracle/precloning_scripts"
+oracle_user: "oracle"
+oracle_group: "oinstall"
+
+# ==> Database Environment EBSDEV1
+oracle_root_dir: "/u01/install/APPS"
+oracle_home: "/u01/install/APPS/12.1.0"
+db_env_file: "{{ db_name }}_{{ db_host }}.env"
+tns_admin: "{{ oracle_home }}/network/admin/{{ db_name }}_{{ db_host }}"
+
+# ==> Application Environment EBSDEV1
+app_env_file: "/u01/install/APPS/EBSapps.env"
+inst_top: "{{ app_run_dir }}/inst/apps/{{ db_name }}_{{ db_host }}"
+admin_scripts_home: "{{ inst_top }}/admin/scripts"
+
+# ==> Nexus
+nexus_db_url: 'http://10.40.36.85/nexus/content/repositories/EBSartifacts/{{ tag }}/dbTier/'
+nexus_app_url: 'http://10.40.36.85/nexus/content/repositories/EBSartifacts/{{ tag }}/appsTier/'

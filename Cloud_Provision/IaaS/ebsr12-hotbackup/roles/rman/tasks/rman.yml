@@ -1,0 +1,126 @@
+
+- block:
+  - name: Change u02 Ownership
+    file:
+      path: '/u02'
+      owner: "{{ oracle_user }}"
+      group: "{{ oracle_group }}"
+
+  tags: directory
+  become: True
+  become_user: root
+
+- block:
+  - name: Check if RMAN backup directory is existing
+    stat:
+      path: '{{ rman_backup_dir }}'
+    register: rman_dir
+
+  - debug:
+      msg: "RMAN backup directory is existing."
+    when: rman_dir.stat.exists and rman_dir.stat.isdir
+
+  - name: RMAN backup directory is not existing. Creating directory.
+    file:
+      state: directory
+      path: "{{ rman_backup_dir }}"
+    when: rman_dir.stat.exists == False
+
+  - name: Check if RMAN script directory is existing
+    stat:
+      path: '{{ rman_backup_dir }}/scripts'
+    register: script_dir
+
+  - name: Creating RMAN script directory
+    file:
+      path: "{{ rman_backup_dir }}/scripts"
+      state: directory
+    when: script_dir.stat.exists == False
+
+  - name: Check if RMAN script is existing
+    stat:
+      path: '{{ rman_backup_dir }}/scripts/rmanbackup.sh'
+    register: file
+
+  - name: Delete existing RMAN script
+    file:
+      path: '{{ rman_backup_dir }}/scripts/rmanbackup.sh'
+      state: absent
+    when: file.stat.exists
+
+  - name: Generating RMAN script
+    template:
+      src: rmanbackup.sh
+      dest: "{{ rman_backup_dir }}/scripts/rmanbackup.sh"
+      mode: 0755
+
+  tags: prep
+  become: True
+  become_user: "{{ oracle_user }}"
+
+- block:
+  - name: Checking Available Storage before executing backup
+    shell: cd {{ rman_backup_dir }} && df -Ph . | tail -1 | awk -F "G" '{print $3}'
+    register: size
+
+  - debug: var=size.stdout
+
+  - name: Check Data Size
+    shell: "echo {{ data }}"
+    register: data_size
+
+  - debug: var=data_size.stdout
+
+  - fail: msg="NOT ENOUGH SPACE"
+    when: size.stdout|int < data_size.stdout|int
+
+  - name: Executing RMAN Hot Backup script
+    shell: '{{ rman_backup_dir }}/scripts/rmanbackup.sh {{ db_name }} {{ backup_type }}'
+    register: rman_bak
+    ignore_errors: yes
+
+  - debug: var=rman_bak
+
+  - name: Check RMAN Log
+    shell: 'cat {{ rman_backup_dir }}/{{ backup_name }}/rman_{{ db_name }}_{{ backup_type }}-{{ date }}.log'
+    register: log_a
+
+  - fail:
+      msg: "ERROR ON COMPLETION OF RMAN BACKUP"
+    when: log_a.stdout.find('Recovery Manager complete') == -1
+
+  - fail:
+      msg: "ERROR CODE FOUND"
+    when: log_a.stdout.find('ORA-') != -1
+
+  - debug:
+      msg: "NO ERROR CODE FOUND"
+    when: log_a.stdout.find('ORA-') == -1
+
+  - debug:
+      msg: "RMAN Completed Successfully"
+    when: log_a.stdout.find('Recovery Manager complete') != -1
+
+  - name: Check RMAN Log
+    shell: 'cat {{ rman_backup_dir }}/{{ backup_name }}/rman_{{ db_name }}_{{ backup_type }}-`{{ date }}B.log'
+    register: log_b
+
+  - fail:
+      msg: "ERROR ON COMPLETION OF RMAN BACKUP"
+    when: log_b.stdout.find('Recovery Manager complete') == -1
+
+  - fail:
+      msg: "ERROR CODE FOUND"
+    when: log_b.stdout.find('ORA-') != -1
+
+  - debug:
+      msg: "NO ERROR CODE FOUND"
+    when: log_b.stdout.find('ORA-') == -1
+
+  - debug:
+      msg: "RMAN Completed Successfully"
+    when: log_b.stdout.find('Recovery Manager complete') != -1
+
+  tags: rman
+  become: True
+  become_user: "{{ oracle_user }}"

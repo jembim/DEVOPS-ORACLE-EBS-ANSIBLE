@@ -1,0 +1,26 @@
+##########################
+# ==> Start Database <== #
+##########################
+ 
+- include: db_ps.yml
+
+- name: Startup the database
+  become_user: "{{ oracle_user }}"
+  shell: 'source {{ oracle_home }}/{{ db_name }}_{{ db_host }}.env && echo "startup;" | sqlplus / as sysdba'
+  when: db_ps.stdout == '0'
+  register: startdb
+
+- debug: var=startdb.stdout_lines
+  when: startdb|changed
+
+- include: listener_ps.yml
+
+- name: Startup the listener
+  become_user: "{{ oracle_user }}"
+  shell: ./addlnctl.sh start {{ db_name }}
+           chdir={{ oracle_home }}/appsutil/scripts/{{ db_name }}_{{ db_host }}
+  when: listener_ps.stdout.find('No listener') != -1
+  register: startln
+
+- debug: var=startln.stdout_lines
+  when: startln|changed

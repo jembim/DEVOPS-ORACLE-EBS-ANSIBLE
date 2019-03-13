@@ -1,0 +1,57 @@
+################################
+## ==> AGENT INSTALLATION <== ##
+################################
+
+# ==> Prepare Installation Directory
+- block:
+  - name: Check if there's an installed agent on the install directory
+    stat:
+      path: "{{ agent_install_dir }}"
+    register: agent_dir
+
+  - fail:
+      msg: "THERE IS AN EXISTING AGENT ON THE SPECIFIED INSTALLATION DIRECTORY"
+    when: agent_dir.stat.exists == True
+
+  - name: Create Agent Installation Directory
+    file:
+      path: "{{ agent_install_dir }}"
+      state: directory
+    when: agent_dir.stat.exists == False
+
+  tags: install_dir
+  become: True
+  become_user: "{{ oracle_user }}"
+
+
+# ==> DOWNLOAD AGENT ZIP FILE AND PERFORM AGENT INSTALLATION
+
+- block:
+  - name: Downloading Cloud Agent Zip File
+    shell: 'wget --user={{ repo_username }} --password={{ repo_password }} {{ agent_download_url }} -P {{ agent_install_dir }}'
+
+  - name: Unzipping Cloud Agent Zip File
+    unarchive:
+      src: "{{ agent_install_dir }}/cloudagent_linux.x64_1.29.0.zip"
+      dest: "{{ agent_install_dir }}"
+      remote_src: yes
+
+  - name: Delete Sample Response File from Zip File
+    file:
+      path: "{{ agent_install_dir }}/agent.rsp"
+      state: absent
+
+  - name: Generate Response File
+    template:
+      src: agent.rsp.j2
+      dest: "{{ agent_install_dir }}/agent.rsp"
+
+  - name: Installing Agent ......
+    shell: '{{ agent_install_dir }}/AgentInstall.sh AGENT_IMAGE_LOCATION={{ agent_install_dir }}'
+    register: agent_install
+
+  - debug: var=agent_install
+
+  tags: agent_install
+  become: True
+  become_user: "{{ oracle_user }}"

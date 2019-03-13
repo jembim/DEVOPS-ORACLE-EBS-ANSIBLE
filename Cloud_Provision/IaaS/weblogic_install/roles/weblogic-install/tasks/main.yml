@@ -1,0 +1,65 @@
+###########################
+# Install Weblogic 10.3.6 #
+###########################
+
+- block:
+  - name: Create groups
+    group: 
+      name: "{{ oracle_group }}"
+      state: present
+
+  - name: Create user
+    user:
+      name: "{{ oracle_user }}"
+      group: "{{ oracle_group }}"
+
+  - name: Change Base Folder Permission
+    file:
+      path: "/u01"
+      owner: "{{ oracle_user }}"
+      group: "{{ oracle_group }}"
+
+  - name: Create Oracle Base Directory
+    file:
+      state: directory
+      path: "{{ oracle_base }}"
+      owner: "{{ oracle_user }}"
+      group: "{{ oracle_group }}"
+
+  - name: Create WLS installer directory
+    file:
+      state: directory
+      path: "{{ wls_installer_dir }}"
+      owner: "{{ oracle_user }}"
+      group: "{{ oracle_group }}"
+
+  - name: Download Weblogic Installer from GFTinstallers (Nexus)
+    shell: 'wget --user={{ repo_username }} --password={{ repo_password }} {{ wls_installer_url }} -P {{ wls_installer_dir }}'
+
+  - name: Set Permission to WLS_INSTALLER
+    file:
+      path: '{{ wls_installer_dir }}/{{ wls_installer }}'
+      mode: 0755
+      owner: "{{ oracle_user }}"
+      group: "{{ oracle_group }}"
+
+  tags: user_group
+  become: True
+  become_user: root
+
+- block:
+      
+  - name: Generate WLS response file
+    template:
+      src: silent.xml.j2
+      dest: "{{ wls_installer_dir }}/silent.xml"
+      
+  - name: Execute Weblogic Installer
+    shell: "{{ java_home }}/bin/java -jar {{ wls_installer_dir }}/{{ wls_installer }} -mode=silent -silent_xml={{ wls_installer_dir }}/silent.xml"
+    args:
+      creates: "{{ wl_home }}"
+    changed_when: False
+
+  tags: wls_install
+  become: True
+  become_user: "{{ oracle_user }}"

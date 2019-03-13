@@ -1,0 +1,1011 @@
+<?xml version="1.0"?>
+<!--  $Header: adxmlctx.tmp 120.401.12020000.59 2016/05/23 04:32:22 yokukuma ship $  -->
+<!-- 
+# +======================================================================+
+# |     Copyright (c) 2005, 2016  Oracle and/or its affiliates.          | 
+# |                         All rights reserved.                         | 
+# |                           Version 12.0.0                             | 
+# +======================================================================+
+  ###############################################################
+  
+  Do not edit settings in this file manually. They are managed
+  automatically and will be overwritten when AutoConfig runs.
+  For more information about AutoConfig, refer to the Oracle
+  E-Business Suite Setup Guide.
+  
+  ###############################################################
+
+ -->
+<oa_context version="$Revision: 120.401.12020000.59 $"> 
+	<oa_context_name oa_var="s_contextname">{{ db_name }}_{{ db_host }}</oa_context_name>
+	<oa_context_serial oa_var="s_contextserial">2</oa_context_serial>
+	<oa_context_type oa_var="s_contexttype">APPL_TOP Context</oa_context_type>
+	<oa_context_file_loc oa_var="s_contextfile">{{ app_run_dir }}/inst/apps/{{ db_name }}_{{ db_host }}/appl/admin/{{ db_name }}_{{ db_host }}.xml</oa_context_file_loc>
+<!-- Applications system information -->
+	<oa_system> 
+		<oa_system_name oa_var="s_systemname">{{ db_name }}</oa_system_name>
+		<global_db_name oa_var="s_dbSid">{{ db_name }}</global_db_name>
+		<global_db_name oa_var="s_dbGlnam">{{ db_name }}</global_db_name>
+		<db_name_lower oa_var="s_dbSidLower">{{ db_name_lower }}</db_name_lower>
+		<oa_site_name oa_var="s_sitename">{{ db_name }}</oa_site_name>
+		<oa_system_config> 
+			<TIER_DB oa_var="s_isDB">NO</TIER_DB>
+			<TIER_ADMIN oa_var="s_isAdmin">YES</TIER_ADMIN>
+			<TIER_WEB oa_var="s_isWeb">YES</TIER_WEB>
+			<TIER_FORMS oa_var="s_isForms">YES</TIER_FORMS>
+			<TIER_NODE oa_var="s_isConc">YES</TIER_NODE>
+			<TIER_FORMSDEV oa_var="s_isFormsDev">YES</TIER_FORMSDEV>
+			<TIER_NODEDEV oa_var="s_isConcDev">YES</TIER_NODEDEV>
+			<TIER_WEBDEV oa_var="s_isWebDev">YES</TIER_WEBDEV>
+			<config_option type="techstack" oa_var="s_techstack">FMW11gR1</config_option>
+			<config_option type="techstack" oa_var="s_tnsmode">generateTNS</config_option>
+			<config_option type="adx" oa_var="s_apps_version">12.2.6</config_option>
+			<config_option type="techstack" oa_var="s_ohs_installed">generateEBSOHSConfigFiles</config_option>
+			<config_option type="techstack" oa_var="s_deploy_portlet">no</config_option>
+			<ias_version oa_var="s_ias_version">11.1.1.9.0</ias_version>
+			<file_edition_type oa_var="s_file_edition_type">run</file_edition_type>
+			<file_edition_name oa_var="s_file_edition_name">fs1</file_edition_name>
+			<shared_file_system oa_var="s_shared_file_system">false</shared_file_system>
+			<inventory_type oa_var="s_ebs_central_inventory" osd="unix">false</inventory_type>
+			<inventory_ptr_loc oa_var="s_invPtrLoc" osd="LINUX_X86-64">/etc/oraInst.loc</inventory_ptr_loc>
+		</oa_system_config>
+		<oa_users> 
+			<oa_user type="SYS"> 
+				<username oa_var="s_sys_user">SYS</username>
+			</oa_user>
+			<oa_user type="APPS"> 
+				<username oa_var="s_apps_user">APPS</username>
+				<username oa_var="s_applsys_user">APPLSYS</username>
+			</oa_user>
+			<oa_user type="FND"> 
+				<username oa_var="s_cp_user">SYSADMIN</username>
+			</oa_user>
+			<oa_user type="GUEST"> 
+				<username oa_var="s_guest_user">GUEST</username>
+				<password oa_var="s_guest_pass">ORACLE</password>
+			</oa_user>
+			<oa_user type="GWYUID"> 
+				<username oa_var="s_gwyuid_user">APPLSYSPUB</username>
+				<password oa_var="s_gwyuid_pass">PUB</password>
+			</oa_user>
+		</oa_users>
+		<customer_info> 
+			<metalink_id oa_var="s_metalink_id"> </metalink_id>
+			<country_code oa_var="s_country_code"> </country_code>
+			<cityname oa_var="s_cityname"> </cityname>
+			<statename oa_var="s_statename"> </statename>
+		</customer_info>
+		<nls_settings> 
+			<defterr oa_var="s_defterr">AMERICA</defterr>
+			<base_lang oa_var="s_base_lang">US</base_lang>
+		</nls_settings>
+		<oa_shared_config> 
+			<config_home oa_var="s_config_home">{{ app_run_dir }}/inst/apps/{{ db_name }}_{{ db_host }}</config_home>
+			<appl_config_home oa_var="s_appl_config_home">{{ app_run_dir }}/EBSapps/appl</appl_config_home>
+			<ora_config_home oa_var="s_ora_config_home">{{ app_run_dir }}/inst/apps/{{ db_name }}_{{ db_host }}/ora</ora_config_home>
+			<logs_dir oa_var="s_logs_dir">{{ app_run_dir }}/inst/apps/{{ db_name }}_{{ db_host }}/logs</logs_dir>
+			<pids_dir oa_var="s_pids_dir">{{ app_run_dir }}/inst/apps/{{ db_name }}_{{ db_host }}/pids</pids_dir>
+		</oa_shared_config>
+<!-- Server settings -->
+		<oa_db_server> 
+			<dbhost oa_var="s_dbhost">{{ db_host }}</dbhost>
+			<domain oa_var="s_dbdomain">{{ domain }}</domain>
+			<dbsid oa_var="s_db_serv_sid">{{ db_name }}</dbsid>
+			<dbcset oa_var="s_dbcset">AL32UTF8</dbcset>
+		</oa_db_server>
+		<oa_admin_server> 
+			<hostname oa_var="s_admhost">{{ db_host }}</hostname>
+			<domain oa_var="s_admdomain">{{ domain }}</domain>
+		</oa_admin_server>
+		<oa_cp_server> 
+			<hostname oa_var="s_cphost">{{ db_host }}</hostname>
+			<domain oa_var="s_cpdomain">{{ domain }}</domain>
+			<conc_java_ldlib oa_var="s_conc_java_ldlib" osd="UNIX">{{ app_run_dir }}/EBSapps/10.1.2/lib:{{ app_run_dir }}/FMW_Home/webtier/lib:{{ app_run_dir }}/EBSapps/appl/sht/12.0.0/lib64:{{ app_run_dir }}/FMW_Home/webtier/jdk/jre/lib/amd64:{{ app_run_dir }}/FMW_Home/webtier/jdk/jre/lib/amd64/server:{{ app_run_dir }}/FMW_Home/webtier/jdk/jre/lib/amd64/native_threads:{{ app_run_dir }}/EBSapps/appl/cz/12.0.0/bin64:${LD_LIBRARY_PATH:=}:{{ app_run_dir }}/EBSapps/appl/pon/12.0.0/bin64</conc_java_ldlib>
+			<cp_password_type oa_var="s_cp_password_type">AppsSchema</cp_password_type>
+			<cp_resp_shortname oa_var="s_cp_resp_shortname">SYSADMIN</cp_resp_shortname>
+			<cp_resp_name oa_var="s_cp_resp_name">System Administrator</cp_resp_name>
+			<cp_reviver oa_var="s_cp_reviver">enabled</cp_reviver>
+			<fndreviverpiddir oa_var="s_fndreviverpiddir">{{ app_run_dir }}/inst/apps/{{ db_name }}_{{ db_host }}/pids/appl</fndreviverpiddir>
+		</oa_cp_server>
+<!-- Workflow -->
+		<oa_workflow_server> 
+			<hostname oa_var="s_javamailer_imaphost">NoImapHost</hostname>
+			<domain oa_var="s_javamailer_imapdomainname">NoImapDomain</domain>
+			<username oa_var="s_wf_admin_role">SYSADMIN</username>
+			<username oa_var="s_javamailer_reply_to" customized="yes">{{ db_name }}@{{ db_host_ip }}.compute.oraclecloud.com</username>
+			<username oa_var="s_javamailer_imap_user">NoImapUser</username>
+			<username oa_var="s_javamailer_outbound_user">changeOnJavaMailerInstall</username>
+		</oa_workflow_server>
+		<oa_smtp_server> 
+			<hostname oa_var="s_smtphost" customized="yes">localhost</hostname>
+			<domain oa_var="s_smtpdomainname" customized="yes"></domain>
+		</oa_smtp_server>
+		<oa_forms_server> 
+<!-- Forms Servlet and Forms Server -->
+			<forms_version oa_var="s_forms_version">10.1.2.3.0</forms_version>
+			<hostname oa_var="s_formshost">{{ db_host }}</hostname>
+			<domain oa_var="s_formsdomain">{{ domain }}</domain>
+			<formsfndtop oa_var="s_formsfndtop">FND_TOP</formsfndtop>
+			<forms_module_prepend_env_var_identifier oa_var="s_forms_module_prepend_env_var_identifier">$</forms_module_prepend_env_var_identifier>
+			<forms_module_append_env_var_identifier oa_var="s_forms_module_append_env_var_identifier"> </forms_module_append_env_var_identifier>
+			<forms_runtime oa_var="s_frmRuntime" osd="UNIX">frmweb</forms_runtime>
+			<forms_runcgi oa_var="s_frmRunCGI" osd="UNIX">f60cgi</forms_runcgi>
+			<forms_connect oa_var="s_frmConnectMode">servlet</forms_connect>
+			<formslauncher_path oa_var="s_formslauncher_path">forms/frmservlet</formslauncher_path>
+			<forms_tmpdir oa_var="s_forms_tmpdir" osd="UNIX">/tmp</forms_tmpdir>
+			<desformat oa_var="s_desformat">html</desformat>
+			<forms_network_retries oa_var="s_frmNetworkRetries">0</forms_network_retries>
+			<EndUserMonitoringEnabled oa_var="s_isEndUserMonitoringEnabled"> </EndUserMonitoringEnabled>
+			<EndUserMonitoringURL oa_var="s_endUserMonitoringURL">http://{{ db_host_ip }}.compute.oraclecloud.com:8000/oracle_smp_chronos/oracle_smp_chronos_sdk.gif</EndUserMonitoringURL>
+			<forms_trace_dir oa_var="s_forms_trace_dir">{{ app_run_dir }}/inst/apps/{{ db_name }}_{{ db_host }}/logs/ora/10.1.2/forms</forms_trace_dir>
+			<forms_heartbeat oa_var="s_forms_heartbeat">2</forms_heartbeat>
+			<forms_jvm_start_options oa_var="s_forms_jvm_start_options">-XX:PermSize=128m -XX:MaxPermSize=384m -Xms1024m -Xmx1024m -Djava.security.policy={{ app_run_dir }}/FMW_Home/wlserver_10.3/server/lib/weblogic.policy -Djava.security.egd=file:/dev/./urandom -Dweblogic.ProductionModeEnabled=true -da -Dplatform.home={{ app_run_dir }}/FMW_Home/wlserver_10.3 -Dwls.home={{ app_run_dir }}/FMW_Home/wlserver_10.3/server -Dweblogic.home={{ app_run_dir }}/FMW_Home/wlserver_10.3/server -Dcommon.components.home={{ app_run_dir }}/FMW_Home/oracle_common -Djrf.version=11.1.1 -Dorg.apache.commons.logging.Log=org.apache.commons.logging.impl.Jdk14Logger -Ddomain.home={{ app_run_dir }}/FMW_Home/user_projects/domains/EBS_domain_{{ db_name }} -Djrockit.optfile={{ app_run_dir }}/FMW_Home/oracle_common/modules/oracle.jrf_11.1.1/jrocket_optfile.txt -Doracle.server.config.dir={{ app_run_dir }}/FMW_Home/user_projects/domains/EBS_domain_{{ db_name }}/config/fmwconfig/servers/AdminServer -Doracle.domain.config.dir={{ app_run_dir }}/FMW_Home/user_projects/domains/EBS_domain_{{ db_name }}/config/fmwconfig -Digf.arisidbeans.carmlloc={{ app_run_dir }}/FMW_Home/user_projects/domains/EBS_domain_{{ db_name }}/config/fmwconfig/carml -Digf.arisidstack.home={{ app_run_dir }}/FMW_Home/user_projects/domains/EBS_domain_{{ db_name }}/config/fmwconfig/arisidprovider -Doracle.security.jps.config={{ app_run_dir }}/FMW_Home/user_projects/domains/EBS_domain_{{ db_name }}/config/fmwconfig/jps-config.xml -Doracle.deployed.app.dir={{ app_run_dir }}/FMW_Home/user_projects/domains/EBS_domain_{{ db_name }}/servers/AdminServer/tmp/_WL_user -Doracle.deployed.app.ext=/- -Dweblogic.alternateTypesDirectory={{ app_run_dir }}/FMW_Home/oracle_common/modules/oracle.ossoiap_11.1.1,{{ app_run_dir }}/FMW_Home/oracle_common/modules/oracle.oamprovider_11.1.1 -Djava.protocol.handler.pkgs=oracle.mds.net.protocol -Dweblogic.jdbc.remoteEnabled=false -Dportlet.oracle.home={{ app_run_dir }}/FMW_Home/oracle_common -Dem.oracle.home={{ app_run_dir }}/FMW_Home/oracle_common -Dweblogic.management.discover=true -Dwlw.iterativeDev=false -Dwlw.testConsole=false -Dwlw.logErrorsToConsole=false -Dweblogic.ext.dirs={{ app_run_dir }}/FMW_Home/patch_wls1036/profiles/default/sysext_manifest_classpath</forms_jvm_start_options>
+			<formservlet_maxblocktime oa_var="s_forms_maxblocktime">5000</formservlet_maxblocktime>
+			<server_url oa_var="s_forms_servlet_serverurl">/forms/lservlet</server_url>
+			<frmsrv_nprocs oa_var="s_frmsrv_nprocs">1</frmsrv_nprocs>
+			<servlet_comment oa_var="s_forms_servlet_comment">#</servlet_comment>
+			<formservlet_session_cookie oa_var="s_form_session_cookie">true</formservlet_session_cookie>
+			<forms_tabstop oa_var="s_forms_tabstop">4</forms_tabstop>
+		</oa_forms_server>
+		<oacore_server> 
+			<oacore_jvm_start_options oa_var="s_oacore_jvm_start_options">-XX:PermSize=128m -XX:MaxPermSize=384m -Xms1024m -Xmx1024m -Djava.security.policy={{ app_run_dir }}/FMW_Home/wlserver_10.3/server/lib/weblogic.policy -Djava.security.egd=file:/dev/./urandom -Dweblogic.ProductionModeEnabled=true -da -Dplatform.home={{ app_run_dir }}/FMW_Home/wlserver_10.3 -Dwls.home={{ app_run_dir }}/FMW_Home/wlserver_10.3/server -Dweblogic.home={{ app_run_dir }}/FMW_Home/wlserver_10.3/server -Dcommon.components.home={{ app_run_dir }}/FMW_Home/oracle_common -Djrf.version=11.1.1 -Dorg.apache.commons.logging.Log=org.apache.commons.logging.impl.Jdk14Logger -Ddomain.home={{ app_run_dir }}/FMW_Home/user_projects/domains/EBS_domain_{{ db_name }} -Djrockit.optfile={{ app_run_dir }}/FMW_Home/oracle_common/modules/oracle.jrf_11.1.1/jrocket_optfile.txt -Doracle.server.config.dir={{ app_run_dir }}/FMW_Home/user_projects/domains/EBS_domain_{{ db_name }}/config/fmwconfig/servers/AdminServer -Doracle.domain.config.dir={{ app_run_dir }}/FMW_Home/user_projects/domains/EBS_domain_{{ db_name }}/config/fmwconfig -Digf.arisidbeans.carmlloc={{ app_run_dir }}/FMW_Home/user_projects/domains/EBS_domain_{{ db_name }}/config/fmwconfig/carml -Digf.arisidstack.home={{ app_run_dir }}/FMW_Home/user_projects/domains/EBS_domain_{{ db_name }}/config/fmwconfig/arisidprovider -Doracle.security.jps.config={{ app_run_dir }}/FMW_Home/user_projects/domains/EBS_domain_{{ db_name }}/config/fmwconfig/jps-config.xml -Doracle.deployed.app.dir={{ app_run_dir }}/FMW_Home/user_projects/domains/EBS_domain_{{ db_name }}/servers/AdminServer/tmp/_WL_user -Doracle.deployed.app.ext=/- -Dweblogic.alternateTypesDirectory={{ app_run_dir }}/FMW_Home/oracle_common/modules/oracle.ossoiap_11.1.1,{{ app_run_dir }}/FMW_Home/oracle_common/modules/oracle.oamprovider_11.1.1 -Djava.protocol.handler.pkgs=oracle.mds.net.protocol -Dweblogic.jdbc.remoteEnabled=false -Dportlet.oracle.home={{ app_run_dir }}/FMW_Home/oracle_common -Dem.oracle.home={{ app_run_dir }}/FMW_Home/oracle_common -Dweblogic.management.discover=true -Dwlw.iterativeDev=false -Dwlw.testConsole=false -Dwlw.logErrorsToConsole=false -Dweblogic.ext.dirs={{ app_run_dir }}/FMW_Home/patch_wls1036/profiles/default/sysext_manifest_classpath -Dweblogic.resourcepool.max_test_wait_secs=0</oacore_jvm_start_options>
+			<oacore_prepend_ld_lib_path oa_var="s_oacore_prepend_ld_lib_path"> </oacore_prepend_ld_lib_path>
+			<oacore_prepend_classpath oa_var="s_oacore_prepend_classpath"> </oacore_prepend_classpath>
+			<oacore_append_classpath oa_var="s_oacore_append_classpath"> </oacore_append_classpath>
+			<oacore_ld_lib_path oa_var="s_oacore_ld_lib_path" osd="unix">{{ app_run_dir }}/FMW_Home/webtier/lib32:{{ app_run_dir }}/FMW_Home/webtier/lib:{{ app_run_dir }}/EBSapps/appl/cz/12.0.0/bin:{{ app_run_dir }}/EBSapps/appl/iby/12.0.0/bin:{{ app_run_dir }}/EBSapps/appl/pon/12.0.0/bin:{{ app_run_dir }}/EBSapps/appl/sht/12.0.0/lib</oacore_ld_lib_path>
+			<oacore_ld_lib_path64 oa_var="s_oacore_ld_lib_path64" osd="LINUX_X86-64">{{ app_run_dir }}/FMW_Home/webtier/lib:{{ app_run_dir }}/EBSapps/appl/cz/12.0.0/bin64:{{ app_run_dir }}/EBSapps/appl/iby/12.0.0/bin:{{ app_run_dir }}/EBSapps/appl/pon/12.0.0/bin64:{{ app_run_dir }}/EBSapps/appl/sht/12.0.0/lib64:{{ app_run_dir }}/EBSapps/appl/sht/12.0.0/lib</oacore_ld_lib_path64>
+			<load_cz_servlet oa_var="s_load_cz_servlet">1</load_cz_servlet>
+			<load_emailcenter_servlet oa_var="s_load_emailcenter_servlet">-1</load_emailcenter_servlet>
+			<ignore_comma_in_cookies_named oa_var="s_ignore_comma_in_cookies_named">-Dhttp.cookie.ignoreCommaInCookiesNamed=X_NoMatchingCookies</ignore_comma_in_cookies_named>
+			<oacore_javac_options oa_var="s_oacore_javac_options" osd="LINUX_X86-64">-source 1.4 -target 1.4 -J-Xmx1024m -encoding UTF8</oacore_javac_options>
+			<portlet_preference_store oa_var="s_portlet_preference_store">File</portlet_preference_store>
+			<portlet_preference_store_directory oa_var="s_portlet_preference_store_directory">/u01/install/APPS/fs_ne/inst/{{ db_name }}_{{ db_host }}/oracle_common/portal/portletdata</portlet_preference_store_directory>
+		</oacore_server>
+		<oa_disco_server> 
+			<disco_url oa_var="s_disco_url"> </disco_url>
+			<disco_eul_prefix oa_var="s_disco_eul_prefix">EUL</disco_eul_prefix>
+		</oa_disco_server>
+		<oa_mwa_server> 
+			<mwaLogLevel oa_var="s_mwaLogLevel">error</mwaLogLevel>
+			<mwaLogRotate oa_var="s_mwaLogRotate">Yes</mwaLogRotate>
+			<mwaLogFileSize oa_var="s_mwaLogFileSize">10000000</mwaLogFileSize>
+			<mwaDropConnectionTimeout oa_var="s_mwaDropConnectionTimeout">5</mwaDropConnectionTimeout>
+			<mwaStaleSessionTimeout oa_var="s_mwaStaleSessionTimeout">60</mwaStaleSessionTimeout>
+			<mwaDispatcherThreadCount oa_var="s_mwaDispatcherThreadCount">15</mwaDispatcherThreadCount>
+			<mwaDispatcherClientsPerWorker oa_var="s_mwaDispatcherClientsPerWorker">10</mwaDispatcherClientsPerWorker>
+			<mwaJVMb oa_var="s_mwaJVMb">FALSE</mwaJVMb>
+			<mwaActivateLOVByEnter oa_var="s_mwaActivateLOVByEnter">FALSE</mwaActivateLOVByEnter>
+			<mwaSubmenuChangeOrgResp oa_var="s_mwaSubmenuChangeOrgResp">FALSE</mwaSubmenuChangeOrgResp>
+		</oa_mwa_server>
+		<oa_soa_server> 
+			<soaprovider_user oa_var="s_soaprovider_user">ASADMIN</soaprovider_user>
+			<soa_external_url oa_var="s_soa_external_url">%s_soa_external_url%</soa_external_url>
+			<soa_internal_url oa_var="s_soa_internal_url">%s_soa_internal_url%</soa_internal_url>
+			<soa_admin_url oa_var="s_soa_admin_url">%s_soa_admin_url%</soa_admin_url>
+			<soa_oracle_home oa_var="s_soa_oracle_home">%s_soa_oracle_home%</soa_oracle_home>
+		</oa_soa_server>
+		<oa_web_server> 
+<!-- Host & Domain -->
+			<hostname oa_var="s_webhost">{{ db_host }}</hostname>
+			<externURL oa_var="s_external_url">http://{{ db_host_ip }}.compute.oraclecloud.com:8000/OA_HTML/AppsLogin</externURL>
+			<directory_index oa_var="s_directory_index">index.html</directory_index>
+			<webentryhost oa_var="s_webentryhost">{{ db_host_ip }}</webentryhost>
+			<webentrydomain oa_var="s_webentrydomain">compute.oraclecloud.com</webentrydomain>
+			<domain oa_var="s_webdomain">{{ domain }}</domain>
+			<server_ip_address oa_var="s_server_ip_address"> </server_ip_address>
+<!-- Configuration files -->
+<!-- SSL Variables -->
+			<url_protocol oa_var="s_url_protocol">http</url_protocol>
+			<web_ssl_directory oa_var="s_web_ssl_directory">/u01/install/APPS/fs_ne/inst/{{ db_name }}_{{ db_host }}/certs</web_ssl_directory>
+			<local_url_protocol oa_var="s_local_url_protocol">http</local_url_protocol>
+			<web_ssl_certchainfile oa_var="s_web_ssl_certchainfile">{{ app_run_dir }}/EBSapps/10.1.2/sysman/config/b64InternetCertificate.txt</web_ssl_certchainfile>
+			<websrvwallet oa_var="s_websrv_wallet_file">/u01/install/APPS/fs_ne/inst/{{ db_name }}_{{ db_host }}/certs</websrvwallet>
+			<sslterminator oa_var="s_enable_sslterminator">#</sslterminator>
+<!-- JDK plugins -->
+			<sun_plugin_ver oa_var="s_sun_plugin_ver">1.7.0_067</sun_plugin_ver>
+			<sun_plugin_type oa_var="s_sun_plugin_type">jdk</sun_plugin_type>
+			<sun_clsid oa_var="s_sun_clsid">CAFEEFAC-0017-0000-0067-ABCDEFFEDCBA</sun_clsid>
+<!-- Jinitiator -->
+			<jinit_ver_dot oa_var="s_jinit_ver_dot">1.6.0_27</jinit_ver_dot>
+			<jinit_ver_comma oa_var="s_jinit_ver_comma">1.6.0_27</jinit_ver_comma>
+			<jinit_clsid oa_var="s_jinit_clsid">CAFEEFAC-0016-0000-0027-ABCDEFFEDCBA</jinit_clsid>
+<!-- Proxy -->
+			<proxyhost oa_var="s_proxyhost"> </proxyhost>
+			<proxyport oa_var="s_proxyport"> </proxyport>
+			<proxybypassdomain oa_var="s_proxybypassdomain">{{ domain }}</proxybypassdomain>
+			<nonproxyhosts oa_var="s_nonproxyhosts"> </nonproxyhosts>
+<!-- Portal -->
+			<apps_portal_url oa_var="s_apps_portal_url"> </apps_portal_url>
+			<trusted_portals oa_var="s_trusted_portals"> </trusted_portals>
+<!-- Workflow -->
+			<sysadminmail oa_var="s_sysadmin_mail" osd="unix">oracle@{{ db_host }}.{{ domain }}</sysadminmail>
+			<wfmail_agent oa_var="s_wfmail_agent"> </wfmail_agent>
+<!-- Cookie settings for Web Server -->
+			<cookiedomain oa_var="s_cookie_domain">.{{ domain }}</cookiedomain>
+			<topleveldomain_comment oa_var="s_topleveldomain_comment">#</topleveldomain_comment>
+			<iana_charset oa_var="s_iana_cset">UTF-8</iana_charset>
+			<login_page oa_var="s_login_page">http://{{ db_host_ip }}.compute.oraclecloud.com:8000/OA_HTML/AppsLogin</login_page>
+			<httplistenparameter oa_var="s_http_listen_parameter">8000</httplistenparameter>
+			<httpslistenparameter oa_var="s_https_listen_parameter">4443</httpslistenparameter>
+			<limitrequestfieldsize oa_var="s_limitrequestfieldsize">4096</limitrequestfieldsize>
+			<limitrequestfields oa_var="s_limitrequestfields">32</limitrequestfields>
+			<limitrequestbody oa_var="s_limitrequestbody">0</limitrequestbody>
+			<limitrequestline oa_var="s_limitrequestline">4096</limitrequestline>
+			<HELP_WEB_AGENT oa_var="s_help_web_agent"> </HELP_WEB_AGENT>
+			<customsql_path oa_var="s_customsql_path">{{ app_run_dir }}/EBSapps/appl/admin/{{ db_name }}_{{ db_host }}/custom/sql</customsql_path>
+			<forms_tracking_cookies oa_var="s_forms_tracking_cookies">disabled</forms_tracking_cookies>
+			<session_timeout oa_var="s_sesstimeout">1800000</session_timeout>
+			<ohs_log_rotation_time oa_var="s_ohs_log_rotation_time">86400</ohs_log_rotation_time>
+			<opmn_log_rotation_time oa_var="s_opmn_log_rotation_time">0</opmn_log_rotation_time>
+			<opmn_log_rotation_size oa_var="s_opmn_log_rotation_size">1500000</opmn_log_rotation_size>
+			<load_requestrouter_servlet oa_var="s_load_requestrouter_servlet">-1</load_requestrouter_servlet>
+			<load_appsearch_servlet oa_var="s_load_appsearch_servlet">-1</load_appsearch_servlet>
+			<load_appsearchmeta_servlet oa_var="s_load_appsearchmeta_servlet">-1</load_appsearchmeta_servlet>
+			<load_soaprovider_servlet oa_var="s_load_soaprovider_servlet">-1</load_soaprovider_servlet>
+			<load_oxta_servlet oa_var="s_load_oxta_servlet">1</load_oxta_servlet>
+			<oxtainpoolsize oa_var="s_oxtainpool_size">1</oxtainpoolsize>
+			<jms_cache oa_var="s_long_running_jvm">true</jms_cache>
+			<xmlparser oa_var="s_xmlparser">{{ app_run_dir }}/FMW_Home/oracle_common/modules/oracle.xdk_11.1.0/xmlparserv2.jar</xmlparser>
+			<java_mailer_jar oa_var="s_java_mailer_jar">javax.mail_1.5.4.jar</java_mailer_jar>
+			<icx_session_cookie_httponly oa_var="s_icx_session_cookie_httponly">yes</icx_session_cookie_httponly>
+<!-- DBC and JDBC Tuning Definitions -->
+			<datasource_type oa_var="s_datasource_type">datasource</datasource_type>
+			<jdbc_connections oa_var="s_fnd_max_jdbc_connections">500</jdbc_connections>
+			<fnd_jdbc_stmt_cache_size oa_var="s_fnd_jdbc_stmt_cache_size">100</fnd_jdbc_stmt_cache_size>
+			<dbc_file_name oa_var="s_dbc_file_name">{{ db_name }}</dbc_file_name>
+			<jdbc_url oa_var="s_apps_jdbc_connect_descriptor">jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS_LIST=(LOAD_BALANCE=YES)(FAILOVER=YES)(ADDRESS=(PROTOCOL=tcp)(HOST={{ db_host }}.{{ domain }})(PORT={{ db_port }})))(CONNECT_DATA=(SERVICE_NAME={{ db_name }})))</jdbc_url>
+			<jdbc_url_generation_check oa_var="s_jdbc_connect_descriptor_generation">true</jdbc_url_generation_check>
+			<jdbc_connect_alias oa_var="s_apps_jdbc_connect_alias">{{ db_name }}_BALANCE</jdbc_connect_alias>
+			<patch_jdbc_connect_alias oa_var="s_apps_patch_alias">{{ db_name }}_patch</patch_jdbc_connect_alias>
+			<patch_jdbc_url oa_var="s_apps_jdbc_patch_connect_descriptor">jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=tcp)(HOST={{ db_host }}.{{ domain }})(PORT={{ db_port }}))(CONNECT_DATA=(SERVICE_NAME=ebs_patch)(INSTANCE_NAME={{ db_name }})))</patch_jdbc_url>
+			<appserverid_authentication oa_var="s_appserverid_authentication">SECURE</appserverid_authentication>
+			<dbc_params> 
+				<fnd_jdbc_buffer_min oa_type="DBC" oa_var="s_fnd_jdbc_buffermin">1</fnd_jdbc_buffer_min>
+				<fnd_jdbc_buffer_max oa_type="DBC" oa_var="s_fnd_jdbc_buffermax">5</fnd_jdbc_buffer_max>
+				<fnd_jdbc_buffer_decay_interval oa_type="DBC" oa_var="s_fnd_jdbc_buffer_decay_interval">300</fnd_jdbc_buffer_decay_interval>
+				<fnd_jdbc_buffer_decay_size oa_type="DBC" oa_var="s_fnd_jdbc_buffer_decay_size">5</fnd_jdbc_buffer_decay_size>
+				<fnd_jdbc_usable_check oa_type="DBC" oa_var="s_fnd_jdbc_usable_check">false</fnd_jdbc_usable_check>
+				<fnd_jdbc_context_check oa_type="DBC" oa_var="s_fnd_jdbc_context_check">true</fnd_jdbc_context_check>
+				<fnd_jdbc_plsql_reset oa_type="DBC" oa_var="s_fnd_jdbc_plsql_reset">false</fnd_jdbc_plsql_reset>
+				<jdbc_proc_esc oa_var="s_jdbc_proc_esc">true</jdbc_proc_esc>
+				<jdbc_max_cached_buffersize oa_var="s_jdbc_max_cached_buffersize">358400</jdbc_max_cached_buffersize>
+				<custom_dbc_param oa_var="s_custom_dbc_params"> </custom_dbc_param>
+			</dbc_params>
+			<webentryurlprotocol oa_var="s_webentryurlprotocol">http</webentryurlprotocol>
+			<apache_optionslink oa_var="s_options_symlinks">Options FollowSymLinks</apache_optionslink>
+			<apache_loglevel oa_var="s_apache_loglevel">warn</apache_loglevel>
+			<ssl_loglevel oa_var="s_ssl_loglevel">warn</ssl_loglevel>
+			<ohs_serveradmin oa_var="s_ohs_serveradmin">ohs_admin@us.oracle.com</ohs_serveradmin>
+			<httpclient_dontChunkRequests oa_var="s_httpclient_dontChunkRequests">false</httpclient_dontChunkRequests>
+<!-- OXTA Parameters -->
+			<outboundthreads oa_var="s_outbound_threads">1</outboundthreads>
+			<oxta_proxy oa_var="s_oxta_proxy">false</oxta_proxy>
+			<oxta_proxyhost oa_var="s_oxta_proxyhost"> </oxta_proxyhost>
+			<oxta_proxyport oa_var="s_oxta_proxyport"> </oxta_proxyport>
+<!-- StoreType Parameters -->
+			<ssl_truststoretype oa_var="s_ssl_truststoretype">SSO</ssl_truststoretype>
+			<ssl_keystoretype oa_var="s_ssl_keystoretype">SSO</ssl_keystoretype>
+<!-- Store Parameters -->
+			<ssl_truststore oa_var="s_ssl_truststore">/u01/install/APPS/fs_ne/inst/{{ db_name }}_{{ db_host }}/certs/Apache/cwallet.sso</ssl_truststore>
+			<ssl_keystore oa_var="s_ssl_keystore">/u01/install/APPS/fs_ne/inst/{{ db_name }}_{{ db_host }}/certs/Apache/cwallet.sso</ssl_keystore>
+<!-- Algorithm Parameters -->
+			<ssl_trustmanageralgorithm oa_var="s_ssl_trustmanageralgorithm">OracleX509</ssl_trustmanageralgorithm>
+			<ssl_keymanageralgorithm oa_var="s_ssl_keymanageralgorithm">OracleX509</ssl_keymanageralgorithm>
+<!-- optimizeit install home -->
+			<optimizeit_home oa_var="s_optit_home"> </optimizeit_home>
+<!-- URL Firewall -->
+			<urlfirewall oa_var="s_enable_urlfirewall">#</urlfirewall>
+<!-- Trusted Nodes -->
+			<admin_ui_access_nodes oa_var="s_admin_ui_access_nodes">localhost</admin_ui_access_nodes>
+<!-- Webgate Parameters -->
+			<module_extension oa_var="s_module_extension" osd="LINUX_X86-64">.so</module_extension>
+		</oa_web_server>
+<!-- OAFM OC4J Instance -->
+		<oafm_server> 
+			<oafm_jvm_start_options oa_var="s_oafm_jvm_start_options">-XX:PermSize=128m -XX:MaxPermSize=384m -Xms1024m -Xmx1024m -Djava.security.policy={{ app_run_dir }}/FMW_Home/wlserver_10.3/server/lib/weblogic.policy -Djava.security.egd=file:/dev/./urandom -Dweblogic.ProductionModeEnabled=true -da -Dplatform.home={{ app_run_dir }}/FMW_Home/wlserver_10.3 -Dwls.home={{ app_run_dir }}/FMW_Home/wlserver_10.3/server -Dweblogic.home={{ app_run_dir }}/FMW_Home/wlserver_10.3/server -Dcommon.components.home={{ app_run_dir }}/FMW_Home/oracle_common -Djrf.version=11.1.1 -Dorg.apache.commons.logging.Log=org.apache.commons.logging.impl.Jdk14Logger -Ddomain.home={{ app_run_dir }}/FMW_Home/user_projects/domains/EBS_domain_{{ db_name }} -Djrockit.optfile={{ app_run_dir }}/FMW_Home/oracle_common/modules/oracle.jrf_11.1.1/jrocket_optfile.txt -Doracle.server.config.dir={{ app_run_dir }}/FMW_Home/user_projects/domains/EBS_domain_{{ db_name }}/config/fmwconfig/servers/AdminServer -Doracle.domain.config.dir={{ app_run_dir }}/FMW_Home/user_projects/domains/EBS_domain_{{ db_name }}/config/fmwconfig -Digf.arisidbeans.carmlloc={{ app_run_dir }}/FMW_Home/user_projects/domains/EBS_domain_{{ db_name }}/config/fmwconfig/carml -Digf.arisidstack.home={{ app_run_dir }}/FMW_Home/user_projects/domains/EBS_domain_{{ db_name }}/config/fmwconfig/arisidprovider -Doracle.security.jps.config={{ app_run_dir }}/FMW_Home/user_projects/domains/EBS_domain_{{ db_name }}/config/fmwconfig/jps-config.xml -Doracle.deployed.app.dir={{ app_run_dir }}/FMW_Home/user_projects/domains/EBS_domain_{{ db_name }}/servers/AdminServer/tmp/_WL_user -Doracle.deployed.app.ext=/- -Dweblogic.alternateTypesDirectory={{ app_run_dir }}/FMW_Home/oracle_common/modules/oracle.ossoiap_11.1.1,{{ app_run_dir }}/FMW_Home/oracle_common/modules/oracle.oamprovider_11.1.1 -Djava.protocol.handler.pkgs=oracle.mds.net.protocol -Dweblogic.jdbc.remoteEnabled=false -Dportlet.oracle.home={{ app_run_dir }}/FMW_Home/oracle_common -Dem.oracle.home={{ app_run_dir }}/FMW_Home/oracle_common -Dweblogic.management.discover=true -Dwlw.iterativeDev=false -Dwlw.testConsole=false -Dwlw.logErrorsToConsole=false -Dweblogic.ext.dirs={{ app_run_dir }}/FMW_Home/patch_wls1036/profiles/default/sysext_manifest_classpath</oafm_jvm_start_options>
+		</oafm_server>
+<!-- FORMS-C4WS OC4J Instance -->
+		<forms-c4ws_server> 
+			<forms-c4ws_jvm_start_options oa_var="s_forms-c4ws_jvm_start_options">-XX:PermSize=128m -XX:MaxPermSize=384m -Xms1024m -Xmx1024m -Djava.security.policy={{ app_run_dir }}/FMW_Home/wlserver_10.3/server/lib/weblogic.policy -Djava.security.egd=file:/dev/./urandom -Dweblogic.ProductionModeEnabled=true -da -Dplatform.home={{ app_run_dir }}/FMW_Home/wlserver_10.3 -Dwls.home={{ app_run_dir }}/FMW_Home/wlserver_10.3/server -Dweblogic.home={{ app_run_dir }}/FMW_Home/wlserver_10.3/server -Dcommon.components.home={{ app_run_dir }}/FMW_Home/oracle_common -Djrf.version=11.1.1 -Dorg.apache.commons.logging.Log=org.apache.commons.logging.impl.Jdk14Logger -Ddomain.home={{ app_run_dir }}/FMW_Home/user_projects/domains/EBS_domain_{{ db_name }} -Djrockit.optfile={{ app_run_dir }}/FMW_Home/oracle_common/modules/oracle.jrf_11.1.1/jrocket_optfile.txt -Doracle.server.config.dir={{ app_run_dir }}/FMW_Home/user_projects/domains/EBS_domain_{{ db_name }}/config/fmwconfig/servers/AdminServer -Doracle.domain.config.dir={{ app_run_dir }}/FMW_Home/user_projects/domains/EBS_domain_{{ db_name }}/config/fmwconfig -Digf.arisidbeans.carmlloc={{ app_run_dir }}/FMW_Home/user_projects/domains/EBS_domain_{{ db_name }}/config/fmwconfig/carml -Digf.arisidstack.home={{ app_run_dir }}/FMW_Home/user_projects/domains/EBS_domain_{{ db_name }}/config/fmwconfig/arisidprovider -Doracle.security.jps.config={{ app_run_dir }}/FMW_Home/user_projects/domains/EBS_domain_{{ db_name }}/config/fmwconfig/jps-config.xml -Doracle.deployed.app.dir={{ app_run_dir }}/FMW_Home/user_projects/domains/EBS_domain_{{ db_name }}/servers/AdminServer/tmp/_WL_user -Doracle.deployed.app.ext=/- -Dweblogic.alternateTypesDirectory={{ app_run_dir }}/FMW_Home/oracle_common/modules/oracle.ossoiap_11.1.1,{{ app_run_dir }}/FMW_Home/oracle_common/modules/oracle.oamprovider_11.1.1 -Djava.protocol.handler.pkgs=oracle.mds.net.protocol -Dweblogic.jdbc.remoteEnabled=false -Dportlet.oracle.home={{ app_run_dir }}/FMW_Home/oracle_common -Dem.oracle.home={{ app_run_dir }}/FMW_Home/oracle_common -Dweblogic.management.discover=true -Dwlw.iterativeDev=false -Dwlw.testConsole=false -Dwlw.logErrorsToConsole=false -Dweblogic.ext.dirs={{ app_run_dir }}/FMW_Home/patch_wls1036/profiles/default/sysext_manifest_classpath</forms-c4ws_jvm_start_options>
+			<forms-c4ws_display oa_var="s_forms-c4ws_display" osd="unix">{{ db_host }}:0.0</forms-c4ws_display>
+			<enable_forms-c4ws_display oa_var="s_enable_forms-c4ws_display" osd="unix">#</enable_forms-c4ws_display>
+			<forms-c4ws_java_awt_headless oa_var="s_forms-c4ws_java_awt_headless">false</forms-c4ws_java_awt_headless>
+			<forms-c4ws_enable_fsg_logging oa_var="s_forms-c4ws_enable_fsglogging">FALSE</forms-c4ws_enable_fsg_logging>
+			<forms-c4ws_enable_bulk_messaging oa_var="s_forms-c4ws_enable_bulkmessaging">TRUE</forms-c4ws_enable_bulk_messaging>
+		</forms-c4ws_server>
+		<jtff_server> 
+			<server_instance_id oa_var="s_ServerInstanceID">5000</server_instance_id>
+			<max_batch_threads oa_var="s_MaxBatchThreads">12</max_batch_threads>
+			<low_priority_monitor oa_var="s_TurnOffLowPriorityMonitor">no</low_priority_monitor>
+			<debug_string oa_var="s_jto_debug_string">off</debug_string>
+			<log_level oa_var="s_jto_log_level">1</log_level>
+			<fax_enabler oa_var="s_jto_fax_enabler">oracle.apps.jtf.fm.engine.rightfax.RfFaxEnablerImpl</fax_enabler>
+			<print_enabler oa_var="s_jto_print_enabler">oracle.apps.jtf.fm.engine.rightfax.RfPrintEnablerImpl</print_enabler>
+			<rfjava_loc oa_var="s_jto_rfjava_loc">{{ app_run_dir }}/EBSapps/comn/java/classes/3rdparty/RFJavaInt.zip</rfjava_loc>
+			<jsp_cache_dir oa_var="s_jsp_cache_dir">{{ app_run_dir }}/FMW_Home/Oracle_EBS-app1/applications/oacore/html/WEB-INF/classes</jsp_cache_dir>
+			<jsp_debug_parameters oa_var="s_jsp_jsr45_dbg">none</jsp_debug_parameters>
+			<jsp_debug_parameters oa_var="s_jsp_dbg_mode">false</jsp_debug_parameters>
+			<jsp_debug_parameters oa_var="s_jsp_main_mode">justrun</jsp_debug_parameters>
+			<enabler_classpath oa_var="s_jto_enabler_classpath"> </enabler_classpath>
+			<show_warning oa_var="s_jto_show_warnings">false</show_warning>
+			<fullfillment_serverid oa_var="s_jto_server_id">5000</fullfillment_serverid>
+			<jto_classpath oa_var="s_jto_classpath" osd="unix">.:{{ app_run_dir }}/EBSapps/comn/shared-libs/ebs-3rdparty/WEB-INF/lib/ebs3rdpartyManifest.jar:{{ app_run_dir }}/FMW_Home/Oracle_EBS-app1/shared-libs/ebs-fmw/WEB-INF/lib/ebsFMWManifest.jar:{{ app_run_dir }}/FMW_Home/Oracle_EBS-app1/shared-libs/ebs-appsborg/WEB-INF/lib/ebsAppsborgManifest.jar:{{ app_run_dir }}/FMW_Home/oracle_common/modules/oracle.uix_11.1.1/uix2.jar:{{ app_run_dir }}/EBSapps/comn/java/classes:{{ app_run_dir }}/EBSapps/comn/java/classes/3rdparty/RFJavaInt.zip</jto_classpath>
+		</jtff_server>
+		<oa_cman_server> 
+			<cmanhost oa_var="s_cmanhost">{{ db_host }}</cmanhost>
+			<domain oa_var="s_cmandomain">{{ domain }}</domain>
+		</oa_cman_server>
+<!-- OAEA Weblogic Server Instance -->
+		<oaea_server> 
+			<oaea_jvm_start_options oa_var="s_oaea_jvm_start_options" osd="unix">-XX:PermSize=128m -XX:MaxPermSize=384m -Xms1024m -Xmx1024m -Djava.security.policy={{ app_run_dir }}/FMW_Home/wlserver_10.3/server/lib/weblogic.policy -Djava.security.egd=file:/dev/./urandom -Dweblogic.ProductionModeEnabled=true -da -Dplatform.home={{ app_run_dir }}/FMW_Home/wlserver_10.3 -Dwls.home={{ app_run_dir }}/FMW_Home/wlserver_10.3/server -Dweblogic.home={{ app_run_dir }}/FMW_Home/wlserver_10.3/server -Dcommon.components.home={{ app_run_dir }}/FMW_Home/oracle_common -Djrf.version=11.1.1 -Dorg.apache.commons.logging.Log=org.apache.commons.logging.impl.Jdk14Logger -Ddomain.home={{ app_run_dir }}/FMW_Home/user_projects/domains/EBS_domain_{{ db_name }} -Djrockit.optfile={{ app_run_dir }}/FMW_Home/oracle_common/modules/oracle.jrf_11.1.1/jrocket_optfile.txt -Doracle.server.config.dir={{ app_run_dir }}/FMW_Home/user_projects/domains/EBS_domain_{{ db_name }}/config/fmwconfig/servers/AdminServer -Doracle.domain.config.dir={{ app_run_dir }}/FMW_Home/user_projects/domains/EBS_domain_{{ db_name }}/config/fmwconfig -Digf.arisidbeans.carmlloc={{ app_run_dir }}/FMW_Home/user_projects/domains/EBS_domain_{{ db_name }}/config/fmwconfig/carml -Digf.arisidstack.home={{ app_run_dir }}/FMW_Home/user_projects/domains/EBS_domain_{{ db_name }}/config/fmwconfig/arisidprovider -Doracle.security.jps.config={{ app_run_dir }}/FMW_Home/user_projects/domains/EBS_domain_{{ db_name }}/config/fmwconfig/jps-config.xml -Doracle.deployed.app.dir={{ app_run_dir }}/FMW_Home/user_projects/domains/EBS_domain_{{ db_name }}/servers/AdminServer/tmp/_WL_user -Doracle.deployed.app.ext=/- -Dweblogic.alternateTypesDirectory={{ app_run_dir }}/FMW_Home/oracle_common/modules/oracle.ossoiap_11.1.1,{{ app_run_dir }}/FMW_Home/oracle_common/modules/oracle.oamprovider_11.1.1 -Djava.protocol.handler.pkgs=oracle.mds.net.protocol -Dweblogic.jdbc.remoteEnabled=false -Dportlet.oracle.home={{ app_run_dir }}/FMW_Home/oracle_common -Dem.oracle.home={{ app_run_dir }}/FMW_Home/oracle_common -Dweblogic.management.discover=true -Dwlw.iterativeDev=false -Dwlw.testConsole=false -Dwlw.logErrorsToConsole=false -Dweblogic.ext.dirs={{ app_run_dir }}/FMW_Home/patch_wls1036/profiles/default/sysext_manifest_classpath -DOAEA_PROP={{ app_run_dir }}/inst/apps/{{ db_name }}_{{ db_host }}/appl/admin/oaea_wls.properties</oaea_jvm_start_options>
+		</oaea_server>
+	</oa_system>
+<!-- Host Information -->
+	<oa_host> 
+		<host oa_var="s_hostname">{{ db_host }}</host>
+		<domain oa_var="s_domainname">{{ domain }}</domain>
+		<physical_hostname oa_var="s_physical_hostname">{{ db_host }}</physical_hostname>
+		<platform oa_var="s_platform" osd="LINUX_X86-64">LINUX_X86-64</platform>
+		<pathsep oa_var="/" osd="unix">/</pathsep>
+		<dbuser oa_var="s_dbuser" osd="unix">porting</dbuser>
+		<dbgroup oa_var="s_dbgroup" osd="unix">dba</dbgroup>
+		<appsuser oa_var="s_appsuser" osd="unix">oracle</appsuser>
+		<appsgroup oa_var="s_appsgroup" osd="unix">oinstall</appsgroup>
+		<lib_ext oa_var="s_lib_ext" osd="LINUX_X86-64">so</lib_ext>
+	</oa_host>
+<!-- Environment on this Node -->
+	<oa_environments> 
+		<adconfig> 
+			<adconfig_file oa_var="s_adconfig_file">{{ app_run_dir }}/EBSapps/appl/admin/adconfig.txt</adconfig_file>
+			<APPL_TOP oa_var="s_at_adconfig">{{ app_run_dir }}/EBSapps/appl</APPL_TOP>
+			<APPL_TOP_CSET oa_var="s_at_cset">AL32UTF8</APPL_TOP_CSET>
+			<APPS_ENV_NAME oa_var="s_appsEnvName">{{ db_name }}</APPS_ENV_NAME>
+			<TIER_ADADMIN oa_var="s_isAdAdmin">YES</TIER_ADADMIN>
+			<TIER_ADWEB oa_var="s_isAdWeb">YES</TIER_ADWEB>
+			<TIER_ADFORMS oa_var="s_isAdForms">YES</TIER_ADFORMS>
+			<TIER_ADNODE oa_var="s_isAdConc">YES</TIER_ADNODE>
+			<APPL_TOP_NAME oa_var="s_atName">AT_gftebs1226</APPL_TOP_NAME>
+			<TIER_ADFORMSDEV oa_var="s_isAdFormsDev">YES</TIER_ADFORMSDEV>
+			<TIER_ADNODEDEV oa_var="s_isAdConcDev">YES</TIER_ADNODEDEV>
+			<TIER_ADWEBDEV oa_var="s_isAdWebDev">YES</TIER_ADWEBDEV>
+			<STAGING_DIRECTORY oa_var="s_staging_directory">{{ app_run_dir }}/inst/apps/{{ db_name }}_{{ db_host }}/appltmp/updates</STAGING_DIRECTORY>
+		</adconfig>
+		<oa_environment type="generic_service"> 
+			<DISPLAY oa_var="s_display" osd="unix">{{ db_host }}:0.0</DISPLAY>
+			<java_awt_headless oa_var="s_java_awt_headless">true</java_awt_headless>
+		</oa_environment>
+		<oa_environment type="rapid_install"> 
+			<APPS_BASE oa_var="s_base">/u01/install/APPS</APPS_BASE>
+			<CURRENT_BASE oa_var="s_current_base">{{ app_run_dir }}</CURRENT_BASE>
+			<OTHER_BASE oa_var="s_other_base">{{ app_patch_dir }}</OTHER_BASE>
+			<NE_BASE oa_var="s_ne_base">/u01/install/APPS/fs_ne</NE_BASE>
+			<INST_BASE oa_var="s_inst_base">/u01/install/APPS</INST_BASE>
+			<HTML_TOP oa_var="s_html">{{ app_run_dir }}/FMW_Home/Oracle_EBS-app1/applications/oacore/html</HTML_TOP>
+			<JDK_TOP oa_var="s_jdktop" osd="LINUX_X86-64">{{ app_run_dir }}/EBSapps/comn/util/jdk32</JDK_TOP>
+			<JRE_TOP oa_var="s_jretop">{{ app_run_dir }}/EBSapps/comn/util/jdk32/jre</JRE_TOP>
+			<PORTAL_TOP oa_var="s_pt">{{ app_run_dir }}/inst/apps/{{ db_name }}_{{ db_host }}/portal</PORTAL_TOP>
+			<temp_dir oa_var="s_temp">{{ app_run_dir }}/inst/apps/{{ db_name }}_{{ db_host }}/temp</temp_dir>
+			<rapidwizloc oa_var="s_rapidwizloc">/scratch/porting/shiphome/R1220_XB47_4_ship/startCD/Disk1/rapidwiz</rapidwizloc>
+			<installloc oa_var="s_installloc">/scratch/porting/shiphome/R1220_XB47_4_ship/EBSInstallMedia/Apps/Disk1</installloc>
+			<txkstage oa_var="s_txkstage">/scratch/porting/shiphome/R1220_XB47_4_ship/TechInstallMedia</txkstage>
+			<clonestage oa_var="s_clonestage">{{ app_run_dir }}/EBSapps/comn/clone</clonestage>
+			<media oa_var="s_installedFrom">FS</media>
+			<installthreads oa_var="s_nthreads">5</installthreads>
+		</oa_environment>
+		<oa_environment type="tools_home"> 
+			<oa_env_file type="tools_home" oa_var="s_tools_home_file" osd="unix">{{ app_run_dir }}/inst/apps/{{ db_name }}_{{ db_host }}/ora/10.1.2/{{ db_name }}_{{ db_host }}.env</oa_env_file>
+			<ORACLE_HOME oa_var="s_tools_oh">{{ app_run_dir }}/EBSapps/10.1.2</ORACLE_HOME>
+			<PATH oa_var="s_tools_path" osd="LINUX_X86-64">{{ app_run_dir }}/EBSapps/10.1.2/bin:/usr/bin:/usr/sbin:{{ app_run_dir }}/EBSapps/comn/util/jdk32/jre/bin:$PATH</PATH>
+			<JAVA_HOME oa_var="s_tools_java">{{ app_run_dir }}/EBSapps/comn/util/jdk32/jre</JAVA_HOME>
+			<LD_LIBRARY_PATH oa_var="s_tools_ldlib" osd=" LINUX_X86-64">{{ app_run_dir }}/EBSapps/10.1.2/lib32:{{ app_run_dir }}/EBSapps/10.1.2/lib:/usr/X11R6/lib:/usr/openwin/lib:{{ app_run_dir }}/EBSapps/10.1.2/jdk/jre/lib/i386:{{ app_run_dir }}/EBSapps/10.1.2/jdk/jre/lib/i386/server:{{ app_run_dir }}/EBSapps/10.1.2/jdk/jre/lib/i386/native_threads:{{ app_run_dir }}/EBSapps/appl/sht/12.0.0/lib</LD_LIBRARY_PATH>
+			<LD_LIBRARY_PATH64 oa_var="s_tools_ldlib64" osd="LINUX_X86-64">{{ app_run_dir }}/EBSapps/10.1.2/lib:/usr/X11R6/lib:/usr/openwin/lib:{{ app_run_dir }}/FMW_Home/webtier/jdk/jre/lib/amd64:{{ app_run_dir }}/FMW_Home/webtier/jdk/jre/lib/amd64/server:{{ app_run_dir }}/FMW_Home/webtier/jdk/jre/lib/amd64/native_threads:{{ app_run_dir }}/EBSapps/appl/sht/12.0.0/lib64:{{ app_run_dir }}/EBSapps/appl/sht/12.0.0/lib</LD_LIBRARY_PATH64>
+			<ORA_NLS oa_var="s_tools_oranls" osd="unix">{{ app_run_dir }}/EBSapps/10.1.2/nls/data/9idata</ORA_NLS>
+			<TNS_ADMIN oa_var="s_tools_tnsadmin" osd="unix">{{ app_run_dir }}/inst/apps/{{ db_name }}_{{ db_host }}/ora/10.1.2/network/admin</TNS_ADMIN>
+			<TWO_TASK oa_var="s_tools_twotask" osd="unix">{{ db_name }}</TWO_TASK>
+			<CP_TWOTASK oa_var="s_cp_twotask">{{ db_name }}</CP_TWOTASK>
+			<IFILE oa_var="s_ifile">{{ app_run_dir }}/inst/apps/{{ db_name }}_{{ db_host }}/ora/10.1.2/network/admin/{{ db_name }}_{{ db_host }}_ifile.ora</IFILE>
+			<LISTENER_IFILE oa_var="s_listener_ifile">{{ app_run_dir }}/inst/apps/{{ db_name }}_{{ db_host }}/ora/10.1.2/network/admin/{{ db_name }}_{{ db_host }}_listener_ifile.ora</LISTENER_IFILE>
+			<ORACLE_LOCALPREFERENCE oa_var="s_tools_locpref">{{ app_run_dir }}/EBSapps/10.1.2/tools/admin</ORACLE_LOCALPREFERENCE>
+			<NLS_LANG oa_var="s_tools_nlslang">American_America.AL32UTF8</NLS_LANG>
+			<SQLNET_EXPIRE_TIME oa_var="s_sqlnet_expire_time" osd="UNIX">0</SQLNET_EXPIRE_TIME>
+			<ADMIN_RESTRICTIONS oa_var="s_admin_restrictions">ON</ADMIN_RESTRICTIONS>
+			<LISTENER_PASSWORD oa_var="s_enable_listener_password">OFF</LISTENER_PASSWORD>
+		</oa_environment>
+		<oa_environment type="web_home"> 
+			<ORACLE_HOME oa_var="s_weboh_oh">{{ app_run_dir }}/FMW_Home/webtier</ORACLE_HOME>
+			<PATH oa_var="s_weboh_path" osd="LINUX_X86-64">{{ app_run_dir }}/FMW_Home/webtier/bin:/usr/bin:/usr/sbin:{{ app_run_dir }}/FMW_Home/webtier/jdk/bin:$PATH</PATH>
+			<JAVA_HOME oa_var="s_weboh_java">{{ app_run_dir }}/FMW_Home/webtier/jdk</JAVA_HOME>
+			<LD_LIBRARY_PATH oa_var="s_weboh_ldlib" osd=" LINUX_X86-64">{{ app_run_dir }}/FMW_Home/webtier/lib32:{{ app_run_dir }}/FMW_Home/webtier/lib:/usr/X11R6/lib</LD_LIBRARY_PATH>
+			<TWO_TASK oa_var="s_weboh_twotask" osd="unix">{{ db_name }}</TWO_TASK>
+			<ORACLE_LOCALPREFERENCE oa_var="s_weboh_locpref">{{ app_run_dir }}/FMW_Home/webtier/tools/admin</ORACLE_LOCALPREFERENCE>
+			<NLS_LANG oa_var="s_weboh_nlslang">American_America.AL32UTF8</NLS_LANG>
+			<FNDFS_PARAMS oa_var="s_fndfs_params"> </FNDFS_PARAMS>
+			<enable_webgate oa_var="s_enable_webgate">#</enable_webgate>
+			<endeca_conf_comment oa_var="s_endeca_conf_comment">#</endeca_conf_comment>
+		</oa_environment>
+		<oa_environment type="fmw_home"> 
+			<FMW_HOME oa_var="s_fmw_home">{{ app_run_dir }}/FMW_Home</FMW_HOME>
+			<wls_version oa_var="s_wls_version">10.3.6.0</wls_version>
+			<APPS_DEPLOYMENT_DIR oa_var="s_apps_deployment_dir">{{ app_run_dir }}/FMW_Home/Oracle_EBS-app1/applications</APPS_DEPLOYMENT_DIR>
+			<WLS_HOME oa_var="s_wls_home">{{ app_run_dir }}/FMW_Home/wlserver_10.3</WLS_HOME>
+			<NM_HOME oa_var="s_nm_home">{{ app_run_dir }}/FMW_Home/wlserver_10.3/common/nodemanager/nmHome1</NM_HOME>
+			<nm_port oa_var="s_nmport" oa_type="PORT" base="5556" step="1" range="-1" label="Node Manager Port">5556</nm_port>
+			<nm_type oa_var="s_nmtype">plain</nm_type>
+			<append_nm_jvmargs oa_var="s_append_nm_jvmargs"> </append_nm_jvmargs>
+			<wls_admin_host oa_var="s_wls_admin_host">{{ db_host }}</wls_admin_host>
+			<enable_jsse oa_var="s_enable_jsse">true</enable_jsse>
+			<wls_admin_domain oa_var="s_wls_admin_domain">{{ domain }}</wls_admin_domain>
+			<wls_admin_user oa_var="s_wls_admin_user">weblogic</wls_admin_user>
+			<wls_adminport oa_var="s_wls_adminport" oa_type="PORT" base="7001" step="1" range="-1" label="WLS Admin Server Port">7001</wls_adminport>
+			<wls_oacoreport oa_var="s_wls_oacoreport" oa_type="PORT" base="7201" step="1" range="-1" label="WLS OACORE Application Port">7201</wls_oacoreport>
+			<wls_formsport oa_var="s_wls_formsport" oa_type="PORT" base="7401" step="1" range="-1" label="WLS FORMS Application Port">7401</wls_formsport>
+			<wls_oafmport oa_var="s_wls_oafmport" oa_type="PORT" base="7601" step="1" range="-1" label="WLS OAFM Application Port">7601</wls_oafmport>
+			<wls_forms-c4wsport oa_var="s_wls_forms-c4wsport" oa_type="PORT" base="7801" step="1" range="-1" label="WLS FORMS-C4WS Application Port">7801</wls_forms-c4wsport>
+			<wls_oaeaport oa_var="s_wls_oaeaport" oa_type="PORT" base="6801" step="1" range="-1" label="WLS OAEA Application Port">6801</wls_oaeaport>
+			<oacore_server_ports oa_var="s_oacore_server_ports">oacore_server1:7201</oacore_server_ports>
+			<oafm_server_ports oa_var="s_oafm_server_ports">oafm_server1:7601</oafm_server_ports>
+			<forms_server_ports oa_var="s_forms_server_ports">forms_server1:7401</forms_server_ports>
+			<forms-c4ws_server_ports oa_var="s_forms-c4ws_server_ports">forms-c4ws_server1:7801</forms-c4ws_server_ports>
+			<oaea_server_ports oa_var="s_oaea_server_ports"> </oaea_server_ports>
+			<oacore_nodes oa_var="s_oacore_nodes">{{ db_host }}.{{ domain }}:7201</oacore_nodes>
+			<forms_nodes oa_var="s_forms_nodes">{{ db_host }}.{{ domain }}:7401</forms_nodes>
+			<oafm_nodes oa_var="s_oafm_nodes">{{ db_host }}.{{ domain }}:7601</oafm_nodes>
+			<oacore_cluster oa_var="s_oacore_clustername">oacore_cluster1</oacore_cluster>
+			<oafm_cluster oa_var="s_oafm_clustername">oafm_cluster1</oafm_cluster>
+			<forms_cluster oa_var="s_forms_clustername">forms_cluster1</forms_cluster>
+			<forms-c4ws_cluster oa_var="s_forms-c4ws_clustername">forms-c4ws_cluster1</forms-c4ws_cluster>
+			<oaea_cluster oa_var="s_oaea_clustername">oaea_cluster1</oaea_cluster>
+			<forms-c4ws_nodes oa_var="s_forms-c4ws_nodes">{{ db_host }}.{{ domain }}:7801</forms-c4ws_nodes>
+			<oaea_nodes oa_var="s_oaea_nodes">{{ db_host }}.{{ domain }}:6801</oaea_nodes>
+			<ohs_instance_loc oa_var="s_ohs_instance_loc">{{ app_run_dir }}/FMW_Home/webtier/instances/EBS_web_{{ db_name }}_OHS1</ohs_instance_loc>
+			<ohs_instance oa_var="s_ohs_instance">EBS_web_{{ db_name }}_OHS1</ohs_instance>
+			<ohs_component oa_var="s_ohs_component">EBS_web_{{ db_name }}</ohs_component>
+			<nm_jvm_startup_properties oa_var="s_nm_jvm_startup_properties" osd="LINUX_X86-64">-XX:PermSize=128m -XX:MaxPermSize=384m -Xms1024m -Xmx1024m -Djava.security.policy={{ app_run_dir }}/FMW_Home/wlserver_10.3/server/lib/weblogic.policy -Djava.security.egd=file:/dev/./urandom -Dweblogic.ProductionModeEnabled=true -da -Dplatform.home={{ app_run_dir }}/FMW_Home/wlserver_10.3 -Dwls.home={{ app_run_dir }}/FMW_Home/wlserver_10.3/server -Dweblogic.home={{ app_run_dir }}/FMW_Home/wlserver_10.3/server -Dcommon.components.home={{ app_run_dir }}/FMW_Home/oracle_common -Djrf.version=11.1.1 -Dorg.apache.commons.logging.Log=org.apache.commons.logging.impl.Jdk14Logger -Ddomain.home={{ app_run_dir }}/FMW_Home/user_projects/domains/EBS_domain_{{ db_name }} -Djrockit.optfile={{ app_run_dir }}/FMW_Home/oracle_common/modules/oracle.jrf_11.1.1/jrocket_optfile.txt -Doracle.server.config.dir={{ app_run_dir }}/FMW_Home/user_projects/domains/EBS_domain_{{ db_name }}/config/fmwconfig/servers/AdminServer -Doracle.domain.config.dir={{ app_run_dir }}/FMW_Home/user_projects/domains/EBS_domain_{{ db_name }}/config/fmwconfig -Digf.arisidbeans.carmlloc={{ app_run_dir }}/FMW_Home/user_projects/domains/EBS_domain_{{ db_name }}/config/fmwconfig/carml -Digf.arisidstack.home={{ app_run_dir }}/FMW_Home/user_projects/domains/EBS_domain_{{ db_name }}/config/fmwconfig/arisidprovider -Doracle.security.jps.config={{ app_run_dir }}/FMW_Home/user_projects/domains/EBS_domain_{{ db_name }}/config/fmwconfig/jps-config.xml -Doracle.deployed.app.dir={{ app_run_dir }}/FMW_Home/user_projects/domains/EBS_domain_{{ db_name }}/servers/AdminServer/tmp/_WL_user -Doracle.deployed.app.ext=/- -Dweblogic.alternateTypesDirectory={{ app_run_dir }}/FMW_Home/oracle_common/modules/oracle.ossoiap_11.1.1,{{ app_run_dir }}/FMW_Home/oracle_common/modules/oracle.oamprovider_11.1.1 -Djava.protocol.handler.pkgs=oracle.mds.net.protocol -Dweblogic.jdbc.remoteEnabled=false -Dportlet.oracle.home={{ app_run_dir }}/FMW_Home/oracle_common -Dem.oracle.home={{ app_run_dir }}/FMW_Home/oracle_common -Dweblogic.management.discover=true -Dwlw.iterativeDev=false -Dwlw.testConsole=false -Dwlw.logErrorsToConsole=false -Dweblogic.ext.dirs={{ app_run_dir }}/FMW_Home/patch_wls1036/profiles/default/sysext_manifest_classpath</nm_jvm_startup_properties>
+			<adminserver_classpath oa_var="s_adminserver_classpath" osd="UNIX">{{ app_run_dir }}/FMW_Home/patch_wls1036/profiles/default/sys_manifest_classpath/weblogic_patch.jar:{{ app_run_dir }}/FMW_Home/wlserver_10.3/server/lib/weblogic_sp.jar:{{ app_run_dir }}/FMW_Home/wlserver_10.3/server/lib/weblogic.jar:{{ app_run_dir }}/FMW_Home/modules/features/weblogic.server.modules_10.3.6.0.jar:{{ app_run_dir }}/FMW_Home/wlserver_10.3/server/lib/webservices.jar:{{ app_run_dir }}/FMW_Home/modules/org.apache.ant_1.7.1/lib/ant-all.jar:{{ app_run_dir }}/FMW_Home/modules/net.sf.antcontrib_1.1.0.0_1-0b2/lib/ant-contrib.jar:{{ app_run_dir }}/FMW_Home/oracle_common/modules/oracle.jdbc_11.1.1/ojdbc6dms.jar:{{ app_run_dir }}/FMW_Home/oracle_common/webcenter/modules/oracle.portlet.server_11.1.1/oracle-portlet-api.jar:{{ app_run_dir }}/FMW_Home/oracle_common/modules/oracle.jrf_11.1.1/jrf.jar:{{ app_run_dir }}/FMW_Home/wlserver_10.3/common/derby/lib/derbyclient.jar</adminserver_classpath>
+			<oacore_classpath oa_var="s_oacore_classpath" osd="UNIX">{{ app_run_dir }}/FMW_Home/oracle_common/modules/oracle.jdbc_11.1.1/ojdbc6dms.jar:{{ app_run_dir }}/FMW_Home/patch_wls1036/profiles/default/sys_manifest_classpath/weblogic_patch.jar:{{ app_run_dir }}/EBSapps/comn/util/jdk64/lib/tools.jar:{{ app_run_dir }}/FMW_Home/wlserver_10.3/server/lib/weblogic_sp.jar:{{ app_run_dir }}/FMW_Home/wlserver_10.3/server/lib/weblogic.jar:{{ app_run_dir }}/FMW_Home/modules/features/weblogic.server.modules_10.3.6.0.jar:{{ app_run_dir }}/FMW_Home/wlserver_10.3/server/lib/webservices.jar:{{ app_run_dir }}/FMW_Home/modules/org.apache.ant_1.7.1/lib/ant-all.jar:{{ app_run_dir }}/FMW_Home/modules/net.sf.antcontrib_1.1.0.0_1-0b2/lib/ant-contrib.jar:{{ app_run_dir }}/FMW_Home/oracle_common/soa/modules/commons-cli-1.1.jar:{{ app_run_dir }}/FMW_Home/oracle_common/soa/modules/oracle.soa.mgmt_11.1.1/soa-infra-mgmt.jar:{{ app_run_dir }}/FMW_Home/oracle_common/webcenter/modules/oracle.portlet.server_11.1.1/oracle-portlet-api.jar:{{ app_run_dir }}/FMW_Home/oracle_common/modules/oracle.jrf_11.1.1/jrf.jar:{{ app_run_dir }}/FMW_Home/wlserver_10.3/common/derby/lib/derbyclient.jar:{{ app_run_dir }}/FMW_Home/wlserver_10.3/server/lib/xqrl.jar:{{ app_run_dir }}/EBSapps/comn/java/classes/oracle/apps/fnd/jar/xdoprotocolwrapper.jar</oacore_classpath>
+			<forms_classpath oa_var="s_forms_classpath" osd="UNIX">{{ app_run_dir }}/FMW_Home/oracle_common/modules/oracle.jdbc_11.1.1/ojdbc6dms.jar:{{ app_run_dir }}/FMW_Home/patch_wls1036/profiles/default/sys_manifest_classpath/weblogic_patch.jar:{{ app_run_dir }}/EBSapps/comn/util/jdk32/lib/tools.jar:{{ app_run_dir }}/FMW_Home/wlserver_10.3/server/lib/weblogic_sp.jar:{{ app_run_dir }}/FMW_Home/wlserver_10.3/server/lib/weblogic.jar:{{ app_run_dir }}/FMW_Home/modules/features/weblogic.server.modules_10.3.6.0.jar:{{ app_run_dir }}/FMW_Home/wlserver_10.3/server/lib/webservices.jar:{{ app_run_dir }}/FMW_Home/modules/org.apache.ant_1.7.1/lib/ant-all.jar:{{ app_run_dir }}/FMW_Home/modules/net.sf.antcontrib_1.1.0.0_1-0b2/lib/ant-contrib.jar:{{ app_run_dir }}/FMW_Home/oracle_common/soa/modules/commons-cli-1.1.jar:{{ app_run_dir }}/FMW_Home/oracle_common/soa/modules/oracle.soa.mgmt_11.1.1/soa-infra-mgmt.jar:{{ app_run_dir }}/FMW_Home/oracle_common/webcenter/modules/oracle.portlet.server_11.1.1/oracle-portlet-api.jar:{{ app_run_dir }}/FMW_Home/oracle_common/modules/oracle.jrf_11.1.1/jrf.jar:{{ app_run_dir }}/FMW_Home/wlserver_10.3/common/derby/lib/derbyclient.jar:{{ app_run_dir }}/FMW_Home/wlserver_10.3/server/lib/xqrl.jar:{{ app_run_dir }}/EBSapps/comn/java/classes/oracle/apps/fnd/jar/xdoprotocolwrapper.jar</forms_classpath>
+			<forms-c4ws_classpath oa_var="s_forms-c4ws_classpath" osd="UNIX">{{ app_run_dir }}/FMW_Home/oracle_common/modules/oracle.jdbc_11.1.1/ojdbc6dms.jar:{{ app_run_dir }}/FMW_Home/patch_wls1036/profiles/default/sys_manifest_classpath/weblogic_patch.jar:{{ app_run_dir }}/EBSapps/comn/util/jdk64/lib/tools.jar:{{ app_run_dir }}/FMW_Home/wlserver_10.3/server/lib/weblogic_sp.jar:{{ app_run_dir }}/FMW_Home/wlserver_10.3/server/lib/weblogic.jar:{{ app_run_dir }}/FMW_Home/modules/features/weblogic.server.modules_10.3.6.0.jar:{{ app_run_dir }}/FMW_Home/wlserver_10.3/server/lib/webservices.jar:{{ app_run_dir }}/FMW_Home/modules/org.apache.ant_1.7.1/lib/ant-all.jar:{{ app_run_dir }}/FMW_Home/modules/net.sf.antcontrib_1.1.0.0_1-0b2/lib/ant-contrib.jar:{{ app_run_dir }}/FMW_Home/oracle_common/soa/modules/commons-cli-1.1.jar:{{ app_run_dir }}/FMW_Home/oracle_common/soa/modules/oracle.soa.mgmt_11.1.1/soa-infra-mgmt.jar:{{ app_run_dir }}/FMW_Home/oracle_common/webcenter/modules/oracle.portlet.server_11.1.1/oracle-portlet-api.jar:{{ app_run_dir }}/FMW_Home/oracle_common/modules/oracle.jrf_11.1.1/jrf.jar:{{ app_run_dir }}/FMW_Home/wlserver_10.3/common/derby/lib/derbyclient.jar:{{ app_run_dir }}/FMW_Home/wlserver_10.3/server/lib/xqrl.jar:{{ app_run_dir }}/EBSapps/comn/java/classes/oracle/apps/fnd/jar/xdoprotocolwrapper.jar</forms-c4ws_classpath>
+			<oafm_classpath oa_var="s_oafm_classpath" osd="UNIX">{{ app_run_dir }}/FMW_Home/oracle_common/modules/oracle.jdbc_11.1.1/ojdbc6dms.jar:{{ app_run_dir }}/FMW_Home/patch_wls1036/profiles/default/sys_manifest_classpath/weblogic_patch.jar:{{ app_run_dir }}/EBSapps/comn/util/jdk64/lib/tools.jar:{{ app_run_dir }}/FMW_Home/wlserver_10.3/server/lib/weblogic_sp.jar:{{ app_run_dir }}/FMW_Home/wlserver_10.3/server/lib/weblogic.jar:{{ app_run_dir }}/FMW_Home/modules/features/weblogic.server.modules_10.3.6.0.jar:{{ app_run_dir }}/FMW_Home/wlserver_10.3/server/lib/webservices.jar:{{ app_run_dir }}/FMW_Home/modules/org.apache.ant_1.7.1/lib/ant-all.jar:{{ app_run_dir }}/FMW_Home/modules/net.sf.antcontrib_1.1.0.0_1-0b2/lib/ant-contrib.jar:{{ app_run_dir }}/FMW_Home/oracle_common/soa/modules/commons-cli-1.1.jar:{{ app_run_dir }}/FMW_Home/oracle_common/soa/modules/oracle.soa.mgmt_11.1.1/soa-infra-mgmt.jar:{{ app_run_dir }}/FMW_Home/oracle_common/webcenter/modules/oracle.portlet.server_11.1.1/oracle-portlet-api.jar:{{ app_run_dir }}/FMW_Home/oracle_common/modules/oracle.jrf_11.1.1/jrf.jar:{{ app_run_dir }}/FMW_Home/wlserver_10.3/common/derby/lib/derbyclient.jar:{{ app_run_dir }}/FMW_Home/wlserver_10.3/server/lib/xqrl.jar:{{ app_run_dir }}/EBSapps/comn/java/classes/oracle/apps/fnd/jar/xdoprotocolwrapper.jar</oafm_classpath>
+			<oaea_classpath oa_var="s_oaea_classpath" osd="UNIX">{{ app_run_dir }}/FMW_Home/oracle_common/modules/oracle.jdbc_11.1.1/ojdbc6dms.jar:{{ app_run_dir }}/FMW_Home/patch_wls1036/profiles/default/sys_manifest_classpath/weblogic_patch.jar:{{ app_run_dir }}/EBSapps/comn/util/jdk64/lib/tools.jar:{{ app_run_dir }}/FMW_Home/wlserver_10.3/server/lib/weblogic_sp.jar:{{ app_run_dir }}/FMW_Home/wlserver_10.3/server/lib/weblogic.jar:{{ app_run_dir }}/FMW_Home/modules/features/weblogic.server.modules_10.3.6.0.jar:{{ app_run_dir }}/FMW_Home/wlserver_10.3/server/lib/webservices.jar:{{ app_run_dir }}/FMW_Home/modules/org.apache.ant_1.7.1/lib/ant-all.jar:{{ app_run_dir }}/FMW_Home/modules/net.sf.antcontrib_1.1.0.0_1-0b2/lib/ant-contrib.jar:{{ app_run_dir }}/FMW_Home/oracle_common/soa/modules/commons-cli-1.1.jar:{{ app_run_dir }}/FMW_Home/oracle_common/soa/modules/oracle.soa.mgmt_11.1.1/soa-infra-mgmt.jar:{{ app_run_dir }}/FMW_Home/oracle_common/webcenter/modules/oracle.portlet.server_11.1.1/oracle-portlet-api.jar:{{ app_run_dir }}/FMW_Home/oracle_common/modules/oracle.jrf_11.1.1/jrf.jar:{{ app_run_dir }}/FMW_Home/wlserver_10.3/common/derby/lib/derbyclient.jar:{{ app_run_dir }}/FMW_Home/wlserver_10.3/server/lib/xqrl.jar</oaea_classpath>
+			<ohs_adminport oa_var="s_ohs_adminport" oa_type="PORT" base="9999" step="1" range="-1" label="OHS Administration Proxy Port">9999</ohs_adminport>
+			<fmw_jdktop oa_var="s_fmw_jdktop" osd="LINUX_X86-64">{{ app_run_dir }}/EBSapps/comn/util/jdk64</fmw_jdktop>
+			<FMW_JAVA_USE_64BIT oa_var="s_fmw_java_use_64bit" osd="LINUX_X86-64">true</FMW_JAVA_USE_64BIT>
+			<txk_socket_sleep oa_var="s_txk_socket_sleep">5</txk_socket_sleep>
+			<wls_max_message_size oa_var="s_wls_max_message_size">10000000</wls_max_message_size>
+			<t2p_config_jvm_args oa_var="s_t2p_config_jvm_args">-Xms512m -Xmx1024m</t2p_config_jvm_args>
+			<oui_config_jvm_args oa_var="s_oui_config_jvm_args">-J-ms128m -J-mx512m</oui_config_jvm_args>
+			<enable_t2p_config_jvm_args oa_var="s_enable_t2p_config_jvm_args" osd="UNIX">#</enable_t2p_config_jvm_args>
+		</oa_environment>
+		<oa_environment type="adovars"> 
+			<oa_env_file type="adovars" oa_var="s_adovars_file" osd="unix">{{ app_run_dir }}/inst/apps/{{ db_name }}_{{ db_host }}/appl/admin/adovars_{{ db_name }}_{{ db_host }}.env</oa_env_file>
+			<JAVA_TOP oa_var="s_javatop">{{ app_run_dir }}/EBSapps/comn/java/classes</JAVA_TOP>
+			<JAVA_BASE oa_var="s_javabase">{{ app_run_dir }}/EBSapps/comn/java</JAVA_BASE>
+			<AF_JLIB oa_var="s_af_jlib">{{ app_run_dir }}/EBSapps/comn/java/lib</AF_JLIB>
+			<OA_JDK_TOP oa_var="s_oajdktop">{{ app_run_dir }}/EBSapps/comn/util/jdk32</OA_JDK_TOP>
+			<OA_JRE_TOP oa_var="s_oajretop">{{ app_run_dir }}/EBSapps/comn/util/jdk32/jre</OA_JRE_TOP>
+			<AF_JRE_TOP oa_var="s_afjretop">{{ app_run_dir }}/EBSapps/comn/util/jdk64/jre</AF_JRE_TOP>
+			<CLASSPATH oa_var="s_adovar_classpath" osd="unix">{{ app_run_dir }}/EBSapps/comn/util/jdk32/lib/dt.jar:{{ app_run_dir }}/EBSapps/comn/util/jdk32/lib/tools.jar:{{ app_run_dir }}/EBSapps/comn/util/jdk32/jre/lib/rt.jar:{{ app_run_dir }}/EBSapps/comn/shared-libs/ebs-3rdparty/WEB-INF/lib/ebs3rdpartyManifest.jar:{{ app_run_dir }}/FMW_Home/Oracle_EBS-app1/shared-libs/ebs-fmw/WEB-INF/lib/ebsFMWManifest.jar:{{ app_run_dir }}/FMW_Home/Oracle_EBS-app1/shared-libs/ebs-appsborg/WEB-INF/lib/ebsAppsborgManifest.jar:{{ app_run_dir }}/FMW_Home/oracle_common/modules/oracle.uix_11.1.1/uix2.jar:{{ app_run_dir }}/EBSapps/comn/java/classes:{{ app_run_dir }}/EBSapps/10.1.2/forms/java:{{ app_run_dir }}/EBSapps/10.1.2/forms/java/frmall.jar:{{ app_run_dir }}/EBSapps/10.1.2/jlib/ewt3.jar:{{ app_run_dir }}/EBSapps/10.1.2/j2ee/OC4J_BI_Forms/applications/formsapp/formsweb/WEB-INF/lib/frmsrv.jar</CLASSPATH>
+			<AF_CLASSPATH oa_var="s_adovar_afclasspath" osd="unix">{{ app_run_dir }}/EBSapps/comn/util/jdk64/lib/dt.jar:{{ app_run_dir }}/EBSapps/comn/util/jdk64/lib/tools.jar:{{ app_run_dir }}/EBSapps/comn/util/jdk64/jre/lib/rt.jar:{{ app_run_dir }}/EBSapps/comn/shared-libs/ebs-3rdparty/WEB-INF/lib/ebs3rdpartyManifest.jar:{{ app_run_dir }}/FMW_Home/Oracle_EBS-app1/shared-libs/ebs-fmw/WEB-INF/lib/ebsFMWManifest.jar:{{ app_run_dir }}/FMW_Home/Oracle_EBS-app1/shared-libs/ebs-appsborg/WEB-INF/lib/ebsAppsborgManifest.jar:{{ app_run_dir }}/FMW_Home/oracle_common/modules/oracle.uix_11.1.1/uix2.jar:{{ app_run_dir }}/FMW_Home/oracle_common/modules/oracle.jrf_11.1.1/jrf.jar:{{ app_run_dir }}/FMW_Home/oracle_common/modules/oracle.jrf_11.1.1/jrf-client.jar:{{ app_run_dir }}/EBSapps/comn/java/lib/cplex.jar:{{ app_run_dir }}/EBSapps/comn/java/classes</AF_CLASSPATH>
+			<LD_LIBRARY_PATH oa_var="s_adovar_ldlib" osd="LINUX_X86-64">{{ app_run_dir }}/EBSapps/10.1.2/jdk/jre/lib/i386:{{ app_run_dir }}/EBSapps/10.1.2/jdk/jre/lib/i386/server:{{ app_run_dir }}/EBSapps/10.1.2/jdk/jre/lib/i386/native_threads:{{ app_run_dir }}/EBSapps/appl/cz/12.0.0/bin:${LD_LIBRARY_PATH:=}</LD_LIBRARY_PATH>
+			<LD_LIBRARY_PATH64 oa_var="s_adovar_ldlib64" osd="LINUX_X86-64">{{ app_run_dir }}/FMW_Home/webtier/jdk/jre/lib/amd64:{{ app_run_dir }}/FMW_Home/webtier/jdk/jre/lib/amd64/server:{{ app_run_dir }}/FMW_Home/webtier/jdk/jre/lib/amd64/native_threads:{{ app_run_dir }}/EBSapps/appl/cz/12.0.0/bin64:{{ app_run_dir }}/EBSapps/appl/sht/12.0.0/lib64:${LD_LIBRARY_PATH:=}</LD_LIBRARY_PATH64>
+			<OAH_TOP oa_var="s_oahtop">{{ app_run_dir }}/FMW_Home/Oracle_EBS-app1/applications/oacore</OAH_TOP>
+			<OAD_TOP oa_var="s_oadtop">{{ app_run_dir }}/EBSapps/comn</OAD_TOP>
+			<OAM_TOP oa_var="s_oamtop">{{ app_run_dir }}/EBSapps/comn/java/classes/oracle/apps</OAM_TOP>
+			<ADJVAPRG oa_var="s_adjvaprg" osd="UNIX">{{ app_run_dir }}/EBSapps/comn/util/jdk32/jre/bin/java</ADJVAPRG>
+			<AFJVAPRG oa_var="s_afjvaprg" osd="UNIX">{{ app_run_dir }}/inst/apps/{{ db_name }}_{{ db_host }}/admin/scripts/java.sh</AFJVAPRG>
+			<ADJREOPTS oa_var="s_adjreopts">-ms128m -mx256m</ADJREOPTS>
+			<ADJRIOPTS oa_var="s_adjriopts" osd="LINUX_X86-64">-mx2048m</ADJRIOPTS>
+			<APPSJREOPTS oa_var="s_appsjreopts"> </APPSJREOPTS>
+			<OA_HTML oa_var="s_oahtml">{{ app_run_dir }}/FMW_Home/Oracle_EBS-app1/applications/oacore/html</OA_HTML>
+			<OA_SECURE oa_var="s_oasecure">{{ app_run_dir }}/EBSapps/comn/secure</OA_SECURE>
+			<OA_MEDIA oa_var="s_oamedia">{{ app_run_dir }}/EBSapps/comn/java/classes/oracle/apps/media</OA_MEDIA>
+			<OA_DOC oa_var="s_oadoc">{{ app_run_dir }}/EBSapps/comn/doc</OA_DOC>
+			<OA_JAVA oa_var="s_oajava">{{ app_run_dir }}/EBSapps/comn/java/classes</OA_JAVA>
+			<oa_htmlbin oa_var="s_oahtmlbin">{{ app_run_dir }}/FMW_Home/Oracle_EBS-app1/applications/oacore/html/bin</oa_htmlbin>
+			<AFJCPARG oa_var="s_afjcparg" osd="LINUX_X86-64">-client</AFJCPARG>
+			<AFJSMARG oa_var="s_afjsmarg" osd="LINUX_X86-64">-server -Xmx384m -Doracle.apps.fnd.common.Pool.leak.mode=stderr:off -verbose:gc</AFJSMARG>
+			<PY_LIB_PATH oa_var="s_py_lib_path" osd="LINUX_X86-64">{{ app_run_dir }}/EBSapps/comn/util/jdk64/jre/lib/amd64/server:{{ app_run_dir }}/EBSapps/comn/util/jdk64/jre/lib/amd64:{{ app_run_dir }}/EBSapps/appl/pay/12.0.0/vendor/quantum/lib:{{ app_run_dir }}/FMW_Home/webtier/jdk/jre/lib/amd64:{{ app_run_dir }}/FMW_Home/webtier/jdk/jre/lib/amd64/server:{{ app_run_dir }}/FMW_Home/webtier/jdk/jre/lib/amd64/native_threads:{{ app_run_dir }}/EBSapps/appl/cz/12.0.0/bin64:{{ app_run_dir }}/EBSapps/appl/sht/12.0.0/lib64:{{ app_run_dir }}/EBSapps/comn/util/jdk32/jre/lib/i386/server:{{ app_run_dir }}/EBSapps/comn/util/jdk32/jre/lib/i386:{{ app_run_dir }}/EBSapps/comn/util/jdk32/jre/../lib/i386:{{ app_run_dir }}/EBSapps/10.1.2/lib32:{{ app_run_dir }}/EBSapps/10.1.2/lib:/usr/X11R6/lib:/usr/openwin/lib:{{ app_run_dir }}/EBSapps/10.1.2/jdk/jre/lib/i386:{{ app_run_dir }}/EBSapps/10.1.2/jdk/jre/lib/i386/server:{{ app_run_dir }}/EBSapps/10.1.2/jdk/jre/lib/i386/native_threads:{{ app_run_dir }}/EBSapps/appl/sht/12.0.0/lib</PY_LIB_PATH>
+			<PY_PRELOAD oa_var="s_py_preload"> </PY_PRELOAD>
+			<PY_CLASSPATH oa_var="s_py_classpath">{{ app_run_dir }}/EBSapps/comn/java/classes:{{ app_run_dir }}/EBSapps/comn/util/jdk64/lib/dt.jar:{{ app_run_dir }}/EBSapps/comn/util/jdk64/lib/tools.jar:{{ app_run_dir }}/EBSapps/comn/util/jdk64/jre/lib/rt.jar:{{ app_run_dir }}/EBSapps/comn/shared-libs/ebs-3rdparty/WEB-INF/lib/ebs3rdpartyManifest.jar:{{ app_run_dir }}/FMW_Home/Oracle_EBS-app1/shared-libs/ebs-fmw/WEB-INF/lib/ebsFMWManifest.jar:{{ app_run_dir }}/FMW_Home/Oracle_EBS-app1/shared-libs/ebs-appsborg/WEB-INF/lib/ebsAppsborgManifest.jar:{{ app_run_dir }}/FMW_Home/oracle_common/modules/oracle.uix_11.1.1/uix2.jar:{{ app_run_dir }}/FMW_Home/oracle_common/modules/oracle.jrf_11.1.1/jrf.jar:{{ app_run_dir }}/FMW_Home/oracle_common/modules/oracle.jrf_11.1.1/jrf-client.jar:{{ app_run_dir }}/EBSapps/comn/java/lib/cplex.jar:{{ app_run_dir }}/EBSapps/comn/java/classes</PY_CLASSPATH>
+		</oa_environment>
+		<oa_environment type="applsys"> 
+			<oa_env_file type="appsora" oa_var="s_appsora_file" osd="unix">{{ app_run_dir }}/EBSapps/appl/APPS{{ db_name }}_{{ db_host }}.env</oa_env_file>
+			<oa_env_file type="applsys" oa_var="s_applsys_file" osd="unix">{{ app_run_dir }}/EBSapps/appl/{{ db_name }}_{{ db_host }}.env</oa_env_file>
+			<oa_env_file type="custom" oa_var="s_custom_file" osd="unix">{{ app_run_dir }}/inst/apps/{{ db_name }}_{{ db_host }}/appl/admin/custom{{ db_name }}_{{ db_host }}.env</oa_env_file>
+			<APPLFENV oa_var="s_applfenv">{{ db_name }}_{{ db_host }}.env</APPLFENV>
+			<APPLFSTT oa_var="s_applfstt">{{ db_name }};{{ db_name }}_BALANCE;{{ db_name }}_FO</APPLFSTT>
+			<PLATFORM oa_var="s_oraPlatform" osd="LINUX_X86-64">LINUX</PLATFORM>
+			<PLATFORM_STUB oa_var="s_platStub" osd="LINUX_X86-64">LINUX_X86-64</PLATFORM_STUB>
+			<PRINTER oa_var="s_printer">noprint</PRINTER>
+			<APPL_TOP oa_var="s_at">{{ app_run_dir }}/EBSapps/appl</APPL_TOP>
+			<APPL_TOP2 oa_var="s_at2">{{ app_run_dir }}/EBSapps/appl</APPL_TOP2>
+			<APPL_TOP3 oa_var="s_at3">{{ app_run_dir }}/EBSapps/appl</APPL_TOP3>
+			<APPL_TOP4 oa_var="s_at4">{{ app_run_dir }}/EBSapps/appl</APPL_TOP4>
+			<ADMIN_SID oa_var="s_admin_sid">{{ app_run_dir }}/EBSapps/appl/admin/{{ db_name }}</ADMIN_SID>
+			<FNDNAM oa_var="s_fndnam">APPS</FNDNAM>
+			<APPCPNAM oa_var="s_appcpnam">REQID</APPCPNAM>
+			<APPLMAIL oa_var="s_applmail">NONE</APPLMAIL>
+			<APPLDCP oa_var="s_appldcp">OFF</APPLDCP>
+			<APPLCSF oa_var="s_applcsf">/u01/install/APPS/fs_ne/inst/{{ db_name }}_{{ db_host }}/logs/appl/conc</APPLCSF>
+			<APPLLDM oa_var="s_applldm">single</APPLLDM>
+			<APPLLOG oa_var="s_appllog">log</APPLLOG>
+			<APPLOUT oa_var="s_applout">out</APPLOUT>
+			<APPLRGF oa_var="s_applrgf">{{ app_run_dir }}/inst/apps/{{ db_name }}_{{ db_host }}/logs/appl/rgf</APPLRGF>
+			<APPLTMP oa_var="s_appltmp">{{ app_run_dir }}/inst/apps/{{ db_name }}_{{ db_host }}/appltmp</APPLTMP>
+			<APPLPTMP oa_var="s_applptmp" osd="UNIX">/usr/tmp</APPLPTMP>
+			<NLS_LANG oa_var="s_nlslang">American_America.AL32UTF8</NLS_LANG>
+			<NLS_DATE_FORMAT oa_var="s_nlsdate">DD-MON-RR</NLS_DATE_FORMAT>
+			<NLS_NUMERIC_CHARACTERS oa_var="s_oa_nlsnumchar">.,</NLS_NUMERIC_CHARACTERS>
+			<NLS_SORT oa_var="s_nlssort">BINARY</NLS_SORT>
+			<CNTL_BREAK oa_var="s_ctrlbrk">ON</CNTL_BREAK>
+			<FORMS_MESSAGE_ENCRYPTION oa_var="s_forms_encr">TRUE</FORMS_MESSAGE_ENCRYPTION>
+			<FORMS_SESSION oa_var="s_forms_ses">TRUE</FORMS_SESSION>
+			<FORMS_OAM_FRD oa_var="s_forms_oam_frd">OFF</FORMS_OAM_FRD>
+			<FORMS_RTI_DIR oa_var="s_formsrtidir">{{ app_run_dir }}/inst/apps/{{ db_name }}_{{ db_host }}/logs/ora/10.1.2/forms</FORMS_RTI_DIR>
+			<FORMS_OVERRIDE_ENV oa_var="s_forms_override_env">NLS_LANG,NLS_NUMERIC_CHARACTERS,NLS_SORT,NLS_DATE_LANGUAGE,NLS_DATE_FORMAT,FORMS_USER_DATE_FORMAT,FORMS_USER_DATETIME_FORMAT,FORMS_OUTPUT_DATE_FORMAT,FORMS_OUTPUT_DATETIME_FORMAT,FORMS_ERROR_DATE_FORMAT,FORMS_ERROR_DATETIME_FORMAT,FORMS_TZFILE,FORMS_DATETIME_SERVER_TZ,FORMS_DATETIME_LOCAL_TZ,FORMS_USER_CALENDAR</FORMS_OVERRIDE_ENV>
+			<FORMS_MODULE_PATH oa_var="s_forms_module_path">{{ app_run_dir }}/EBSapps/appl/fnd/12.0.0/forms</FORMS_MODULE_PATH>
+			<ORACLE_TERM oa_var="s_oraterm">vt220</ORACLE_TERM>
+			<REPORTS_TMP oa_var="s_reptmp">{{ app_run_dir }}/inst/apps/{{ db_name }}_{{ db_host }}/temp</REPORTS_TMP>
+			<REPORTS_PATH oa_var="s_reppath" osd="UNIX">{{ app_run_dir }}/EBSapps/appl/au/12.0.0/plsql:{{ app_run_dir }}/EBSapps/appl/fnd/12.0.0/reports:{{ app_run_dir }}/EBSapps/appl/au/12.0.0/graphs</REPORTS_PATH>
+			<REPORTS_USEREXITS oa_var="s_rep_userexits" osd="UNIX">{{ app_run_dir }}/EBSapps/appl/fnd/12.0.0/bin/fndrwxit.so</REPORTS_USEREXITS>
+			<REPORTS_CLASSPATH oa_var="s_rep_classpath" osd="unix">{{ app_run_dir }}/EBSapps/10.1.2/reports/jlib/rwbuilder.jar:{{ app_run_dir }}/EBSapps/10.1.2/reports/jlib/rwrun.jar:{{ app_run_dir }}/EBSapps/10.1.2/jlib/zrclient.jar:{{ app_run_dir }}/EBSapps/10.1.2/j2ee/home/oc4j.jar:{{ app_run_dir }}/EBSapps/10.1.2/j2ee/home/lib/ojsp.jar</REPORTS_CLASSPATH>
+			<FORMS_APPSLIBS oa_var="s_forms_appslib">APPCORE FNDSQF APPDAYPK APPFLDR GLCORE HR_GEN HR_SPEC ARXCOVER</FORMS_APPSLIBS>
+			<FORMS_FORCE_MENU_MNEMONICS oa_var="s_forms_fmm">0</FORMS_FORCE_MENU_MNEMONICS>
+			<FORMS_PATH oa_var="s_forms_path" osd="unix">{{ app_run_dir }}/EBSapps/appl/au/12.0.0/resource:{{ app_run_dir }}/EBSapps/appl/au/12.0.0/resource/stub</FORMS_PATH>
+			<FORMS_TIMEOUT oa_var="s_forms_time">5</FORMS_TIMEOUT>
+			<FORMS_USER_DATE_FORMAT oa_var="s_forms_udate">MM/DD/RRRR</FORMS_USER_DATE_FORMAT>
+			<FORMS_USER_DATETIME_FORMAT oa_var="s_forms_udatetime">MM/DD/RRRR HH24:MI:SS</FORMS_USER_DATETIME_FORMAT>
+			<APPL_CPLEX_LICDIR oa_var="s_cplexlic">{{ app_run_dir }}/EBSapps/appl/admin/cplex</APPL_CPLEX_LICDIR>
+			<FORMS_WEB_CONFIG_FILE oa_var="s_forms_webcfg">{{ app_run_dir }}/inst/apps/{{ db_name }}_{{ db_host }}/ora/10.1.2/forms/server/appsweb.cfg</FORMS_WEB_CONFIG_FILE>
+			<FORMS_BLOCKING_LONGLIST oa_var="s_forms_blocklist">FALSE</FORMS_BLOCKING_LONGLIST>
+			<FORMS_LOV_INITIAL oa_var="s_forms_lov">5000</FORMS_LOV_INITIAL>
+			<FORMS_CATCHTERM oa_var="s_forms_catchterm">1</FORMS_CATCHTERM>
+			<FORMS_DISABLE_UNPAD_LOV oa_var="s_forms_disable_unpad_lov">TRUE</FORMS_DISABLE_UNPAD_LOV>
+			<FORMS_LOV_MINIMUM oa_var="s_forms_lovminimum">1000</FORMS_LOV_MINIMUM>
+			<FORMS_LOV_WEIGHT oa_var="s_forms_lovweight">16</FORMS_LOV_WEIGHT>
+			<FORMS_NONBLOCKING_SLEEP oa_var="s_forms_nonblockingsleep">100</FORMS_NONBLOCKING_SLEEP>
+			<FORMS_BLOCK_URL_CHARACTERS oa_var="s_forms_blockurlchar">%0a,%0d,!,%21,&quot;,%22,[,%5b,],%5d,{,%7b,|,%7c,%7f,&gt;,%3c,&lt;,%3e</FORMS_BLOCK_URL_CHARACTERS>
+			<FORMS_RECMGR_RECSIZE_POWER oa_var="s_forms_recmgr_recsize_power">1</FORMS_RECMGR_RECSIZE_POWER>
+			<fnd_secure oa_var="s_fnd_secure">{{ app_run_dir }}/inst/apps/{{ db_name }}_{{ db_host }}/appl/fnd/12.0.0/secure</fnd_secure>
+			<AD_TOP oa_var="s_adtop" oa_type="PROD_TOP" oa_enabled="TRUE">{{ app_run_dir }}/EBSapps/appl/ad/12.0.0</AD_TOP>
+			<AK_TOP oa_var="s_aktop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/ak/12.0.0</AK_TOP>
+			<AU_TOP oa_var="s_autop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/au/12.0.0</AU_TOP>
+			<FND_TOP oa_var="s_fndtop" oa_type="PROD_TOP" oa_enabled="TRUE">{{ app_run_dir }}/EBSapps/appl/fnd/12.0.0</FND_TOP>
+			<AHL_TOP oa_var="s_ahltop" oa_type="PROD_TOP" oa_enabled="TRUE">{{ app_run_dir }}/EBSapps/appl/ahl/12.0.0</AHL_TOP>
+			<ALR_TOP oa_var="s_alrtop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/alr/12.0.0</ALR_TOP>
+			<AME_TOP oa_var="s_ametop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/ame/12.0.0</AME_TOP>
+			<AMS_TOP oa_var="s_amstop" oa_type="PROD_TOP" oa_enabled="TRUE">{{ app_run_dir }}/EBSapps/appl/ams/12.0.0</AMS_TOP>
+			<AMV_TOP oa_var="s_amvtop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/amv/12.0.0</AMV_TOP>
+			<AP_TOP oa_var="s_aptop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/ap/12.0.0</AP_TOP>
+			<AR_TOP oa_var="s_artop" oa_type="PROD_TOP" oa_enabled="TRUE">{{ app_run_dir }}/EBSapps/appl/ar/12.0.0</AR_TOP>
+			<AS_TOP oa_var="s_astop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/as/12.0.0</AS_TOP>
+			<ASN_TOP oa_var="s_asntop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/asn/12.0.0</ASN_TOP>
+			<ASF_TOP oa_var="s_asftop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/asf/12.0.0</ASF_TOP>
+			<ASG_TOP oa_var="s_asgtop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/asg/12.0.0</ASG_TOP>
+			<ASL_TOP oa_var="s_asltop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/asl/12.0.0</ASL_TOP>
+			<ASO_TOP oa_var="s_asotop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/aso/12.0.0</ASO_TOP>
+			<ASP_TOP oa_var="s_asptop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/asp/12.0.0</ASP_TOP>
+			<AST_TOP oa_var="s_asttop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/ast/12.0.0</AST_TOP>
+			<AX_TOP oa_var="s_axtop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/ax/12.0.0</AX_TOP>
+			<AZ_TOP oa_var="s_aztop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/az/12.0.0</AZ_TOP>
+			<BEN_TOP oa_var="s_bentop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/ben/12.0.0</BEN_TOP>
+			<BIC_TOP oa_var="s_bictop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/bic/12.0.0</BIC_TOP>
+			<BIM_TOP oa_var="s_bimtop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/bim/12.0.0</BIM_TOP>
+			<BIS_TOP oa_var="s_bistop" oa_type="PROD_TOP" oa_enabled="TRUE">{{ app_run_dir }}/EBSapps/appl/bis/12.0.0</BIS_TOP>
+			<BNE_TOP oa_var="s_bnetop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/bne/12.0.0</BNE_TOP>
+			<BOM_TOP oa_var="s_bomtop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/bom/12.0.0</BOM_TOP>
+			<CCT_TOP oa_var="s_ccttop" oa_type="PROD_TOP" oa_enabled="TRUE">{{ app_run_dir }}/EBSapps/appl/cct/12.0.0</CCT_TOP>
+			<CE_TOP oa_var="s_cetop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/ce/12.0.0</CE_TOP>
+			<CHV_TOP oa_var="s_chvtop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/chv/12.0.0</CHV_TOP>
+			<CLN_TOP oa_var="s_clntop" oa_type="PROD_TOP" oa_enabled="TRUE">{{ app_run_dir }}/EBSapps/appl/cln/12.0.0</CLN_TOP>
+			<CMI_TOP oa_var="s_cmitop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/cmi/12.0.0</CMI_TOP>
+			<CN_TOP oa_var="s_cntop" oa_type="PROD_TOP" oa_enabled="TRUE">{{ app_run_dir }}/EBSapps/appl/cn/12.0.0</CN_TOP>
+			<CRP_TOP oa_var="s_crptop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/crp/12.0.0</CRP_TOP>
+			<CS_TOP oa_var="s_cstop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/cs/12.0.0</CS_TOP>
+			<CSC_TOP oa_var="s_csctop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/csc/12.0.0</CSC_TOP>
+			<CSD_TOP oa_var="s_csdtop" oa_type="PROD_TOP" oa_enabled="TRUE">{{ app_run_dir }}/EBSapps/appl/csd/12.0.0</CSD_TOP>
+			<CSE_TOP oa_var="s_csetop" oa_type="PROD_TOP" oa_enabled="TRUE">{{ app_run_dir }}/EBSapps/appl/cse/12.0.0</CSE_TOP>
+			<CSF_TOP oa_var="s_csftop" oa_type="PROD_TOP" oa_enabled="TRUE">{{ app_run_dir }}/EBSapps/appl/csf/12.0.0</CSF_TOP>
+			<CSI_TOP oa_var="s_csitop" oa_type="PROD_TOP" oa_enabled="TRUE">{{ app_run_dir }}/EBSapps/appl/csi/12.0.0</CSI_TOP>
+			<CSL_TOP oa_var="s_csltop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/csl/12.0.0</CSL_TOP>
+			<CSM_TOP oa_var="s_csmtop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/csm/12.0.0</CSM_TOP>
+			<CSP_TOP oa_var="s_csptop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/csp/12.0.0</CSP_TOP>
+			<CSR_TOP oa_var="s_csrtop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/csr/12.0.0</CSR_TOP>
+			<CUA_TOP oa_var="s_cuatop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/cua/12.0.0</CUA_TOP>
+			<CUG_TOP oa_var="s_cugtop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/cug/12.0.0</CUG_TOP>
+			<CZ_TOP oa_var="s_cztop" oa_type="PROD_TOP" oa_enabled="TRUE">{{ app_run_dir }}/EBSapps/appl/cz/12.0.0</CZ_TOP>
+			<DDR_TOP oa_var="s_ddrtop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/ddr/12.0.0</DDR_TOP>
+			<DNA_TOP oa_var="s_dnatop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/dna/12.0.0</DNA_TOP>
+			<DOM_TOP oa_var="s_domtop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/dom/12.0.0</DOM_TOP>
+			<DT_TOP oa_var="s_dttop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/dt/12.0.0</DT_TOP>
+			<DPP_TOP oa_var="s_dpptop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/dpp/12.0.0</DPP_TOP>
+			<EAM_TOP oa_var="s_eamtop" oa_type="PROD_TOP" oa_enabled="TRUE">{{ app_run_dir }}/EBSapps/appl/eam/12.0.0</EAM_TOP>
+			<EBI_TOP oa_var="s_ebitop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/ebi/12.0.0</EBI_TOP>
+			<EC_TOP oa_var="s_ectop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/ec/12.0.0</EC_TOP>
+			<ECX_TOP oa_var="s_ecxtop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/ecx/12.0.0</ECX_TOP>
+			<EDR_TOP oa_var="s_edrtop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/edr/12.0.0</EDR_TOP>
+			<EGO_TOP oa_var="s_egotop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/ego/12.0.0</EGO_TOP>
+			<ENG_TOP oa_var="s_engtop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/eng/12.0.0</ENG_TOP>
+			<ENI_TOP oa_var="s_enitop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/eni/12.0.0</ENI_TOP>
+			<FA_TOP oa_var="s_fatop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/fa/12.0.0</FA_TOP>
+			<FF_TOP oa_var="s_fftop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/ff/12.0.0</FF_TOP>
+			<FLM_TOP oa_var="s_flmtop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/flm/12.0.0</FLM_TOP>
+			<FPA_TOP oa_var="s_fpatop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/fpa/12.0.0</FPA_TOP>
+			<FRM_TOP oa_var="s_frmtop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/frm/12.0.0</FRM_TOP>
+			<FTE_TOP oa_var="s_ftetop" oa_type="PROD_TOP" oa_enabled="TRUE">{{ app_run_dir }}/EBSapps/appl/fte/12.0.0</FTE_TOP>
+			<FUN_TOP oa_var="s_funtop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/fun/12.0.0</FUN_TOP>
+			<FV_TOP oa_var="s_fvtop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/fv/12.0.0</FV_TOP>
+			<GHG_TOP oa_var="s_ghgtop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/ghg/12.0.0</GHG_TOP>
+			<GHR_TOP oa_var="s_ghrtop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/ghr/12.0.0</GHR_TOP>
+			<GL_TOP oa_var="s_gltop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/gl/12.0.0</GL_TOP>
+			<GMA_TOP oa_var="s_gmatop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/gma/12.0.0</GMA_TOP>
+			<GMD_TOP oa_var="s_gmdtop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/gmd/12.0.0</GMD_TOP>
+			<GME_TOP oa_var="s_gmetop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/gme/12.0.0</GME_TOP>
+			<GMF_TOP oa_var="s_gmftop" oa_type="PROD_TOP" oa_enabled="TRUE">{{ app_run_dir }}/EBSapps/appl/gmf/12.0.0</GMF_TOP>
+			<GMI_TOP oa_var="s_gmitop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/gmi/12.0.0</GMI_TOP>
+			<GML_TOP oa_var="s_gmltop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/gml/12.0.0</GML_TOP>
+			<GMO_TOP oa_var="s_gmotop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/gmo/12.0.0</GMO_TOP>
+			<GMP_TOP oa_var="s_gmptop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/gmp/12.0.0</GMP_TOP>
+			<GMS_TOP oa_var="s_gmstop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/gms/12.0.0</GMS_TOP>
+			<GR_TOP oa_var="s_grtop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/gr/12.0.0</GR_TOP>
+			<HRI_TOP oa_var="s_hritop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/hri/12.0.0</HRI_TOP>
+			<HXC_TOP oa_var="s_hxctop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/hxc/12.0.0</HXC_TOP>
+			<HXT_TOP oa_var="s_hxttop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/hxt/12.0.0</HXT_TOP>
+			<IA_TOP oa_var="s_iatop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/ia/12.0.0</IA_TOP>
+			<IBC_TOP oa_var="s_ibctop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/ibc/12.0.0</IBC_TOP>
+			<IBE_TOP oa_var="s_ibetop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/ibe/12.0.0</IBE_TOP>
+			<IBU_TOP oa_var="s_ibutop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/ibu/12.0.0</IBU_TOP>
+			<IBW_TOP oa_var="s_ibwtop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/ibw/12.0.0</IBW_TOP>
+			<IBY_TOP oa_var="s_ibytop" oa_type="PROD_TOP" oa_enabled="TRUE">{{ app_run_dir }}/EBSapps/appl/iby/12.0.0</IBY_TOP>
+			<ICX_TOP oa_var="s_icxtop" oa_type="PROD_TOP" oa_enabled="TRUE">{{ app_run_dir }}/EBSapps/appl/icx/12.0.0</ICX_TOP>
+			<IEB_TOP oa_var="s_iebtop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/ieb/12.0.0</IEB_TOP>
+			<IEC_TOP oa_var="s_iectop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/iec/12.0.0</IEC_TOP>
+			<IEM_TOP oa_var="s_iemtop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/iem/12.0.0</IEM_TOP>
+			<IEO_TOP oa_var="s_ieotop" oa_type="PROD_TOP" oa_enabled="TRUE">{{ app_run_dir }}/EBSapps/appl/ieo/12.0.0</IEO_TOP>
+			<IES_TOP oa_var="s_iestop" oa_type="PROD_TOP" oa_enabled="TRUE">{{ app_run_dir }}/EBSapps/appl/ies/12.0.0</IES_TOP>
+			<IEU_TOP oa_var="s_ieutop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/ieu/12.0.0</IEU_TOP>
+			<IEX_TOP oa_var="s_iextop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/iex/12.0.0</IEX_TOP>
+			<IGC_TOP oa_var="s_igctop" oa_type="PROD_TOP" oa_enabled="TRUE">{{ app_run_dir }}/EBSapps/appl/igc/12.0.0</IGC_TOP>
+			<IGI_TOP oa_var="s_igitop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/igi/12.0.0</IGI_TOP>
+			<IMC_TOP oa_var="s_imctop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/imc/12.0.0</IMC_TOP>
+			<INL_TOP oa_var="s_inltop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/inl/12.0.0</INL_TOP>
+			<INV_TOP oa_var="s_invtop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/inv/12.0.0</INV_TOP>
+			<IPA_TOP oa_var="s_ipatop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/ipa/12.0.0</IPA_TOP>
+			<IPM_TOP oa_var="s_ipmtop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/ipm/12.0.0</IPM_TOP>
+			<IRC_TOP oa_var="s_irctop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/irc/12.0.0</IRC_TOP>
+			<ITG_TOP oa_var="s_itgtop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/itg/12.0.0</ITG_TOP>
+			<IZU_TOP oa_var="s_izutop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/izu/12.0.0</IZU_TOP>
+			<JA_TOP oa_var="s_jatop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/ja/12.0.0</JA_TOP>
+			<JE_TOP oa_var="s_jetop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/je/12.0.0</JE_TOP>
+			<JG_TOP oa_var="s_jgtop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/jg/12.0.0</JG_TOP>
+			<JL_TOP oa_var="s_jltop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/jl/12.0.0</JL_TOP>
+			<JMF_TOP oa_var="s_jmftop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/jmf/12.0.0</JMF_TOP>
+			<JTF_TOP oa_var="s_jtftop" oa_type="PROD_TOP" oa_enabled="TRUE">{{ app_run_dir }}/EBSapps/appl/jtf/12.0.0</JTF_TOP>
+			<JTM_TOP oa_var="s_jtmtop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/jtm/12.0.0</JTM_TOP>
+			<LNS_TOP oa_var="s_lnstop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/lns/12.0.0</LNS_TOP>
+			<MFG_TOP oa_var="s_mfgtop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/mfg/12.0.0</MFG_TOP>
+			<MRP_TOP oa_var="s_mrptop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/mrp/12.0.0</MRP_TOP>
+			<MSC_TOP oa_var="s_msctop" oa_type="PROD_TOP" oa_enabled="TRUE">{{ app_run_dir }}/EBSapps/appl/msc/12.0.0</MSC_TOP>
+			<MSD_TOP oa_var="s_msdtop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/msd/12.0.0</MSD_TOP>
+			<MSO_TOP oa_var="s_msotop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/mso/12.0.0</MSO_TOP>
+			<MSR_TOP oa_var="s_msrtop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/msr/12.0.0</MSR_TOP>
+			<MTH_TOP oa_var="s_mthtop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/mth/12.0.0</MTH_TOP>
+			<MWA_TOP oa_var="s_mwatop" oa_type="PROD_TOP" oa_enabled="TRUE">{{ app_run_dir }}/EBSapps/appl/mwa/12.0.0</MWA_TOP>
+			<OE_TOP oa_var="s_oetop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/oe/12.0.0</OE_TOP>
+			<OKC_TOP oa_var="s_okctop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/okc/12.0.0</OKC_TOP>
+			<OKE_TOP oa_var="s_oketop" oa_type="PROD_TOP" oa_enabled="TRUE">{{ app_run_dir }}/EBSapps/appl/oke/12.0.0</OKE_TOP>
+			<OKL_TOP oa_var="s_okltop" oa_type="PROD_TOP" oa_enabled="TRUE">{{ app_run_dir }}/EBSapps/appl/okl/12.0.0</OKL_TOP>
+			<OKS_TOP oa_var="s_okstop" oa_type="PROD_TOP" oa_enabled="TRUE">{{ app_run_dir }}/EBSapps/appl/oks/12.0.0</OKS_TOP>
+			<OKX_TOP oa_var="s_okxtop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/okx/12.0.0</OKX_TOP>
+			<ONT_TOP oa_var="s_onttop" oa_type="PROD_TOP" oa_enabled="TRUE">{{ app_run_dir }}/EBSapps/appl/ont/12.0.0</ONT_TOP>
+			<OPI_TOP oa_var="s_opitop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/opi/12.0.0</OPI_TOP>
+			<OTA_TOP oa_var="s_otatop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/ota/12.0.0</OTA_TOP>
+			<OZF_TOP oa_var="s_ozftop" oa_type="PROD_TOP" oa_enabled="TRUE">{{ app_run_dir }}/EBSapps/appl/ozf/12.0.0</OZF_TOP>
+			<PA_TOP oa_var="s_patop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/pa/12.0.0</PA_TOP>
+			<PAY_TOP oa_var="s_paytop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/pay/12.0.0</PAY_TOP>
+			<PER_TOP oa_var="s_pertop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/per/12.0.0</PER_TOP>
+			<PJI_TOP oa_var="s_pjitop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/pji/12.0.0</PJI_TOP>
+			<PJM_TOP oa_var="s_pjmtop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/pjm/12.0.0</PJM_TOP>
+			<PMI_TOP oa_var="s_pmitop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/pmi/12.0.0</PMI_TOP>
+			<PN_TOP oa_var="s_pntop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/pn/12.0.0</PN_TOP>
+			<PO_TOP oa_var="s_potop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/po/12.0.0</PO_TOP>
+			<POM_TOP oa_var="s_pomtop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/pom/12.0.0</POM_TOP>
+			<PON_TOP oa_var="s_pontop" oa_type="PROD_TOP" oa_enabled="TRUE">{{ app_run_dir }}/EBSapps/appl/pon/12.0.0</PON_TOP>
+			<POS_TOP oa_var="s_postop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/pos/12.0.0</POS_TOP>
+			<PQH_TOP oa_var="s_pqhtop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/pqh/12.0.0</PQH_TOP>
+			<PQP_TOP oa_var="s_pqptop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/pqp/12.0.0</PQP_TOP>
+			<PRP_TOP oa_var="s_prptop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/prp/12.0.0</PRP_TOP>
+			<PSA_TOP oa_var="s_psatop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/psa/12.0.0</PSA_TOP>
+			<PSP_TOP oa_var="s_psptop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/psp/12.0.0</PSP_TOP>
+			<PV_TOP oa_var="s_pvtop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/pv/12.0.0</PV_TOP>
+			<QA_TOP oa_var="s_qatop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/qa/12.0.0</QA_TOP>
+			<QOT_TOP oa_var="s_qottop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/qot/12.0.0</QOT_TOP>
+			<QP_TOP oa_var="s_qptop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/qp/12.0.0</QP_TOP>
+			<QPR_TOP oa_var="s_qprtop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/qpr/12.0.0</QPR_TOP>
+			<QRM_TOP oa_var="s_qrmtop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/qrm/12.0.0</QRM_TOP>
+			<RG_TOP oa_var="s_rgtop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/rg/12.0.0</RG_TOP>
+			<RLM_TOP oa_var="s_rlmtop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/rlm/12.0.0</RLM_TOP>
+			<RRS_TOP oa_var="s_rrstop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/rrs/12.0.0</RRS_TOP>
+			<SHT_TOP oa_var="s_shttop" oa_type="PROD_TOP" oa_enabled="TRUE">{{ app_run_dir }}/EBSapps/appl/sht/12.0.0</SHT_TOP>
+			<SSP_TOP oa_var="s_ssptop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/ssp/12.0.0</SSP_TOP>
+			<VEA_TOP oa_var="s_veatop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/vea/12.0.0</VEA_TOP>
+			<WIP_TOP oa_var="s_wiptop" oa_type="PROD_TOP" oa_enabled="TRUE">{{ app_run_dir }}/EBSapps/appl/wip/12.0.0</WIP_TOP>
+			<WMS_TOP oa_var="s_wmstop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/wms/12.0.0</WMS_TOP>
+			<WPS_TOP oa_var="s_wpstop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/wps/12.0.0</WPS_TOP>
+			<WSH_TOP oa_var="s_wshtop" oa_type="PROD_TOP" oa_enabled="TRUE">{{ app_run_dir }}/EBSapps/appl/wsh/12.0.0</WSH_TOP>
+			<WSM_TOP oa_var="s_wsmtop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/wsm/12.0.0</WSM_TOP>
+			<XDP_TOP oa_var="s_xdptop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/xdp/12.0.0</XDP_TOP>
+			<XDO_TOP oa_var="s_xdotop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/xdo/12.0.0</XDO_TOP>
+			<XLA_TOP oa_var="s_xlatop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/xla/12.0.0</XLA_TOP>
+			<XLE_TOP oa_var="s_xletop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/xle/12.0.0</XLE_TOP>
+			<XNB_TOP oa_var="s_xnbtop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/xnb/12.0.0</XNB_TOP>
+			<XNP_TOP oa_var="s_xnptop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/xnp/12.0.0</XNP_TOP>
+			<XTR_TOP oa_var="s_xtrtop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/xtr/12.0.0</XTR_TOP>
+			<YMS_TOP oa_var="s_ymstop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/yms/12.0.0</YMS_TOP>
+			<ZX_TOP oa_var="s_zxtop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/zx/12.0.0</ZX_TOP>
+			<GWYUID oa_var="s_gwyuid">APPLSYSPUB/PUB</GWYUID>
+			<AFSYSCSI oa_var="s_systemcsi">N/A</AFSYSCSI>
+<!-- FNDDEV Environment Settings -->
+			<APPLBIN oa_var="s_applbin">bin</APPLBIN>
+			<APPLDOC oa_var="s_appldoc">docs</APPLDOC>
+			<APPLFRM oa_var="s_applfrm">forms</APPLFRM>
+			<APPLGRAF oa_var="s_applgraf">graphs</APPLGRAF>
+			<APPLIMG oa_var="s_applimg">images</APPLIMG>
+			<APPLINC oa_var="s_applinc">include</APPLINC>
+			<APPLLIB oa_var="s_appllib">lib</APPLLIB>
+			<APPLMSG oa_var="s_applmsg">mesg</APPLMSG>
+			<APPLPLS oa_var="s_applpls">plsql</APPLPLS>
+			<APPLREG oa_var="s_applreg">regress</APPLREG>
+			<APPLREP oa_var="s_applrep">reports</APPLREP>
+			<APPLRGT oa_var="s_applrgt">regress</APPLRGT>
+			<APPLRSC oa_var="s_applrsc">resource</APPLRSC>
+			<APPLSAV oa_var="s_applsav">save</APPLSAV>
+			<APPLSQL oa_var="s_applsql">sql</APPLSQL>
+			<APPLUSR oa_var="s_applusr">usrxit</APPLUSR>
+<!-- End of FNDDEV.ENV SETTINGS -->
+<!-- start of NT user exit DLLs -->
+<!-- end of NT user exit DLLs -->
+			<ADPERLPRG oa_var="s_adperlprg" osd="unix">{{ app_run_dir }}/FMW_Home/webtier/perl/bin/perl</ADPERLPRG>
+			<PERL5LIB oa_var="s_perl5lib" osd="LINUX_X86-64">{{ app_run_dir }}/FMW_Home/webtier/perl/lib/5.10.0:{{ app_run_dir }}/FMW_Home/webtier/perl/lib/site_perl/5.10.0:{{ app_run_dir }}/EBSapps/appl/au/12.0.0/perl:{{ app_run_dir }}/FMW_Home/webtier/ohs/mod_perl/lib/site_perl/5.10.0/x86_64-linux-thread-multi</PERL5LIB>
+			<FORMS_RESTRICT_ENTER_QUERY oa_var="s_forms_restrict_enter_query">TRUE</FORMS_RESTRICT_ENTER_QUERY>
+			<COMMON_TOP oa_var="s_com">{{ app_run_dir }}/EBSapps/comn</COMMON_TOP>
+			<XXTOLL_TOP oa_var="s_xxtolltop" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/xxtoll/12.0.0</XXTOLL_TOP>
+		</oa_environment>
+	</oa_environments>
+<!-- port information -->
+	<oa_ports> 
+		<PORT_POOL oa_var="s_port_pool">0</PORT_POOL>
+		<dbport oa_var="s_dbport" oa_type="EXT_PORT" base="{{ db_port }}" step="1" range="-1" label="Database Port">{{ db_port }}</dbport>
+		<rpc_port oa_var="s_rpcport" oa_type="PORT" base="1626" step="1" range="-1" label="RPC Port">1626</rpc_port>
+		<web_ssl_port oa_var="s_webssl_port" oa_type="PORT" base="4443" step="1" range="-1" label="Web SSL Port">4443</web_ssl_port>
+		<ons_localport oa_var="s_ons_localport" oa_type="PORT" base="6100" step="1" range="-1" label="ONS Local Port">6100</ons_localport>
+		<ons_remoteport oa_var="s_ons_remoteport" oa_type="PORT" base="6200" step="1" range="-1" label="ONS Remote Port">6200</ons_remoteport>
+		<ons_requestport oa_var="s_ons_requestport" oa_type="PORT" base="6500" step="1" range="-1" label="ONS Request Port">6500</ons_requestport>
+		<web_port oa_var="s_webport" oa_type="PORT" base="8000" step="1" range="-1" label="Web Listener Port">8000</web_port>
+		<activewebport oa_var="s_active_webport" oa_type="DUP_PORT" base="8000" step="1" range="-1" label="Active Web Port">8000</activewebport>
+		<forms_port oa_var="s_formsport" oa_type="PORT" base="9000" step="1" range="-1" label="Forms Port">9000</forms_port>
+		<met_data_port oa_var="s_metdataport" oa_type="PORT" base="9100" step="1" range="-1" label="Metrics Server Data Port">9100</met_data_port>
+		<met_req_port oa_var="s_metreqport" oa_type="PORT" base="9200" step="1" range="-1" label="Metrics Server Request Port">9200</met_req_port>
+		<jtf_fulfillment_port oa_var="s_jtfuf_port" oa_type="PORT" base="9300" step="1" range="-1" label="JTF Fulfillment Server Port">9300</jtf_fulfillment_port>
+		<mwaPortNo oa_var="s_mwaPortNo" oa_type="PORT" base="10200" step="6" range="6" label="MSCA Server Port">10200-10205</mwaPortNo>
+		<mwaTelnetPortNo oa_var="s_mwaTelnetPortNo" oa_type="DUP_PORT" base="10200" step="6" range="6" increment="2" separator="," showall="true" label="MCSA Telnet Server Port">10200,10202,10204</mwaTelnetPortNo>
+		<mwaDispatcherPort oa_var="s_mwaDispatcherPort" oa_type="PORT" base="10800" step="3" range="-1" label="MSCA Dispatcher Port">10800</mwaDispatcherPort>
+		<jcache_port oa_var="s_java_object_cache_port" oa_type="PORT" base="12345" step="1" range="-1" label="Java Object Cache Port">12345</jcache_port>
+		<fndcache_port_range oa_var="s_fnd_cache_port_range"> </fndcache_port_range>
+		<cmanport oa_var="s_cmanport" label="Oracle Connection Manager Port">1530</cmanport>
+	</oa_ports>
+<!-- Services on this node -->
+	<oa_services> 
+<!-- List of all Services -->
+		<oa_service_list> 
+			<oa_service type="node_manager"> 
+				<oa_service_name oa_var="s_nodemanagername" osd="unix">NodeManager</oa_service_name>
+				<oa_service_status oa_var="s_nodemanagerstatus">enabled</oa_service_status>
+				<oa_service_log oa_var="s_nodemanagerlog">{{ app_run_dir }}/inst/apps/{{ db_name }}_{{ db_host }}/logs/appl/admin/log/adnodemgrctl.txt</oa_service_log>
+				<timeout oa_var="s_nodemanagertimeout" osd="unix">-1</timeout>
+				<ctrl_script oa_var="s_nodemanagerctrl" osd="unix">{{ app_run_dir }}/inst/apps/{{ db_name }}_{{ db_host }}/admin/scripts/adnodemgrctl.sh</ctrl_script>
+			</oa_service>
+			<oa_service type="admin_server"> 
+				<oa_service_name oa_var="s_adminservername">AdminServer</oa_service_name>
+				<oa_service_status oa_var="s_adminserverstatus">enabled</oa_service_status>
+				<oa_service_log oa_var="s_adminserverlog">{{ app_run_dir }}/inst/apps/{{ db_name }}_{{ db_host }}/logs/appl/admin/log/adadminsrvctl.txt</oa_service_log>
+				<timeout oa_var="s_adminservertimeout" osd="unix">-1</timeout>
+				<ctrl_script oa_var="s_adminserverctrl" osd="unix">{{ app_run_dir }}/inst/apps/{{ db_name }}_{{ db_host }}/admin/scripts/adadminsrvctl.sh</ctrl_script>
+			</oa_service>
+			<oa_service type="opmn"> 
+				<oa_service_name oa_var="s_opmnname" osd="unix">Oracle Process Manager for {{ db_name }}_{{ db_host }}</oa_service_name>
+				<oa_service_status oa_var="s_opmnstatus">enabled</oa_service_status>
+				<oa_service_log oa_var="s_opmnlog">{{ app_run_dir }}/inst/apps/{{ db_name }}_{{ db_host }}/logs/appl/admin/log/adopmnctl.txt</oa_service_log>
+				<oa_service_env> 
+					<oa_env_include>web_home</oa_env_include>
+				</oa_service_env>
+				<timeout oa_var="s_opmntimeout" osd="unix">100</timeout>
+				<ctrl_script oa_var="s_opmnctrl" osd="unix">{{ app_run_dir }}/inst/apps/{{ db_name }}_{{ db_host }}/admin/scripts/adopmnctl.sh</ctrl_script>
+			</oa_service>
+			<oa_service type="ohs" requires="opmn"> 
+				<oa_service_name oa_var="s_apcname">Oracle HTTP Server {{ db_name }}_{{ db_host }}</oa_service_name>
+				<oa_service_status oa_var="s_apcstatus">enabled</oa_service_status>
+				<oa_service_log oa_var="s_apclog">{{ app_run_dir }}/inst/apps/{{ db_name }}_{{ db_host }}/logs/appl/admin/log/adapcctl.txt</oa_service_log>
+				<oa_service_env> 
+					<oa_env_include>web_home</oa_env_include>
+				</oa_service_env>
+				<timeout oa_var="s_apctimeout">100</timeout>
+				<ctrl_script oa_var="s_apcctrl" osd="unix">{{ app_run_dir }}/inst/apps/{{ db_name }}_{{ db_host }}/admin/scripts/adapcctl.sh</ctrl_script>
+				<install_script oa_var="s_apcinst" osd="unix">{{ app_run_dir }}/inst/apps/{{ db_name }}_{{ db_host }}/admin/install/adsvapc.sh</install_script>
+			</oa_service>
+			<oa_service type="oacore" requires="tns_apps"> 
+				<oa_service_name oa_var="s_oacorename" type="managed_server">oacore_server1</oa_service_name>
+				<oa_service_status oa_var="s_oacorestatus">enabled</oa_service_status>
+				<oa_managed_server_name oa_var="s_oacore_managed_servers">oacore_server1</oa_managed_server_name>
+				<oa_service_log oa_var="s_oacorelog">{{ app_run_dir }}/inst/apps/{{ db_name }}_{{ db_host }}/logs/appl/admin/log/adoacorectl.txt</oa_service_log>
+				<oa_service_env> 
+					<oa_env_include>web_home</oa_env_include>
+				</oa_service_env>
+				<timeout oa_var="s_oacoretimeout">-1</timeout>
+				<ctrl_script oa_var="s_oacorectrl" osd="unix">{{ app_run_dir }}/inst/apps/{{ db_name }}_{{ db_host }}/admin/scripts/admanagedsrvctl.sh</ctrl_script>
+			</oa_service>
+			<oa_service type="forms" requires="tns_apps" incompatible_with="forms_server"> 
+				<oa_service_name oa_var="s_formsname" type="managed_server">forms_server1</oa_service_name>
+				<oa_service_status oa_var="s_formsstatus">enabled</oa_service_status>
+				<oa_managed_server_name oa_var="s_forms_managed_servers">forms_server1</oa_managed_server_name>
+				<oa_service_log oa_var="s_formslog">{{ app_run_dir }}/inst/apps/{{ db_name }}_{{ db_host }}/logs/appl/admin/log/adformsctl.txt</oa_service_log>
+				<oa_service_env> 
+					<oa_env_include>web_home</oa_env_include>
+				</oa_service_env>
+				<timeout oa_var="s_formstimeout">-1</timeout>
+				<ctrl_script oa_var="s_formsctrl" osd="unix">{{ app_run_dir }}/inst/apps/{{ db_name }}_{{ db_host }}/admin/scripts/admanagedsrvctl.sh</ctrl_script>
+			</oa_service>
+			<oa_service type="oafm" requires="tns_apps"> 
+				<oa_service_name oa_var="s_oafmname" type="managed_server">oafm_server1</oa_service_name>
+				<oa_service_status oa_var="s_oafmstatus">enabled</oa_service_status>
+				<oa_managed_server_name oa_var="s_oafm_managed_servers">oafm_server1</oa_managed_server_name>
+				<oa_service_log oa_var="s_oafmlog">{{ app_run_dir }}/inst/apps/{{ db_name }}_{{ db_host }}/logs/appl/admin/log/adoafmctl.txt</oa_service_log>
+				<oa_service_env> 
+					<oa_env_include>web_home</oa_env_include>
+				</oa_service_env>
+				<timeout oa_var="s_oafmtimeout">-1</timeout>
+				<ctrl_script oa_var="s_oafmctrl" osd="unix">{{ app_run_dir }}/inst/apps/{{ db_name }}_{{ db_host }}/admin/scripts/admanagedsrvctl.sh</ctrl_script>
+			</oa_service>
+			<oa_service type="forms-c4ws" requires="tns_apps"> 
+				<oa_service_name oa_var="s_forms-c4wsname" type="managed_server">forms-c4ws_server1</oa_service_name>
+				<oa_service_status oa_var="s_forms-c4wsstatus">disabled</oa_service_status>
+				<oa_managed_server_name oa_var="s_forms-c4ws_managed_servers">forms-c4ws_server1</oa_managed_server_name>
+				<oa_service_log oa_var="s_forms-c4wslog">{{ app_run_dir }}/inst/apps/{{ db_name }}_{{ db_host }}/logs/appl/admin/log/adforms-c4wsctl.txt</oa_service_log>
+				<oa_service_env> 
+					<oa_env_include>web_home</oa_env_include>
+				</oa_service_env>
+				<timeout oa_var="s_forms-c4wstimeout">-1</timeout>
+				<ctrl_script oa_var="s_forms-c4wsctrl" osd="unix">{{ app_run_dir }}/inst/apps/{{ db_name }}_{{ db_host }}/admin/scripts/admanagedsrvctl.sh</ctrl_script>
+			</oa_service>
+			<oa_service type="oaea" requires="tns_apps"> 
+				<oa_service_name oa_var="s_oaeaname" type="managed_server">oaea_server1</oa_service_name>
+				<oa_service_status oa_var="s_oaeastatus">disabled</oa_service_status>
+				<oa_managed_server_name oa_var="s_oaea_managed_servers">oaea_server1</oa_managed_server_name>
+				<oa_service_log oa_var="s_oaealog">{{ app_run_dir }}/inst/apps/{{ db_name }}_{{ db_host }}/logs/appl/admin/log/adoaeactl.txt</oa_service_log>
+				<oa_service_env> 
+					<oa_env_include>web_home</oa_env_include>
+				</oa_service_env>
+				<timeout oa_var="s_oaeatimeout">-1</timeout>
+				<ctrl_script oa_var="s_oaeactrl" osd="unix">{{ app_run_dir }}/inst/apps/{{ db_name }}_{{ db_host }}/admin/scripts/admanagedsrvctl.sh</ctrl_script>
+			</oa_service>
+			<oa_service type="tns_apps"> 
+				<oa_service_name oa_var="s_tnsname" osd="unix">OracleTNSListenerAPPS_{{ db_name }}_{{ db_host }}</oa_service_name>
+				<oa_service_status oa_var="s_tnsstatus">enabled</oa_service_status>
+				<oa_service_log oa_var="s_tnslog">{{ app_run_dir }}/inst/apps/{{ db_name }}_{{ db_host }}/logs/appl/admin/log/adalnctl.txt</oa_service_log>
+				<oa_service_env> 
+					<oa_env_include>tools_home</oa_env_include>
+					<oa_env_include>applsys</oa_env_include>
+					<oa_env_include>generic_service</oa_env_include>
+				</oa_service_env>
+				<timeout oa_var="s_tnstimeout">100</timeout>
+				<ctrl_script oa_var="s_tnsctrl" osd="unix">{{ app_run_dir }}/inst/apps/{{ db_name }}_{{ db_host }}/admin/scripts/adalnctl.sh</ctrl_script>
+				<install_script oa_var="s_tnsinst" osd="unix">{{ app_run_dir }}/inst/apps/{{ db_name }}_{{ db_host }}/admin/install/adsvalsn.sh</install_script>
+			</oa_service>
+			<oa_service type="concmgr" requires="tns_apps"> 
+				<oa_service_name oa_var="s_concname" osd="unix">OracleConcMgr{{ db_name }}_{{ db_host }}</oa_service_name>
+				<oa_service_status oa_var="s_concstatus">enabled</oa_service_status>
+				<oa_service_log oa_var="s_conclog">{{ app_run_dir }}/inst/apps/{{ db_name }}_{{ db_host }}/logs/appl/admin/log/adcmctl.txt</oa_service_log>
+				<oa_service_env> 
+					<oa_env_include>tools_home</oa_env_include>
+					<oa_env_include>applsys</oa_env_include>
+					<oa_env_include>adovars</oa_env_include>
+					<oa_env_include>generic_service</oa_env_include>
+				</oa_service_env>
+				<SLEEP oa_var="s_cp_sleep">30</SLEEP>
+				<RESTART oa_var="s_cp_restart">N</RESTART>
+				<PMON oa_var="s_cp_pmon">4</PMON>
+				<QUESIZ oa_var="s_cp_quesize">1</QUESIZ>
+				<DIAG oa_var="s_cp_diag">N</DIAG>
+				<WAIT oa_var="s_cp_wait">N</WAIT>
+				<timeout oa_var="s_conctimeout">1000</timeout>
+				<ctrl_script_param oa_var="s_concctrl_params">diag=N wait=N</ctrl_script_param>
+				<ctrl_script oa_var="s_concctrl" osd="unix">{{ app_run_dir }}/inst/apps/{{ db_name }}_{{ db_host }}/admin/scripts/adcmctl.sh</ctrl_script>
+				<install_script oa_var="s_concinst" osd="unix">{{ app_run_dir }}/inst/apps/{{ db_name }}_{{ db_host }}/admin/install/adsvcm.sh</install_script>
+			</oa_service>
+			<oa_service type="icsm_srv"> 
+				<oa_service_name oa_var="s_icsmname">Oracle ICSM {{ db_name }}_{{ db_host }}</oa_service_name>
+				<oa_service_status oa_var="s_icsmstatus">disabled</oa_service_status>
+				<oa_service_log oa_var="s_icsmlog">{{ app_run_dir }}/inst/apps/{{ db_name }}_{{ db_host }}/logs/appl/admin/log/ieoicctl.txt</oa_service_log>
+				<oa_service_env> 
+					<oa_env_include>tools_home</oa_env_include>
+					<oa_env_include>applsys</oa_env_include>
+					<oa_env_include>adovars</oa_env_include>
+					<oa_env_include>generic_service</oa_env_include>
+<!-- ICSM specific -->
+				</oa_service_env>
+				<timeout oa_var="s_icsmtimeout">100</timeout>
+				<ctrl_script oa_var="s_icsmctrl" osd="unix">{{ app_run_dir }}/inst/apps/{{ db_name }}_{{ db_host }}/admin/scripts/ieo/ieoicsm.sh</ctrl_script>
+				<install_script oa_var="s_icsminst" osd="unix">{{ app_run_dir }}/inst/apps/{{ db_name }}_{{ db_host }}/admin/install/ieosvicsm.sh</install_script>
+			</oa_service>
+			<oa_service type="jtff_srv"> 
+				<oa_service_name oa_var="s_jtffsname" osd="unix">Oracle Fulfillment Server {{ db_name }}_{{ db_host }}</oa_service_name>
+				<oa_service_status oa_var="s_jtffsstatus">enabled</oa_service_status>
+				<oa_service_log oa_var="s_jtffslog">{{ app_run_dir }}/inst/apps/{{ db_name }}_{{ db_host }}/logs/appl/admin/log/jtffmctl.txt</oa_service_log>
+				<oa_service_env> 
+					<oa_env_include>tools_home</oa_env_include>
+					<oa_env_include>applsys</oa_env_include>
+					<oa_env_include>adovars</oa_env_include>
+					<oa_env_include>generic_service</oa_env_include>
+				</oa_service_env>
+				<timeout oa_var="s_jtffcsrvtimeout">100</timeout>
+				<ctrl_script oa_var="s_jtffcsrvctrl" osd="unix">{{ app_run_dir }}/inst/apps/{{ db_name }}_{{ db_host }}/admin/scripts/jtffmctl.sh</ctrl_script>
+				<install_script oa_var="s_jtffcsrvinst" osd="unix">{{ app_run_dir }}/inst/apps/{{ db_name }}_{{ db_host }}/admin/install/jtfsvfm.sh</install_script>
+				<start_cmd oa_var="s_jtffstart">{{ app_run_dir }}/EBSapps/comn/util/jdk32/jre/bin/java -ms128m -mx256m -classpath .:{{ app_run_dir }}/EBSapps/comn/shared-libs/ebs-3rdparty/WEB-INF/lib/ebs3rdpartyManifest.jar:{{ app_run_dir }}/FMW_Home/Oracle_EBS-app1/shared-libs/ebs-fmw/WEB-INF/lib/ebsFMWManifest.jar:{{ app_run_dir }}/FMW_Home/Oracle_EBS-app1/shared-libs/ebs-appsborg/WEB-INF/lib/ebsAppsborgManifest.jar:{{ app_run_dir }}/FMW_Home/oracle_common/modules/oracle.uix_11.1.1/uix2.jar:{{ app_run_dir }}/EBSapps/comn/java/classes:{{ app_run_dir }}/EBSapps/comn/java/classes/3rdparty/RFJavaInt.zip -Dengine.LogPath={{ app_run_dir }}/inst/apps/{{ db_name }}_{{ db_host }}/logs/appl/admin/log -Dengine.TempDir={{ app_run_dir }}/inst/apps/{{ db_name }}_{{ db_host }}/temp -Dengine.CommandPromptEnabled=false -Dengine.CommandPort=9300 -Dengine.AOLJ.config={{ app_run_dir }}/inst/apps/{{ db_name }}_{{ db_host }}/appl/fnd/12.0.0/secure/{{ db_name }}.dbc -Dengine.ServerID=5000 -Ddebug=off -Dengine.LogLevel=1 -Dlog.ShowWarnings=false -Dengine.FaxEnabler=oracle.apps.jtf.fm.engine.rightfax.RfFaxEnablerImpl -Dengine.PrintEnabler=oracle.apps.jtf.fm.engine.rightfax.RfPrintEnablerImpl -Dfax.TempDir={{ app_run_dir }}/inst/apps/{{ db_name }}_{{ db_host }}/logs/appl/admin/log -Dprint.TempDir={{ app_run_dir }}/inst/apps/{{ db_name }}_{{ db_host }}/logs/appl/admin/log -Dengine.ServerInstanceID=5000 -DTurnOffLowPriorityMonitor=no -Dengine.MaxBatchThreads=12 oracle.apps.jtf.fm.FulfillmentServer &gt;&gt; {{ app_run_dir }}/inst/apps/{{ db_name }}_{{ db_host }}/logs/appl/admin/log/jtffmctl.txt</start_cmd>
+			</oa_service>
+			<oa_service type="forms_server" incompatible_with="forms"> 
+				<oa_service_name oa_var="s_formsserver_name">OracleFormsServer-Forms {{ db_name }}_{{ db_host }}</oa_service_name>
+				<oa_service_status oa_var="s_formsserver_status">disabled</oa_service_status>
+				<oa_service_log oa_var="s_formsserver_log">{{ app_run_dir }}/inst/apps/{{ db_name }}_{{ db_host }}/logs/ora/10.1.2/forms/socket.log</oa_service_log>
+				<oa_service_env> 
+					<oa_env_include>tools_home</oa_env_include>
+					<oa_env_include>applsys</oa_env_include>
+					<oa_env_include>adovars</oa_env_include>
+					<oa_env_include>generic_service</oa_env_include>
+				</oa_service_env>
+				<timeout oa_var="s_formsserver_timeout">100</timeout>
+				<ctrl_script oa_var="s_formsserver_ctrl" osd="unix">{{ app_run_dir }}/inst/apps/{{ db_name }}_{{ db_host }}/admin/scripts/adformsrvctl.sh</ctrl_script>
+			</oa_service>
+			<oa_service type="mwa_srv"> 
+				<oa_service_name oa_var="s_mwaname">Oracle MWA Service {{ db_name }}_{{ db_host }}</oa_service_name>
+				<oa_service_status oa_var="s_mwastatus">enabled</oa_service_status>
+				<oa_service_log oa_var="s_mwalog">{{ app_run_dir }}/inst/apps/{{ db_name }}_{{ db_host }}/logs/appl/admin/log/mwactl.txt</oa_service_log>
+				<oa_service_env> 
+					<oa_env_include>tools_home</oa_env_include>
+					<oa_env_include>applsys</oa_env_include>
+					<oa_env_include>adovars</oa_env_include>
+					<oa_env_include>generic_service</oa_env_include>
+				</oa_service_env>
+				<timeout oa_var="s_mwatimeout">100</timeout>
+				<ctrl_script oa_var="s_mwactrl" osd="unix">{{ app_run_dir }}/inst/apps/{{ db_name }}_{{ db_host }}/admin/scripts/mwactlwrpr.sh</ctrl_script>
+			</oa_service>
+<!-- The following entry is to enable startup of the adRegisterWLSListeners.pl as a SERVICE only on Windows -->
+<!-- This service is not managed through adstrtal/adstpall scripts -->
+		</oa_service_list>
+<!-- End of Service List -->
+<!-- List of all Service Groups -->
+		<oa_service_group_list> 
+			<oa_service_group type="root" title="Root Service" services="node_manager"> 
+				<oa_service_group_status oa_var="s_root_status">enabled</oa_service_group_status>
+			</oa_service_group>
+			<oa_service_group type="web_admin" title="Web Administration" services="admin_server, tns_apps" requires="root"> 
+				<oa_service_group_status oa_var="s_web_admin_status">enabled</oa_service_group_status>
+			</oa_service_group>
+			<oa_service_group type="web entry" title="Web Entry Point Services" services="ohs, opmn"> 
+				<oa_service_group_status oa_var="s_web_entry_status">enabled</oa_service_group_status>
+			</oa_service_group>
+			<oa_service_group type="web_applications" title="Web Application Services" requires="root, web_admin" services="oacore, forms, oafm, forms-c4ws, oaea, tns_apps"> 
+				<oa_service_group_status oa_var="s_web_applications_status">enabled</oa_service_group_status>
+			</oa_service_group>
+			<oa_service_group type="batch" title="Batch Processing Services" services="tns_apps, concmgr, icsm_srv, jtff_srv"> 
+				<oa_service_group_status oa_var="s_batch_status">enabled</oa_service_group_status>
+			</oa_service_group>
+			<oa_service_group type="other" title="Other Services" services="forms_server, met_cl, met_srv, mwa_srv"> 
+				<oa_service_group_status oa_var="s_other_service_group_status">disabled</oa_service_group_status>
+			</oa_service_group>
+		</oa_service_group_list>
+<!-- End of Service Group List -->
+	</oa_services>
+	<oa_customized> 
+		<c_xxtoll oa_var="c_xxtoll" scope="CUSTOM" oa_type="PROD_TOP" oa_enabled="FALSE">{{ app_run_dir }}/EBSapps/appl/xxtoll/12.0.0</c_xxtoll>
+	</oa_customized>
+</oa_context>

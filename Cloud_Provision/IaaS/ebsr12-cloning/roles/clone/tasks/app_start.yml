@@ -1,0 +1,14 @@
+######################################
+# ==> Start Application Services <== #
+######################################
+
+- include: app_ps.yml
+
+- name: Start the applications
+  become_user: "{{ oracle_user }}"
+  shell: printf {{ wls_password }} | ./adstrtal.sh apps/{{ apps_password }}
+           chdir={{ admin_scripts_home }}
+  when: app_ps.stdout != '4'
+  register: app_start
+
+- debug: var=app_start.stdout_lines

@@ -1,0 +1,27 @@
+{
+	"entities": [{
+		"name": "{{ db_name }}",
+		"type": "{{ db_type }}",
+		"displayName": "{{ db_name }}",
+		"timezoneRegion": "UTC",
+		"credentialRefs": ["SQLCreds"],
+		"properties": {
+			"host_name": {
+				"displayName": "host_name",
+				"value": "{{ hostname }}"
+			},
+			"port": {
+				"displayName": "port",
+				"value": "{{ db_port }}"
+			},
+			"sid": {
+				"displayName": "sid",
+				"value": "{{ db_name }}"
+			},
+			"capability": {
+				"displayName": "capability",
+				"value": "{{ capability }}"
+			}
+		}
+	}]
+}

@@ -1,0 +1,8 @@
+- Disk Space to be consumed
+- Non-zero return code
+    - Script is parsing a non-zero return code which caused error.
+    - scan the log file and check if there is an error.
+    - validate if the error can be ignored.
+- Upload Destination
+    - installation of FTMCLI in Jenkins
+    - start and stop Script (EBS application and Database)

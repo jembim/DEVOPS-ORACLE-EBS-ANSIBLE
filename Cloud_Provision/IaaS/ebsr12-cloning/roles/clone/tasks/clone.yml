@@ -1,0 +1,81 @@
+##############################################
+# ==> RUN DATABASE & APPLICATION CLONING <== #
+##############################################
+
+- block:
+  - name: Rename Old Data Top 2
+    shell: 'mv /u02/oradata/{{ source_db_name }} /u02/oradata/{{ db_name }}'
+
+  - name: Rename inventory.xml
+    shell: 'mv {{ oracle_root_dir }}/oraInventory/ContentsXML/inventory.xml {{ oracle_root_dir }}/oraInventory/ContentsXML/inventory.xml.orig'
+
+  - name: Creating Context File Directory
+    file:
+      path: "/home/oracle/{{ item }}"
+      state: directory
+    with_items:
+        - app
+        - db
+
+  - name: Generate DB Context File Scripts
+    template:
+      src: db_context_file.xml
+      dest: "/home/oracle/db/{{ db_name }}_{{ db_host }}.xml"
+      owner: "{{ oracle_user }}"
+      group: "{{ oracle_group }}"
+      mode: 0755
+
+  - name: Run Database Tier Cloning
+    shell: 'printf {{ apps_password }} | perl {{ oracle_home }}/appsutil/clone/bin/adcfgclone.pl dbTier /home/oracle/db/{{ db_name }}_{{ db_host }}.xml'
+    register: db_clone
+
+  - debug: var=db_clone
+
+  - name: Run Database AutoConfig
+    shell: 'printf {{ apps_password }} | {{ oracle_home }}/appsutil/scripts/{{ db_name }}_{{ db_host }}/adautocfg.sh'
+    register: db_config
+
+  - debug: var=db_config
+
+  tags: dbtier
+  become: True
+  become_user: "{{ oracle_user }}"
+
+- block:
+  - name: Generate APP Context File Scripts
+    template:
+      src: app_context_file.xml
+      dest: "/home/oracle/app/{{ db_name }}_{{ db_host }}.xml"
+      owner: "{{ oracle_user }}"
+      group: "{{ oracle_group }}"
+      mode: 0755
+
+  - name: Generate Cloning Scripts
+    template:
+      src: '{{ item.old }}'
+      dest: '/home/oracle/app/{{ item.new }}'
+      owner: "{{ oracle_user }}"
+      group: "{{ oracle_group }}"
+      mode: 0755
+    with_items:
+        - { old: 'clone.sh.j2', new: 'clone.sh' }
+        - { old: 'app_clone.sh.j2', new: 'app_clone.sh' }
+
+  - name: Wait for Completion Notice on App artifacts extraction.
+    wait_for: path={{ app_run_dir }}/extractAPP_completed
+
+  - name: Run Application Tier Cloning
+    shell: '/home/oracle/app/clone.sh'
+    register: app_clone
+
+  - debug: var=app_clone
+
+  - name: Run Application AutoConfig
+    shell: 'printf {{ apps_password }} | {{ admin_scripts_home }}/adautocfg.sh'
+    register: app_config
+
+  - debug: var=app_config
+
+  tags: appstier
+  become: True
+  become_user: "{{ oracle_user }}"

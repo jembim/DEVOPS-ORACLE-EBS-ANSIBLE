@@ -1,0 +1,36 @@
+#!/bin/bash
+
+if [ -f {{ domain_dir }}/start_weblogic.log ]; then
+  rm -f {{ domain_dir }}/start_weblogic.log
+fi
+
+echo "-----------------------------------------"
+echo "Starting Admin Server"
+echo "-----------------------------------------"
+
+nohup {{ domain_dir }}/startWebLogic.sh > {{ domain_dir }}/start_weblogic.log &
+
+echo "checking for start_weblogic.log"
+while [ ! -f {{ domain_dir }}/start_weblogic.log ]
+do
+  sleep 2
+done
+
+while ! grep -q "RUNNING mode" {{ domain_dir }}/start_weblogic.log
+do
+  if  grep -q "FORCE_SHUTTING_DOWN" {{ domain_dir }}/start_weblogic.log
+  then
+  break -1
+  fi
+  sleep 5
+  echo "waiting for AdminServer to be Initialized"
+done
+
+if [ $? == 0 ] ; then
+echo "-----------------------------------------"
+echo "Admin Server has been started"
+echo "-----------------------------------------"
+else
+echo "Startup Failed! Please check {{ domain_dir }}/start_weblogic.log for details"
+exit 1
+fi 

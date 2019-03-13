@@ -1,0 +1,14 @@
+{
+	"credentials": [{
+		"id": "WLSCreds",
+		"name": "DomainCredsMonitoring",
+		"credType": "MonitorCreds",
+		"properties": [{
+			"name": "user_name",
+			"value": "CLEAR[{{ wls_user }}]"
+		}, {
+			"name": "password",
+			"value": "CLEAR[{{ wls_password }}]"
+		}]
+	}]
+}

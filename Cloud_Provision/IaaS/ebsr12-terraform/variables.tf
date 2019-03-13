@@ -1,0 +1,12 @@
+variable user {}
+variable password {}
+variable domain {}
+variable endpoint {}
+variable sshkey {}
+variable image_list {}
+variable shape {}
+variable ebs_seclist {}
+variable http_seclist {}
+variable instance_name {}
+variable boot_storage_size {}
+variable storage_size {}

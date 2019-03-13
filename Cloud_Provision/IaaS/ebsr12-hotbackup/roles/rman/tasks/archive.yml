@@ -1,0 +1,8 @@
+
+- block:
+  - name: Archive RMAN Backup File
+    shell: 'cd {{ rman_backup_dir }} && tar -czf {{ rman_backup_dir }}/{{ backup_name }}.tar.gz {{ backup_name }}'
+
+  tags: archive
+  become: True
+  become_user: "{{ oracle_user }}"

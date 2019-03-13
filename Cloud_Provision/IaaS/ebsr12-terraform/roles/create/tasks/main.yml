@@ -1,0 +1,28 @@
+##########################
+# ==> CREATE INSTANCE <==#
+##########################
+
+- name: TERRAFORM INITIALIZATION
+  shell: 'terraform init'
+  args:
+    chdir: '{{ workspace }}'
+  register: init
+
+- debug: var=init
+
+- name: TERRAFORM PLAN
+  shell: 'terraform plan -var "user={{ opc_username }}" -var "password={{ opc_password }}" --var-file=credentials.tfvars'
+  args:
+    chdir: '{{ workspace }}'
+  register: plan
+
+- debug: var=plan
+
+- name: TERRAFORM APPLY
+  shell: 'terraform apply -var "user={{ opc_username }}" -var "password={{ opc_password }}" --var-file=credentials.tfvars -auto-approve'
+  args:
+    chdir: '{{ workspace }}'
+  register: apply
+
+- debug: var=apply
+

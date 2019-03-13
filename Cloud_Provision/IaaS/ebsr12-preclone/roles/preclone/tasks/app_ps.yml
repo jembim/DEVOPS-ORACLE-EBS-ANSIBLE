@@ -1,0 +1,16 @@
+#############################################
+# ==> Check Application Services Status <== #
+#############################################
+
+- name: Process check for the applications
+  become_user: "{{ oracle_user }}"
+  shell: ./adopmnctl.sh status | grep 'Alive' | wc -l
+           chdir={{ admin_scripts_home }}
+  register: app_ps
+
+- become_user: "{{ oracle_user }}"
+  shell: ./adopmnctl.sh status
+           chdir={{ admin_scripts_home }}
+  register: display_app_status
+
+- debug: var=display_app_status.stdout_lines

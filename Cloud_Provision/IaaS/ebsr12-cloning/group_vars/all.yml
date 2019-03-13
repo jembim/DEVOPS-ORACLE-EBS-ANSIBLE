@@ -1,0 +1,15 @@
+# ==> General Environment
+oracle_user: "oracle"
+oracle_group: "oinstall"
+oracle_root_dir: "/u01/install/APPS"
+
+# ==> Database Environment
+oracle_home: "/u01/install/APPS/12.1.0"
+data_top_dir1: "/u01/install/APPS/data"
+data_top_dir2: "/u02/oradata"
+db_archive_dir: "/u02/backup/archive"
+
+# ==> Application Environment
+inst_top: "{{ app_run_dir }}/inst/apps/{{ db_name }}_{{ db_host }}"
+admin_scripts_home: "{{ inst_top }}/admin/scripts"
+common_top: "{{ app_run_dir }}/EBSapps/comn"

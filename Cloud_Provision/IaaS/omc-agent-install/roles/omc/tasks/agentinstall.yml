@@ -1,0 +1,40 @@
+##################################################
+# =====> RUN AGENT INSTALL UTILITY SCRIPT <===== #
+##################################################
+
+- block:
+  - name: Create Agent Base Directory
+    file:
+      path: "{{ agent_base_dir }}"
+      state: directory
+      owner: "{{ oracle_user }}"
+      group: "{{ oracle_group }}"
+
+  - name: Get AgentInstall.sh
+    copy:
+      src: AgentInstall.sh
+      dest: "{{ agent_base_dir }}/AgentInstall.sh"
+      mode: 0755
+
+  - name: Running AgentInstall.sh
+    shell: '{{ agent_base_dir }}/AgentInstall.sh AGENT_TYPE=cloud_agent AGENT_REGISTRATION_KEY=R03s0PWFvL6K908K3U97M0BSee AGENT_BASE_DIR={{ agent_base_dir }} AGENT_PORT={{ agent_port }} ORACLE_HOSTNAME={{ hostname }}'
+    register: agent
+
+  - debug: var=agent
+
+  tags: agent-install
+  become: True
+  become_user: "{{ oracle_user }}"
+
+- block:
+  - name: Run Agent Config Script
+    shell: '{{ agent_base_dir }}/core/1.*/root.sh'
+    register: conf
+
+  - debug: var=debug
+
+  tags: agent-conf
+  become: True
+  become_user: root
+
+

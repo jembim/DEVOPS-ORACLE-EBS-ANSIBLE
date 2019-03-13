@@ -1,0 +1,58 @@
+########################################
+# ==> Create Weblogic Admin Server <== #
+########################################
+
+- block:
+  - name: Generate domain creation script
+    template:
+      src: create_RPM_domain.py.j2
+      dest: "{{ wls_installer_dir }}/create_RPM_domain.py"
+
+  - name: Create WLS Domain Server
+    shell: 'source {{ wl_home }}/server/bin/setWLSEnv.sh && {{ java_home }}/bin/java weblogic.WLST {{ wls_installer_dir }}/create_RPM_domain.py'
+
+  - name: Create Domain Server directory
+    file:
+      state: directory
+      path: "{{ mw_home }}/user_projects/domains/{{ wl_domain_name }}/servers"
+      owner: "{{ oracle_user }}"
+      group: "{{ oracle_group }}"
+
+  - name: Create Admin Server directory
+    file:
+      state: directory
+      path: "{{ mw_home }}/user_projects/domains/{{ wl_domain_name }}/servers/AdminServer"
+      owner: "{{ oracle_user }}"
+      group: "{{ oracle_group }}"
+
+  - name: Create Security directory
+    file:
+      state: directory
+      path: "{{ mw_home }}/user_projects/domains/{{ wl_domain_name }}/servers/AdminServer/security"
+      owner: "{{ oracle_user }}"
+      group: "{{ oracle_group }}"
+
+  - name: Generate boot.properties
+    template:
+      src: boot.properties.j2
+      dest: "{{ mw_home }}/user_projects/domains/{{ wl_domain_name }}/servers/AdminServer/security/boot.properties"
+      owner: "{{ oracle_user }}"
+      group: "{{ oracle_group }}"
+
+  - name: Generate boot.properties
+    template:
+      src: startwls.sh.j2
+      dest: "{{ wls_installer_dir }}/startwls.sh"
+      owner: "{{ oracle_user }}"
+      group: "{{ oracle_group }}"
+      mode: u+x
+
+  - name: Start WebLogic
+    shell: 'source {{ wl_home }}/server/bin/setWLSEnv.sh && {{ wls_installer_dir }}/startwls.sh'
+    register: wls
+
+  - debug: var=wls
+
+  tags: create_domain
+  become: True
+  become_user: "{{ oracle_user }}"

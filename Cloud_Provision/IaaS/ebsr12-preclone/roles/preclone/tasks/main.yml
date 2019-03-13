@@ -1,0 +1,3 @@
+- include: preclone.yml
+- include: archive.yml
+- include: upload.yml

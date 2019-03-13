@@ -1,0 +1,25 @@
+#!/bin/bash
+
+expect << END
+set timeout 1
+spawn /home/oracle/configwebentry.sh
+expect -re "Press any key to continue..."
+send "\r"
+expect -re "Enter the Web Entry Protocol (Eg: https\/http):"
+send "http\r"
+expect -re "Enter the Web Entry Host Name(Eg: public):"
+send "{{ domain_ip }}"
+expect -re "Enter the Web Entry Domain Name:(Eg: domain.com):"
+send "compute.oraclecloud.com"
+expect -re "Enter the Web Entry Port:(Eg: 443\/80):"
+send "8000\r"
+expect -re "Enter the E-Business Suite Base install directory:(Eg: \/u02\/opc122):"
+send "{{ oracle_root_dir }}\r"
+expect -re "Press any key to continue..."
+send "\r"
+set timeout 60
+expect -re "Enter the APPS user password:"
+send "{{ apps_password }}"
+set timeout 300
+expect eof
+END

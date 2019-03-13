@@ -1,0 +1,3 @@
+# ==> ENVIRONMENT
+oracle_user: "oracle"
+oracle_group: "oinstall"

@@ -1,0 +1,34 @@
+################################################
+# ==> Upload APP and DB Artifacts to Nexus <== #
+################################################
+
+- block:
+  - name: Upload DB Artifacts
+    shell: 'curl -v -u {{ nexus_user }}:{{ nexus_password }} --upload-file {{ backup_dir }}/{{ item }}.tar.gz {{ nexus_db_url }}'
+    with_items:
+        - dbArtifacts
+        - dbData
+        - dbArchive
+        - dbOradata
+
+  tags: db_upload
+  become: True
+  become_user: root
+
+- block:
+  - name: Upload App Artifacts
+    shell: 'curl -v -u {{ nexus_user }}:{{ nexus_password }} --upload-file {{ backup_dir }}/appArtifacts.tar.gz {{ nexus_app_url }}'
+
+  tags: app_upload
+  become: True
+  become_user: root
+
+- block:
+  - name: Delete Artifacts after upload
+    file:
+      path: "/u02/artifacts/"
+      state: absent
+
+  tags: rm_artifacts
+  become: True
+  become_user: "{{ oracle_user }}"

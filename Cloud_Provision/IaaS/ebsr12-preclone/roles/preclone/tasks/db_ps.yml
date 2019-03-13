@@ -1,0 +1,10 @@
+#################################
+# ==> Check Database Status <== #
+#################################
+
+- name: Process check for the database
+  become_user: "{{ oracle_user }}"
+  shell: ps -ef | grep pmon | grep -v grep | wc -l
+  register: db_ps
+
+- debug: var=db_ps.stdout_lines

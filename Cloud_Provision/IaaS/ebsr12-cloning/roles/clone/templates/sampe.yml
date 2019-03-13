@@ -1,0 +1,17 @@
+Configuring: Run file system....
+LogFile located at /u01/install/APPS/fs1/inst/apps/TRN01_gftebs12-2-6/admin/log/clone/run/RCloneApplyAppstier_01092104.log
+
+Configuring: Patch file system....
+LogFile located at /u01/install/APPS/fs1/inst/apps/TRN01_gftebs12-2-6/admin/log/clone/patch/RCloneApplyAppstier_01092129.log
+
+Do you want to startup the Application Services for TRN01? (y/n) [n] :
+
+{ echo <apps_pwd>; echo <wls_pwd>; } | perl adcfgclone.pl appsTier /home/oracle/app/TRN01_gftebs12-2-6.xml dualfs
+END: Calling adcloneutil.pl...
+
+END: Calling adcloneutil.pl...
+
+
+Do you want to startup the Application Services for {{ DB_NAME }}? (y/n) [n] :
+
+http://oc-129-154-64-30.compute.oraclecloud.com:8000/OA_HTML/AppsLocalLogin.jsp

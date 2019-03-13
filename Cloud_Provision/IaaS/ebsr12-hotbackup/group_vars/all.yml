@@ -1,0 +1,7 @@
+# ==> ENVIRONMENT
+oracle_user: "oracle"
+oracle_group: "oinstall"
+
+#==> RMAN
+oracle_base: "/u01/install/APPS"
+oracle_home: "/u01/install/APPS/12.1.0"

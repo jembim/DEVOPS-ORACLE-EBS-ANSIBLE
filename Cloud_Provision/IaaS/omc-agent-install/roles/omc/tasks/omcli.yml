@@ -1,0 +1,47 @@
+#############################
+# ====> ADDING ENTITY <==== #
+#############################
+
+- block:
+  - name: Create JSON File Directory
+    file:
+      path: "{{ agent_base_dir }}/json"
+      state: directory
+      owner: "{{ oracle_user }}"
+      group: "{{ oracle_group }}"
+
+  - name: Generate Weblogic JSON Files
+    template:
+      src: "{{ item.old }}"
+      dest: "{{ agent_base_dir }}/json/{{ item.new }}"
+      owner: "{{ oracle_user }}"
+      group: "{{ oracle_group }}"
+      mode: 0755
+    with_items:
+        - { old: 'weblogic.json', new: "{{ env_name }}_weblogic.json" }
+        - { old: 'weblogic_creds.json', new: "{{ env_name }}_weblogic_creds.json" }
+
+  - name: Adding Entity
+    shell: '{{ agent_base_dir }}/agent_inst/bin/omcli add_entity agent {{ agent_base_dir }}/json/{{ env_name }}_weblogic.json -credential_file {{ agent_base_dir }}/json/{{ env_name }}_weblogic_creds.json'
+    register: add
+
+  - debug: var=add
+
+  tags: add_entity
+  become: True
+  become_user: '{{ oracle_user }}'
+
+- block:
+  - name: Pausing for Five Minutes
+    pause:
+      minutes: 5
+
+  - name: Check Entity Status
+    shell: '{{ agent_base_dir }}/agent_inst/bin/omcli status_entity agent {{ agent_base_dir }}/json/{{ env_name }}_weblogic.json'
+    register: stat
+
+  - debug: var=stat
+
+  tags: status
+  become: True
+  become_user: '{{ oracle_user }}'

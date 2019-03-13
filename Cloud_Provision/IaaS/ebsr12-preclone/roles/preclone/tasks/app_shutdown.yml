@@ -1,0 +1,15 @@
+#########################################
+# ==> Shutdown Application Services <== #
+#########################################
+
+- include: app_ps.yml
+
+- name: Shutdown the applications
+  become_user: "{{ oracle_user }}"
+  shell: printf {{ wls_password }} | ./adstpall.sh apps/{{ apps_password }}
+          chdir={{ admin_scripts_home }}
+  when: app_ps.stdout != '0'
+  register: out
+
+- debug: var=out.stdout_lines
+  when: out|changed

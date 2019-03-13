@@ -1,0 +1,28 @@
+# Pick the basic weblogic template
+readTemplate("{{ wl_home }}/common/templates/domains/wls.jar")
+
+# Add the details for Admin Server
+cd('Servers/AdminServer')
+set('ListenAddress','')
+set('ListenPort', {{ wl_domain_port }})
+
+
+create('AdminServer','SSL')
+cd('SSL/AdminServer')
+set('Enabled', 'False')
+set('ListenPort', {{ wl_domain_port }})
+
+# Add weblogic credentials
+cd('/')
+cd('Security/base_domain/User/weblogic')
+cmo.setPassword('{{ weblogic_password }}')
+
+# Write the domain and close the domain template.
+
+setOption('OverwriteDomain', 'true')
+setOption('ServerStartMode','prod')
+writeDomain('{{ mw_home }}/user_projects/domains/{{ wl_domain_name }}')
+closeTemplate()
+
+# Exit WLST
+exit()

@@ -1,0 +1,6 @@
+ansible-playbook -i hosts -u opc --become --become-user root -e "rman_backup_dir=$ db_name=$ backup_type=$ data=$" --tags "prep" site.yml
+ansible-playbook -i hosts -u opc --become --become-user root -e "rman_backup_dir=$ db_name=$ backup_type=$ data=$" --tags "rman" site.yml
+ansible-playbook -i hosts -u opc --become --become-user root -e "rman_backup_dir=$ db_name=$ backup_type=$ data=$" --tags "archive" site.yml
+ansible-playbook -i hosts -u opc --become --become-user root -e "rman_backup_dir=$ db_name=$ backup_type=$ toll_user=$ toll_password=$ toll_proxy=$" --tags "java" site.yml
+ansible-playbook -i hosts -u opc --become --become-user root -e "rman_backup_dir=$ db_name=$ backup_type=$ repo_username=$ repo_password=$ ftmcli_url=$ ftmcli_install_dir=$" --tags "ftmcli" site.yml
+ansible-playbook -i hosts -u opc --become --become-user root -e "rman_backup_dir=$ db_name=$ backup_type=$ ftmcli_install_dir=$ rest_endpoint=$ domain=$ container=$ opc_username=$ opc_password=$" --tags "upload" site.yml

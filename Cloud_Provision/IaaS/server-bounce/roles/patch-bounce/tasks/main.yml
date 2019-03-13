@@ -1,0 +1,65 @@
+
+- block:
+  - name: Generate OL6 UEKR4 repo file
+    template:
+      src: ol6-uekr4.repo.j2
+      dest: "/etc/yum.repos.d/ol6-uekr4.repo"
+
+  - name: Update ALL Packages
+    yum:
+      name: '*'
+      state: latest
+    environment:
+      http_proxy: "{{ toll_user }}:{{ toll_password }}@{{ toll_proxy }}"
+      https_proxy: "{{ toll_user }}:{{ toll_password }}@{{ toll_proxy }}"
+    register: pkg
+
+  - debug: var=pkg
+
+  - name: Updating Kernel UEK
+    yum:
+      name: kernel-uek
+      state: latest
+    environment:
+      http_proxy: "{{ toll_user }}:{{ toll_password }}@{{ toll_proxy }}"
+      https_proxy: "{{ toll_user }}:{{ toll_password }}@{{ toll_proxy }}"
+    register: kernel
+
+  - debug: var=kernel
+
+  - name: Install ACL & EXPECT & RSYNC
+    yum:
+      name: "{{ item }}"
+      state: present
+    with_items:
+      - acl
+      - expect
+      - rsync
+    environment:
+      http_proxy: "{{ toll_user }}:{{ toll_password }}@{{ toll_proxy }}"
+      https_proxy: "{{ toll_user }}:{{ toll_password }}@{{ toll_proxy }}"
+    register: bin
+
+  - debug: var=bin
+
+  tags: patch
+
+- block:
+  - name: Execute Server Reboot
+    shell: sleep 2 && shutdown -r now
+    async: 1
+    poll: 0
+
+  - name: Waiting for Server to come back
+    wait_for_connection:
+      delay: 60
+      timeout: 600
+
+  - name: Check Kernel Version
+    shell: 'echo $(uname -r)'
+    register: version
+
+  - debug: var=version
+
+  tags: bounce
+

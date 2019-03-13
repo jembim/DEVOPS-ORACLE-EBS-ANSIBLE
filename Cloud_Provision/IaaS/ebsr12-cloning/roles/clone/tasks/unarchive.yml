@@ -1,0 +1,40 @@
+#####################################################
+# ==> EXTRACT APPLICATION AND DATABASE ARCHIVES <== #
+#####################################################
+
+- block:
+  - name: Extract Database Archives
+    shell: 'tar -xf {{ item.src }} -C {{ item.dest }}'
+    with_items:
+        - { src: "{{ oracle_root_dir }}/dbArtifacts.tar.gz", dest: "{{ oracle_root_dir }}" }
+        - { src: "{{ oracle_root_dir }}/dbData.tar.gz", dest: "{{ oracle_root_dir }}" }
+        - { src: '/u02/dbOradata.tar.gz', dest: '/u02' }
+        - { src: '/u02/backup/dbArchive.tar.gz', dest: '/u02/backup' }
+
+  tags: extract_db
+  become: True
+  become_user: "{{ oracle_user }}"
+
+- block:
+  - name: Check old file for extract completion notice (extractAPP_completed)
+    stat:
+      path: "{{ app_run_dir }}/extractAPP_completed"
+    register: file
+
+  - name: Delete old file for extract completion notice if existing (extractAPP_completed)
+    file:
+      path: "{{ app_run_dir }}/extractAPP_completed"
+      state: absent
+    when: file.stat.exists
+
+  - name: Extract Application Archives (EBSapps)
+    shell: 'tar -xf {{ app_run_dir }}/appArtifacts.tar.gz -C {{ app_run_dir }}'
+
+  - name: Create the file for extract completion notice
+    file:
+      state: touch
+      path: "{{ app_run_dir }}/extractAPP_completed"
+
+  tags: extract_app
+  become: True
+  become_user: "{{ oracle_user }}"

@@ -1,0 +1,12 @@
+##################################
+# ==> Check Listener Status < == #
+##################################
+
+- name: Process check for the listener
+  become_user: "{{ oracle_user }}"
+  shell: ./addlnctl.sh status {{ db_name }}
+           chdir={{ oracle_home }}/appsutil/scripts/{{ db_name }}_{{ db_host }}
+  ignore_errors: yes
+  register: listener_ps
+
+- debug: var=listener_ps.stdout_lines

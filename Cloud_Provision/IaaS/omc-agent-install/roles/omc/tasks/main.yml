@@ -1,0 +1,2 @@
+- include: agentinstall.yml
+- include: omcli.yml
